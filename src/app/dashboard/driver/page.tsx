@@ -14,10 +14,10 @@ export default function DriverDashboard() {
     deliveriesToday: 12,
     earningsToday: 54.00,
     onTimeRate: 98,
-    tier: 'GOLD'
+    tier: 'GOLD' as 'BRONZE' | 'SILVER' | 'GOLD' | 'PLATINUM'
   }
 
-  const tierColors = {
+  const tierColors: Record<'BRONZE' | 'SILVER' | 'GOLD' | 'PLATINUM', string> = {
     BRONZE: 'bg-orange-100 text-orange-800',
     SILVER: 'bg-gray-200 text-gray-800',
     GOLD: 'bg-yellow-100 text-yellow-800',
