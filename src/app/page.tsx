@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCart, ChefHat, Car, MapPin, Video, DollarSign, UtensilsCrossed, Coffee, Cake, Salad, Pizza, Dumbbell, Wine, Drumstick, PartyPopper, Calendar, Search, Star, Clock, LucideIcon } from 'lucide-react'
+import PWAInstallPrompt from '@/components/shared/PWAInstallPrompt'
 
 export default function Home() {
   const categories: { name: string; icon: LucideIcon }[] = [
@@ -160,7 +161,7 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$18</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-2.5 rounded-lg font-semibold hover:bg-gray-800 transition">
+                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
                   Order Now
                 </button>
               </div>
@@ -191,7 +192,7 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$16</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-2.5 rounded-lg font-semibold hover:bg-gray-800 transition">
+                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
                   Order Now
                 </button>
               </div>
@@ -222,7 +223,7 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$22</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-2.5 rounded-lg font-semibold hover:bg-gray-800 transition">
+                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
                   Order Now
                 </button>
               </div>
@@ -253,7 +254,7 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$12</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-2.5 rounded-lg font-semibold hover:bg-gray-800 transition">
+                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
                   Order Now
                 </button>
               </div>
@@ -543,6 +544,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      
+      {/* PWA Install Prompt */}
+      <PWAInstallPrompt />
     </main>
   )
 }

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neighboreats.netlify.app/sitemap.xml

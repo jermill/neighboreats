@@ -1,0 +1,56 @@
+{
+  "name": "NeighborEats - Local Food Marketplace",
+  "short_name": "NeighborEats",
+  "description": "Discover neighborhood chefs. Support local. Eat fresh. A hyper-local marketplace connecting community chefs with customers and drivers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f43f5e",
+  "orientation": "portrait",
+  "categories": ["food", "shopping", "lifestyle"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Find Chefs",
+      "short_name": "Browse",
+      "description": "Discover local chefs in your neighborhood",
+      "url": "/dashboard/customer",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Become a Chef",
+      "short_name": "Cook",
+      "description": "Start sharing your culinary creations",
+      "url": "/auth/signup/chef",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Drive & Deliver",
+      "short_name": "Drive",
+      "description": "Earn money delivering local food",
+      "url": "/auth/signup/driver",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}
