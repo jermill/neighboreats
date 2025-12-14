@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-900 dark:bg-dark-bg border-t border-gray-800 dark:border-dark-border text-gray-300 dark:text-dark-text-secondary">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -19,7 +19,7 @@ export default function Footer() {
                 className="h-12 w-auto"
               />
             </Link>
-            <p className="text-sm text-gray-400 mb-4">
+            <p className="text-sm text-gray-400 dark:text-dark-text-muted mb-4">
               Discover neighborhood chefs. Support local. Eat fresh.
             </p>
             <div className="flex gap-4">
@@ -27,7 +27,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-teal-400 transition"
+                className="text-gray-400 dark:text-dark-text-muted hover:text-brand-teal dark:hover:text-primary-dark transition"
                 aria-label="Facebook"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-teal-400 transition"
+                className="text-gray-400 dark:text-dark-text-muted hover:text-brand-teal dark:hover:text-primary-dark transition"
                 aria-label="Twitter"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-teal-400 transition"
+                className="text-gray-400 dark:text-dark-text-muted hover:text-brand-teal dark:hover:text-primary-dark transition"
                 aria-label="Instagram"
               >
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -61,25 +61,25 @@ export default function Footer() {
 
           {/* For Customers */}
           <div>
-            <h3 className="text-white font-semibold mb-4">For Customers</h3>
+            <h3 className="text-white dark:text-dark-text font-semibold mb-4">For Customers</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/explore" className="hover:text-teal-400 transition">
+                <Link href="/explore" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Browse Chefs
                 </Link>
               </li>
               <li>
-                <Link href="/auth/signup/customer" className="hover:text-teal-400 transition">
+                <Link href="/auth/signup/customer" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Sign Up
                 </Link>
               </li>
               <li>
-                <Link href="/how-it-works" className="hover:text-teal-400 transition">
+                <Link href="/how-it-works" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   How It Works
                 </Link>
               </li>
               <li>
-                <Link href="/safety" className="hover:text-teal-400 transition">
+                <Link href="/safety" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Food Safety
                 </Link>
               </li>
@@ -88,25 +88,25 @@ export default function Footer() {
 
           {/* For Chefs & Drivers */}
           <div>
-            <h3 className="text-white font-semibold mb-4">For Partners</h3>
+            <h3 className="text-white dark:text-dark-text font-semibold mb-4">For Partners</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/apply/chef" className="hover:text-teal-400 transition">
+                <Link href="/apply/chef" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Become a Chef
                 </Link>
               </li>
               <li>
-                <Link href="/apply/driver" className="hover:text-teal-400 transition">
+                <Link href="/apply/driver" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Become a Driver
                 </Link>
               </li>
               <li>
-                <Link href="/chef-resources" className="hover:text-teal-400 transition">
+                <Link href="/chef-resources" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Chef Resources
                 </Link>
               </li>
               <li>
-                <Link href="/driver-resources" className="hover:text-teal-400 transition">
+                <Link href="/driver-resources" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Driver Resources
                 </Link>
               </li>
@@ -115,25 +115,25 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <h3 className="text-white dark:text-dark-text font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-teal-400 transition">
+                <Link href="/about" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-teal-400 transition">
+                <Link href="/blog" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-teal-400 transition">
+                <Link href="/contact" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/support" className="hover:text-teal-400 transition">
+                <Link href="/support" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                   Support
                 </Link>
               </li>
@@ -142,19 +142,19 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8">
+        <div className="border-t border-gray-800 dark:border-dark-border mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-400 dark:text-dark-text-muted">
               © {currentYear} NeighborEats. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
-              <Link href="/privacy" className="hover:text-teal-400 transition">
+              <Link href="/privacy" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-teal-400 transition">
+              <Link href="/terms" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="hover:text-teal-400 transition">
+              <Link href="/cookies" className="hover:text-brand-teal dark:hover:text-primary-dark transition">
                 Cookie Policy
               </Link>
             </div>

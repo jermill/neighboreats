@@ -608,39 +608,37 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Final Strong CTA Section - NEW #8 Position */}
-      <div className="bg-gradient-to-br from-brand-burgundy to-customer-600 dark:from-brand-burgundy/90 dark:to-customer-700 py-20">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+      {/* Final Strong CTA Section - Mobile/Tablet Optimized */}
+      <div className="bg-gradient-to-br from-brand-burgundy to-customer-600 dark:from-brand-burgundy/90 dark:to-customer-700 py-12 sm:py-16 md:py-20">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-4">
             Ready to Discover Amazing Food?
           </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-xl mx-auto">
+          <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-10 max-w-xl mx-auto px-4">
             Join thousands of happy neighbors enjoying fresh, local meals from talented chefs in your community.
           </p>
           
           <Link
             href="/explore"
-            className="inline-block px-12 py-6 bg-white dark:bg-dark-bg-elevated text-brand-burgundy dark:text-dark-text font-bold text-xl rounded-2xl hover:bg-gray-100 dark:hover:bg-dark-bg-secondary transition-all shadow-2xl hover:shadow-3xl hover:scale-105"
+            className="inline-flex items-center justify-center gap-2 sm:gap-3 px-8 sm:px-12 py-5 sm:py-6 bg-white dark:bg-dark-bg-elevated text-brand-burgundy dark:text-dark-text font-bold text-lg sm:text-xl rounded-xl sm:rounded-2xl hover:bg-gray-100 dark:hover:bg-dark-bg-secondary active:scale-95 transition-all shadow-2xl hover:shadow-3xl touch-manipulation"
           >
-            <span className="flex items-center gap-3">
-              <ShoppingCart className="w-7 h-7" />
-              Start Exploring Local Chefs
-            </span>
+            <ShoppingCart className="w-6 h-6 sm:w-7 sm:h-7" />
+            <span>Start Exploring Local Chefs</span>
           </Link>
 
-          <p className="text-white/80 mt-8 text-lg">
+          <p className="text-white/80 mt-6 sm:mt-8 text-base sm:text-lg px-4">
             No commitment. Browse chefs for free.
           </p>
         </div>
       </div>
 
-      {/* Login Section - #9 Position (Final) */}
-      <div className="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-dark-bg-secondary dark:to-dark-bg py-16 border-t border-gray-200 dark:border-dark-border">
-        <div className="container mx-auto px-4">
+      {/* Login Section - Mobile/Tablet Optimized */}
+      <div className="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-dark-bg-secondary dark:to-dark-bg py-10 sm:py-12 md:py-16 border-t border-gray-200 dark:border-dark-border">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center">
-            <p className="text-xl text-gray-700 dark:text-dark-text-secondary">
+            <p className="text-lg sm:text-xl text-gray-700 dark:text-dark-text-secondary px-4">
               Already have an account?{' '}
-              <Link href="/auth/login" className="text-customer-500 dark:text-red-400 font-bold hover:text-brand-burgundy dark:hover:text-red-300 hover:underline transition text-2xl">
+              <Link href="/auth/login" className="text-customer-500 dark:text-red-400 font-bold hover:text-brand-burgundy dark:hover:text-red-300 hover:underline transition text-xl sm:text-2xl touch-manipulation inline-block py-1">
                 Log in
               </Link>
             </p>
@@ -650,9 +648,6 @@ export default function Home() {
       
       {/* PWA Install Prompt */}
       <PWAInstallPrompt />
-      
-      {/* Dark Mode Toggle */}
-      <DarkModeToggle />
     </main>
   )
 }
