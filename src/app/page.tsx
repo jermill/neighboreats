@@ -19,9 +19,9 @@ export default function Home() {
   ]
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-dark-bg">
+    <main className="min-h-screen bg-gradient-to-b from-brand-light via-white via-40% to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:via-40% dark:to-dark-bg-elevated">
       {/* Hero Section - Mobile/Tablet Optimized */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-brand-light via-orange-50 to-white dark:from-dark-bg dark:via-dark-bg-secondary dark:to-dark-bg-elevated">
+      <div className="relative overflow-hidden">
         {/* Decorative blob shapes - Smaller on mobile */}
         <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-brand-burgundy/20 dark:bg-brand-burgundy/10 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
         <div className="absolute top-1/3 left-0 w-64 h-64 md:w-96 md:h-96 bg-brand-coral/20 dark:bg-brand-coral/10 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -92,7 +92,7 @@ export default function Home() {
       </div>
 
       {/* Social Proof Statistics - Mobile/Tablet Optimized with Grid */}
-      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg-elevated dark:via-dark-bg dark:to-dark-bg-secondary py-12 sm:py-16 md:py-20">
+      <div className="py-12 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-dark-text mb-2 px-4">
@@ -153,7 +153,7 @@ export default function Home() {
       </div>
 
       {/* How It Works - Clean Modern Design */}
-      <div className="bg-gradient-to-b from-gray-100 via-gray-50 to-white dark:from-dark-bg-secondary dark:via-dark-bg-elevated dark:to-dark-bg py-16 md:py-24">
+      <div className="py-16 md:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
@@ -221,7 +221,7 @@ export default function Home() {
       </div>
 
       {/* Popular Dishes Showcase - Mobile/Tablet Optimized with Grid */}
-      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg dark:via-dark-bg-elevated dark:to-dark-bg-secondary py-12 sm:py-16 md:py-20">
+      <div className="py-12 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
@@ -347,7 +347,7 @@ export default function Home() {
       </div>
 
       {/* Features Section - Mobile/Tablet Optimized */}
-      <div className="bg-gray-50 dark:bg-dark-bg py-12 sm:py-16 md:py-20">
+      <div className="py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
@@ -405,7 +405,7 @@ export default function Home() {
       </div>
 
       {/* Comparison Section - Mobile/Tablet Optimized */}
-      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg-elevated dark:via-dark-bg dark:to-dark-bg-secondary py-12 sm:py-16 md:py-20">
+      <div className="py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
@@ -485,7 +485,7 @@ export default function Home() {
       </div>
 
       {/* Meet Our Community - Mobile/Tablet Optimized */}
-      <div className="bg-gradient-to-b from-gray-100 via-gray-50 to-white dark:from-dark-bg-secondary dark:via-dark-bg-elevated dark:to-dark-bg py-12 sm:py-16 md:py-20">
+      <div className="py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
@@ -620,7 +620,7 @@ export default function Home() {
       </div>
 
       {/* Login Section - Mobile/Tablet Optimized */}
-      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg dark:via-dark-bg-secondary dark:to-dark-bg-elevated py-10 sm:py-12 md:py-16 border-t border-gray-200/50 dark:border-dark-border/50">
+      <div className="py-10 sm:py-12 md:py-16 border-t border-gray-200/50 dark:border-dark-border/50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center">
             <p className="text-lg sm:text-xl text-gray-700 dark:text-dark-text-secondary px-4">
