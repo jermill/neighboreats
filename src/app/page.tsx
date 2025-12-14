@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { ShoppingCart, ChefHat, Car, MapPin, Video, DollarSign, UtensilsCrossed, Coffee, Cake, Salad, Pizza, Dumbbell, Cup, Drumstick, PartyPopper, Calendar } from 'lucide-react'
+import { ShoppingCart, ChefHat, Car, MapPin, Video, DollarSign, UtensilsCrossed, Coffee, Cake, Salad, Pizza, Dumbbell, Cup, Drumstick, PartyPopper, Calendar, LucideIcon } from 'lucide-react'
 
 export default function Home() {
-  const categories = [
+  const categories: { name: string; icon: LucideIcon }[] = [
     { name: 'Meals', icon: UtensilsCrossed },
     { name: 'Juices & Smoothies', icon: Cup },
     { name: 'Baked Goods', icon: Cake },
