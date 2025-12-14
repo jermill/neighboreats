@@ -55,7 +55,7 @@ export default function ChefProfilePage() {
         </Card>
 
         {/* Public Profile Preview */}
-        <Card className="bg-gradient-to-br from-teal-50 to-blue-50">
+        <Card className="bg-gray-50">
           <h3 className="text-lg font-bold mb-2">Public Profile</h3>
           <p className="text-gray-600 mb-3">This is how customers see your profile</p>
           <div className="bg-white rounded-lg p-4">
