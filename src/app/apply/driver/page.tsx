@@ -68,7 +68,10 @@ export default function BecomeADriverPage() {
                 className="h-10 w-auto"
               />
             </Link>
-            <Link href="/" className="text-gray-700 dark:text-dark-text-secondary hover:text-brand-teal dark:hover:text-primary-dark transition">
+            <Link 
+              href="/" 
+              className="px-5 py-2.5 bg-brand-teal dark:bg-primary-dark text-white rounded-xl hover:bg-brand-teal/90 dark:hover:bg-primary-dark/90 transition font-semibold shadow-md"
+            >
               Back to Home
             </Link>
           </div>
