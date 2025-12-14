@@ -152,82 +152,69 @@ export default function Home() {
         </div>
       </div>
 
-      {/* How It Works - Mobile/Tablet Optimized */}
-      <div className="bg-white dark:bg-dark-bg-secondary py-12 sm:py-16 md:py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">How It Works</h2>
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-dark-text-secondary px-4">From browsing to delivery in four simple steps</p>
+      {/* How It Works - Clean Modern Design */}
+      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-dark-bg-elevated dark:to-dark-bg py-16 md:py-24">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
+              How It Works
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-dark-text-secondary">
+              From browsing to delivery in four simple steps
+            </p>
           </div>
 
-          <div className="relative">
-            {/* Connecting line - Hidden on mobile, shown on tablet+ */}
-            <div className="hidden md:block absolute left-12 lg:left-16 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-brand-burgundy via-brand-coral to-brand-teal"></div>
-
-            <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
-              {/* Step 1 */}
-              <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 animate-fadeIn">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 rounded-2xl sm:rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg dark:shadow-xl dark:shadow-black/20">
-                  <Search className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-customer-500 dark:text-red-400" />
-                  <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 bg-customer-500 dark:bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-lg sm:text-xl shadow-lg">
-                    1
-                  </div>
+          <div className="space-y-6">
+            {/* Step 1 */}
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-6 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-[1.02] transition-all">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-customer-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                  <span className="text-white font-bold text-xl">1</span>
                 </div>
-                <div className="flex-1 text-center sm:text-left sm:pt-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-dark-text mb-2 sm:mb-3">Browse</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed px-4 sm:px-0">
-                    Find local chefs nearby. Filter by cuisine, diet, or distance to discover the perfect meal.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text">Browse</h3>
               </div>
+              <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed pl-16">
+                Find local chefs nearby. Filter by cuisine, diet, or distance to discover the perfect meal.
+              </p>
+            </div>
 
-              {/* Step 2 */}
-              <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 rounded-2xl sm:rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg dark:shadow-xl dark:shadow-black/20">
-                  <Video className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-brand-coral dark:text-orange-400" />
-                  <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 bg-brand-coral dark:bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-lg sm:text-xl shadow-lg">
-                    2
-                  </div>
+            {/* Step 2 */}
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-6 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-[1.02] transition-all">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-brand-coral rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                  <span className="text-white font-bold text-xl">2</span>
                 </div>
-                <div className="flex-1 text-center sm:text-left sm:pt-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-dark-text mb-2 sm:mb-3">Watch Live</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed px-4 sm:px-0">
-                    See chefs cook in real-time. Build trust and authenticity by watching your food being prepared.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text">Watch Live</h3>
               </div>
+              <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed pl-16">
+                See chefs cook in real-time. Build trust and authenticity by watching your food being prepared.
+              </p>
+            </div>
 
-              {/* Step 3 */}
-              <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-br from-cyan-100 to-cyan-200 dark:from-cyan-900/30 dark:to-cyan-800/30 rounded-2xl sm:rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg dark:shadow-xl dark:shadow-black/20">
-                  <ShoppingCart className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-brand-teal dark:text-cyan-400" />
-                  <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 bg-brand-teal dark:bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold text-lg sm:text-xl shadow-lg">
-                    3
-                  </div>
+            {/* Step 3 */}
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-6 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-[1.02] transition-all">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-brand-teal rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                  <span className="text-white font-bold text-xl">3</span>
                 </div>
-                <div className="flex-1 text-center sm:text-left sm:pt-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-dark-text mb-2 sm:mb-3">Order</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed px-4 sm:px-0">
-                    Place your order securely. Pay safely and support your local community with every purchase.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text">Order</h3>
               </div>
+              <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed pl-16">
+                Place your order securely. Pay safely and support your local community with every purchase.
+              </p>
+            </div>
 
-              {/* Step 4 */}
-              <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-gradient-to-br from-cyan-100 to-blue-200 dark:from-cyan-900/30 dark:to-blue-900/30 rounded-2xl sm:rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg dark:shadow-xl dark:shadow-black/20">
-                  <Car className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-brand-teal dark:text-cyan-400" />
-                  <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 w-10 h-10 sm:w-12 sm:h-12 bg-brand-teal dark:bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold text-lg sm:text-xl shadow-lg">
-                    4
-                  </div>
+            {/* Step 4 */}
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-6 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-[1.02] transition-all">
+              <div className="flex items-center gap-4 mb-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-brand-teal rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                  <span className="text-white font-bold text-xl">4</span>
                 </div>
-                <div className="flex-1 text-center sm:text-left sm:pt-4">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-dark-text mb-2 sm:mb-3">Delivered</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed px-4 sm:px-0">
-                    Fast local delivery. Get fresh food from your neighbor's kitchen delivered right to your door.
-                  </p>
-                </div>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text">Delivered</h3>
               </div>
+              <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed pl-16">
+                Fast local delivery. Get fresh food from your neighbor's kitchen delivered right to your door.
+              </p>
             </div>
           </div>
         </div>
