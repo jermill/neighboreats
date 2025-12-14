@@ -48,7 +48,7 @@ export default function Home() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
                 <Link
-                  href="/auth/signup/customer"
+                  href="/explore"
                   className="px-8 py-4 bg-rose-500 text-white font-semibold rounded-xl hover:bg-rose-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-5 h-5" />
@@ -161,9 +161,11 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$18</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
-                  Order Now
-                </button>
+                <Link href="/explore" className="block w-full">
+                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
+                    Order Now
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -192,9 +194,11 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$16</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
-                  Order Now
-                </button>
+                <Link href="/explore" className="block w-full">
+                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
+                    Order Now
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -223,9 +227,11 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$22</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
-                  Order Now
-                </button>
+                <Link href="/explore" className="block w-full">
+                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
+                    Order Now
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -254,9 +260,11 @@ export default function Home() {
                   </div>
                   <span className="text-lg font-bold text-gray-900 ml-auto">$12</span>
                 </div>
-                <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
-                  Order Now
-                </button>
+                <Link href="/explore" className="block w-full">
+                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
+                    Order Now
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -280,8 +288,8 @@ export default function Home() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-80">
                 <Image
-                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&h=600&fit=crop"
-                  alt="Professional chef cooking in kitchen"
+                  src="/chef-connie.png"
+                  alt="Chef Connie Washington cooking in professional kitchen"
                   fill
                   className="object-cover"
                   unoptimized
@@ -291,7 +299,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Maria Rodriguez</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Connie Jones</h3>
                 <p className="text-rose-600 font-semibold mb-3">Italian Cuisine Specialist</p>
                 <p className="text-gray-600 mb-4">
                   "I love sharing my grandmother's recipes with the neighborhood. NeighborEats lets me turn my passion into income."
@@ -307,8 +315,8 @@ export default function Home() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-80">
                 <Image
-                  src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500&h=600&fit=crop"
-                  alt="Home cook preparing healthy meal"
+                  src="/homecook-james.png"
+                  alt="James Chen cooking healthy meal in home kitchen"
                   fill
                   className="object-cover"
                   unoptimized
@@ -334,8 +342,8 @@ export default function Home() {
             <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-80">
                 <Image
-                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&h=600&fit=crop"
-                  alt="Delivery driver with food delivery bag"
+                  src="/driver-sarah.png"
+                  alt="Sarah Johnson delivering food with delivery bag"
                   fill
                   className="object-cover"
                   unoptimized
@@ -432,30 +440,165 @@ export default function Home() {
             <p className="text-xl text-gray-600">Browse local chefs by food category</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
-            {categories.map(({ name, icon: Icon }, index) => {
-              const colors = [
-                'from-rose-100 to-rose-200 text-rose-600',
-                'from-amber-100 to-amber-200 text-amber-600',
-                'from-emerald-100 to-emerald-200 text-emerald-600',
-                'from-blue-100 to-blue-200 text-blue-600',
-                'from-purple-100 to-purple-200 text-purple-600',
-              ]
-              const colorClass = colors[index % colors.length]
-              
-              return (
-                <div
-                  key={name}
-                  className="flex flex-col items-center gap-3 p-6 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group"
-                >
-                  <div className={`w-20 h-20 bg-gradient-to-br ${colorClass} rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300`}>
-                    <Icon className="w-10 h-10" />
-                  </div>
-                  <span className="text-sm font-semibold text-gray-900 text-center">
-                    {name}
-                  </span>
-                </div>
-              )
-            })}
+            {/* Category 1 - Meals */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=200&fit=crop"
+                  alt="Meals"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Meals
+              </span>
+            </div>
+
+            {/* Category 2 - Juices & Smoothies */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=300&h=200&fit=crop"
+                  alt="Juices & Smoothies"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Juices & Smoothies
+              </span>
+            </div>
+
+            {/* Category 3 - Baked Goods */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=200&fit=crop"
+                  alt="Baked Goods"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Baked Goods
+              </span>
+            </div>
+
+            {/* Category 4 - Specialty Diets */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=200&fit=crop"
+                  alt="Specialty Diets"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Specialty Diets
+              </span>
+            </div>
+
+            {/* Category 5 - Ethnic Cuisines */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=200&fit=crop"
+                  alt="Ethnic Cuisines"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Ethnic Cuisines
+              </span>
+            </div>
+
+            {/* Category 6 - Healthy/Wellness */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=200&fit=crop"
+                  alt="Healthy/Wellness"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Healthy/Wellness
+              </span>
+            </div>
+
+            {/* Category 7 - Beverages */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=200&fit=crop"
+                  alt="Beverages"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Beverages
+              </span>
+            </div>
+
+            {/* Category 8 - Prepared Components */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=300&h=200&fit=crop"
+                  alt="Prepared Components"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Prepared Components
+              </span>
+            </div>
+
+            {/* Category 9 - Catering */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1555244162-803834f70033?w=300&h=200&fit=crop"
+                  alt="Catering"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Catering
+              </span>
+            </div>
+
+            {/* Category 10 - Meal Plans */}
+            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
+              <div className="relative w-full h-32">
+                <Image
+                  src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop"
+                  alt="Meal Plans"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
+                Meal Plans
+              </span>
+            </div>
           </div>
         </div>
       </div>

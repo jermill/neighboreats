@@ -31,6 +31,13 @@ npm run dev
 
 ## 📱 Features
 
+### Guest Browsing (No Account Required)
+- 🌍 **Explore local chefs** without signing up
+- 👀 **Browse menus** and view chef profiles
+- 🔍 **Filter by cuisine, dietary preferences, and distance**
+- ⭐ **Read reviews** from other customers
+- 💡 **Sign up when ready** to place orders
+
 ### For Customers
 - 🔍 Find home chefs within custom radius
 - 🛒 Order à la carte meals

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
+import Footer from '@/components/shared/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,7 +47,12 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
       </head>
       <body className={inter.className}>
-        {children}
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
         <Toaster 
           position="bottom-center"
           toastOptions={{
