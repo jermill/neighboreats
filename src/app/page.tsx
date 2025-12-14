@@ -262,6 +262,124 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Meet Our Community */}
+      <div className="bg-gradient-to-br from-rose-50 via-amber-50 to-emerald-50 py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Meet Our Community
+            </h2>
+            <p className="text-xl text-gray-600">
+              Real people. Real food. Real connections.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Chef Card */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <div className="relative h-80">
+                <Image
+                  src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=500&h=600&fit=crop"
+                  alt="Professional chef cooking in kitchen"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute top-4 right-4 bg-rose-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  Chef
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Maria Rodriguez</h3>
+                <p className="text-rose-600 font-semibold mb-3">Italian Cuisine Specialist</p>
+                <p className="text-gray-600 mb-4">
+                  "I love sharing my grandmother's recipes with the neighborhood. NeighborEats lets me turn my passion into income."
+                </p>
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <MapPin className="w-4 h-4" />
+                  <span>Brooklyn, NY</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Home Cook Card */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <div className="relative h-80">
+                <Image
+                  src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=500&h=600&fit=crop"
+                  alt="Home cook preparing healthy meal"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  Home Cook
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">James Chen</h3>
+                <p className="text-amber-600 font-semibold mb-3">Healthy Meal Prep Expert</p>
+                <p className="text-gray-600 mb-4">
+                  "As a fitness coach, I prep healthy meals for busy professionals in my area. It's rewarding work!"
+                </p>
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <MapPin className="w-4 h-4" />
+                  <span>Austin, TX</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Driver Card */}
+            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+              <div className="relative h-80">
+                <Image
+                  src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=500&h=600&fit=crop"
+                  alt="Delivery driver with food delivery bag"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+                <div className="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  Driver
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Sarah Johnson</h3>
+                <p className="text-emerald-600 font-semibold mb-3">Community Connector</p>
+                <p className="text-gray-600 mb-4">
+                  "I deliver fresh food and meet amazing people every day. The flexible hours work perfectly for me."
+                </p>
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <MapPin className="w-4 h-4" />
+                  <span>Portland, OR</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Join CTA */}
+          <div className="text-center mt-16">
+            <p className="text-xl text-gray-700 mb-6">
+              Ready to join our community?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                href="/auth/signup/chef"
+                className="px-8 py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                Start Cooking
+              </Link>
+              <Link
+                href="/auth/signup/driver"
+                className="px-8 py-4 bg-emerald-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                Start Driving
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Social Proof Statistics */}
       <div className="bg-white py-20">
         <div className="container mx-auto px-4">
