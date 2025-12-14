@@ -5,6 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'sm' | 'md' | 'lg'
   children: React.ReactNode
   loading?: boolean
+  as?: 'button' | 'span'
 }
 
 export default function Button({ 
@@ -14,6 +15,7 @@ export default function Button({
   children,
   loading = false,
   disabled,
+  as = 'button',
   ...props 
 }: ButtonProps) {
   const baseStyles = 'font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
@@ -31,18 +33,29 @@ export default function Button({
     lg: 'px-6 py-3 text-lg'
   }
   
+  const Component = as
+  const content = loading ? (
+    <div className="flex items-center gap-2">
+      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+      Loading...
+    </div>
+  ) : children
+
+  if (as === 'span') {
+    return (
+      <span className={`inline-block ${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}>
+        {content}
+      </span>
+    )
+  }
+
   return (
     <button
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
       disabled={disabled || loading}
       {...props}
     >
-      {loading ? (
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-          Loading...
-        </div>
-      ) : children}
+      {content}
     </button>
   )
 }
