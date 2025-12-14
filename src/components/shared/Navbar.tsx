@@ -9,7 +9,7 @@ interface NavbarProps {
 export default function Navbar({ userRole, userName }: NavbarProps) {
   const pathname = usePathname()
 
-  const navItems = {
+  const navItems: Record<'customer' | 'chef' | 'driver' | 'admin', { href: string; label: string }[]> = {
     customer: [
       { href: '/dashboard/customer', label: 'Home' },
       { href: '/dashboard/customer/search', label: 'Find Chefs' },
@@ -26,6 +26,12 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
       { href: '/dashboard/driver', label: 'Home' },
       { href: '/dashboard/driver/deliveries', label: 'Deliveries' },
       { href: '/dashboard/driver/earnings', label: 'Earnings' },
+    ],
+    admin: [
+      { href: '/admin', label: 'Dashboard' },
+      { href: '/admin/users', label: 'Users' },
+      { href: '/admin/orders', label: 'Orders' },
+      { href: '/admin/analytics', label: 'Analytics' },
     ],
   }
 
