@@ -92,7 +92,7 @@ export default function Home() {
       </div>
 
       {/* Social Proof Statistics - Mobile/Tablet Optimized with Grid */}
-      <div className="bg-gradient-to-b from-white to-gray-50 dark:from-dark-bg-elevated dark:to-dark-bg py-12 sm:py-16 md:py-20">
+      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg-elevated dark:via-dark-bg dark:to-dark-bg-secondary py-12 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-dark-text mb-2 px-4">
@@ -153,7 +153,7 @@ export default function Home() {
       </div>
 
       {/* How It Works - Clean Modern Design */}
-      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-dark-bg-elevated dark:to-dark-bg py-16 md:py-24">
+      <div className="bg-gradient-to-b from-gray-100 via-gray-50 to-white dark:from-dark-bg-secondary dark:via-dark-bg-elevated dark:to-dark-bg py-16 md:py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
@@ -221,7 +221,7 @@ export default function Home() {
       </div>
 
       {/* Popular Dishes Showcase - Mobile/Tablet Optimized with Grid */}
-      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-dark-bg dark:to-dark-bg-elevated py-12 sm:py-16 md:py-20">
+      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg dark:via-dark-bg-elevated dark:to-dark-bg-secondary py-12 sm:py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
@@ -405,7 +405,7 @@ export default function Home() {
       </div>
 
       {/* Comparison Section - Mobile/Tablet Optimized */}
-      <div className="bg-gradient-to-b from-white to-gray-50 dark:from-dark-bg-elevated dark:to-dark-bg py-12 sm:py-16 md:py-20">
+      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg-elevated dark:via-dark-bg dark:to-dark-bg-secondary py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
@@ -485,7 +485,7 @@ export default function Home() {
       </div>
 
       {/* Meet Our Community - Mobile/Tablet Optimized */}
-      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-dark-bg-secondary dark:to-dark-bg-elevated py-12 sm:py-16 md:py-20">
+      <div className="bg-gradient-to-b from-gray-100 via-gray-50 to-white dark:from-dark-bg-secondary dark:via-dark-bg-elevated dark:to-dark-bg py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-10 md:mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
@@ -620,7 +620,7 @@ export default function Home() {
       </div>
 
       {/* Login Section - Mobile/Tablet Optimized */}
-      <div className="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-dark-bg-secondary dark:to-dark-bg py-10 sm:py-12 md:py-16 border-t border-gray-200 dark:border-dark-border">
+      <div className="bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-dark-bg dark:via-dark-bg-secondary dark:to-dark-bg-elevated py-10 sm:py-12 md:py-16 border-t border-gray-200/50 dark:border-dark-border/50">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center">
             <p className="text-lg sm:text-xl text-gray-700 dark:text-dark-text-secondary px-4">
