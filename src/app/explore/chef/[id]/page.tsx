@@ -45,9 +45,9 @@ export default function GuestChefProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-brand-light via-white via-40% to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:via-40% dark:to-dark-bg-elevated">
       {/* Header/Navbar */}
-      <nav className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="bg-white dark:bg-dark-bg-elevated shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-dark-border">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
@@ -63,27 +63,27 @@ export default function GuestChefProfilePage() {
             <div className="flex items-center gap-4">
               <Link
                 href="/apply/chef"
-                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-brand-teal transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-dark-text-secondary hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 <ChefHat className="w-5 h-5" />
                 Become a Chef
               </Link>
               <Link
                 href="/apply/driver"
-                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-brand-teal transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-dark-text-secondary hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 <Car className="w-5 h-5" />
                 Become a Driver
               </Link>
               <Link
                 href="/auth/login"
-                className="px-4 py-2 text-gray-700 hover:text-brand-teal transition font-medium"
+                className="px-4 py-2 text-gray-700 dark:text-dark-text-secondary hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 Log In
               </Link>
               <Link
                 href="/auth/signup/customer"
-                className="px-4 py-2 bg-brand-teal text-white rounded-lg hover:bg-brand-teal transition font-medium"
+                className="px-4 py-2 bg-brand-teal dark:bg-primary-dark text-white rounded-lg hover:bg-brand-teal/90 dark:hover:bg-primary-dark/90 transition font-medium"
               >
                 Sign Up
               </Link>
@@ -97,24 +97,24 @@ export default function GuestChefProfilePage() {
           {/* Back Button */}
           <Link
             href="/explore"
-            className="inline-flex items-center gap-2 text-gray-700 hover:text-brand-teal transition font-medium"
+            className="inline-flex items-center gap-2 text-gray-700 dark:text-dark-text-secondary hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to all chefs
           </Link>
 
           {/* Info Banner */}
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-            <p className="text-amber-900">
+          <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/50 rounded-lg p-4">
+            <p className="text-amber-900 dark:text-amber-200">
               👋 <strong>Guest Mode:</strong> 
-              <Link href="/auth/signup/customer" className="text-amber-700 font-semibold hover:underline ml-1">
+              <Link href="/auth/signup/customer" className="text-amber-700 dark:text-amber-400 font-semibold hover:underline ml-1">
                 Sign up for free
               </Link> to order from this chef!
             </p>
           </div>
 
           {/* Chef Profile Card - Modern Design */}
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl shadow-2xl dark:shadow-xl dark:shadow-black/20 overflow-hidden border border-transparent dark:border-dark-border">
             {/* Hero Image Section with Extended Gradient */}
             <div className="relative overflow-hidden">
               {/* Chef Photo - Extended height for stats */}
@@ -210,9 +210,9 @@ export default function GuestChefProfilePage() {
           </div>
 
           {/* Tabs - Modern Style */}
-          <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl shadow-xl dark:shadow-xl dark:shadow-black/20 overflow-hidden border border-transparent dark:border-dark-border">
             {/* Tab Navigation */}
-            <div className="bg-gray-50 px-4 py-3">
+            <div className="bg-gray-50 dark:bg-dark-bg-secondary px-4 py-3">
               <div className="flex gap-2">
                 {['menu', 'subscriptions', 'reviews'].map(tab => (
                   <button
@@ -220,8 +220,8 @@ export default function GuestChefProfilePage() {
                     onClick={() => setActiveTab(tab as any)}
                     className={`flex-1 py-3 px-4 font-bold capitalize transition-all rounded-2xl ${
                       activeTab === tab
-                        ? 'bg-brand-teal text-white shadow-lg'
-                        : 'bg-white text-gray-600 hover:bg-gray-100'
+                        ? 'bg-brand-teal dark:bg-primary-dark text-white shadow-lg'
+                        : 'bg-white dark:bg-dark-bg text-gray-600 dark:text-dark-text-secondary hover:bg-gray-100 dark:hover:bg-dark-bg-elevated'
                     }`}
                   >
                     {tab}
@@ -234,7 +234,7 @@ export default function GuestChefProfilePage() {
               {/* Menu Tab */}
               {activeTab === 'menu' && (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Menu Items</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-6">Menu Items</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {menuItems.map(item => (
                       <MenuItemCard
@@ -250,22 +250,22 @@ export default function GuestChefProfilePage() {
               {/* Subscriptions Tab */}
               {activeTab === 'subscriptions' && (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Meal Plans</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-6">Meal Plans</h2>
                   <div className="space-y-6">
                     {/* Plan 1 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-teal-50 to-emerald-50 border-2 border-teal-200 rounded-3xl p-6 md:p-8 hover:shadow-2xl transition-all">
-                      <div className="absolute top-4 right-4 bg-brand-teal text-white px-4 py-1.5 rounded-full text-xs font-bold">
+                    <div className="relative overflow-hidden bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/20 border-2 border-teal-200 dark:border-teal-700/50 rounded-3xl p-6 md:p-8 hover:shadow-2xl transition-all">
+                      <div className="absolute top-4 right-4 bg-brand-teal dark:bg-primary-dark text-white px-4 py-1.5 rounded-full text-xs font-bold">
                         SAVE 15%
                       </div>
                       <div className="mb-4">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">5-Day Meal Plan</h3>
-                        <p className="text-gray-700 text-base">Perfect for weekday lunches. Fresh meals delivered Monday through Friday.</p>
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">5-Day Meal Plan</h3>
+                        <p className="text-gray-700 dark:text-dark-text-secondary text-base">Perfect for weekday lunches. Fresh meals delivered Monday through Friday.</p>
                       </div>
                       <div className="flex items-center justify-between mt-6">
                         <div>
-                          <span className="text-4xl font-bold text-brand-teal">$95</span>
-                          <span className="text-gray-600 text-lg">/month</span>
-                          <p className="text-sm text-gray-500 mt-1">~$19 per day</p>
+                          <span className="text-4xl font-bold text-brand-teal dark:text-primary-dark">$95</span>
+                          <span className="text-gray-600 dark:text-dark-text-secondary text-lg">/month</span>
+                          <p className="text-sm text-gray-500 dark:text-dark-text-muted mt-1">~$19 per day</p>
                         </div>
                         <Button className="px-8 py-3" onClick={handleOrderAttempt}>
                           Subscribe
@@ -274,19 +274,19 @@ export default function GuestChefProfilePage() {
                     </div>
 
                     {/* Plan 2 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-rose-50 to-amber-50 border-2 border-rose-200 rounded-3xl p-6 md:p-8 hover:shadow-2xl transition-all">
-                      <div className="absolute top-4 right-4 bg-rose-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">
+                    <div className="relative overflow-hidden bg-gradient-to-br from-rose-50 to-amber-50 dark:from-rose-900/20 dark:to-amber-900/20 border-2 border-rose-200 dark:border-rose-700/50 rounded-3xl p-6 md:p-8 hover:shadow-2xl transition-all">
+                      <div className="absolute top-4 right-4 bg-rose-600 dark:bg-rose-700 text-white px-4 py-1.5 rounded-full text-xs font-bold">
                         SAVE 20%
                       </div>
                       <div className="mb-4">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">7-Day Full Week</h3>
-                        <p className="text-gray-700 text-base">Complete week coverage. Every day taken care of with delicious meals.</p>
+                        <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">7-Day Full Week</h3>
+                        <p className="text-gray-700 dark:text-dark-text-secondary text-base">Complete week coverage. Every day taken care of with delicious meals.</p>
                       </div>
                       <div className="flex items-center justify-between mt-6">
                         <div>
-                          <span className="text-4xl font-bold text-rose-600">$129</span>
-                          <span className="text-gray-600 text-lg">/month</span>
-                          <p className="text-sm text-gray-500 mt-1">~$18 per day</p>
+                          <span className="text-4xl font-bold text-rose-600 dark:text-rose-400">$129</span>
+                          <span className="text-gray-600 dark:text-dark-text-secondary text-lg">/month</span>
+                          <p className="text-sm text-gray-500 dark:text-dark-text-muted mt-1">~$18 per day</p>
                         </div>
                         <Button className="px-8 py-3" onClick={handleOrderAttempt}>
                           Subscribe
@@ -300,10 +300,10 @@ export default function GuestChefProfilePage() {
               {/* Reviews Tab */}
               {activeTab === 'reviews' && (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Customer Reviews</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-6">Customer Reviews</h2>
                   <div className="space-y-4">
                     {reviews.map(review => (
-                      <div key={review.id} className="bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-all">
+                      <div key={review.id} className="bg-gray-50 dark:bg-dark-bg-secondary rounded-2xl p-6 hover:bg-gray-100 dark:hover:bg-dark-bg transition-all border border-transparent dark:border-dark-border">
                         <div className="flex items-start gap-4">
                           {/* Avatar */}
                           <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-brand-teal rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
@@ -313,16 +313,16 @@ export default function GuestChefProfilePage() {
                           <div className="flex-1">
                             <div className="flex items-center justify-between mb-2">
                               <div>
-                                <span className="font-bold text-gray-900">{review.customerName}</span>
+                                <span className="font-bold text-gray-900 dark:text-dark-text">{review.customerName}</span>
                                 <div className="flex items-center gap-2 mt-1">
                                   <Rating value={review.rating} readonly size="sm" />
-                                  <span className="text-sm text-gray-500">
+                                  <span className="text-sm text-gray-500 dark:text-dark-text-muted">
                                     {new Date(review.createdAt).toLocaleDateString()}
                                   </span>
                                 </div>
                               </div>
                             </div>
-                            <p className="text-gray-700 leading-relaxed">{review.comment}</p>
+                            <p className="text-gray-700 dark:text-dark-text-secondary leading-relaxed">{review.comment}</p>
                           </div>
                         </div>
                       </div>
@@ -338,7 +338,7 @@ export default function GuestChefProfilePage() {
       {/* Signup Modal */}
       <Modal isOpen={showSignupModal} onClose={() => setShowSignupModal(false)} title="Sign Up to Order">
         <div className="space-y-4">
-          <p className="text-gray-700">
+          <p className="text-gray-700 dark:text-dark-text-secondary">
             Create a free account to place orders, save favorites, and get personalized recommendations!
           </p>
           
@@ -346,22 +346,22 @@ export default function GuestChefProfilePage() {
             <div className="flex items-start gap-3">
               <span className="text-2xl">✓</span>
               <div>
-                <strong className="text-gray-900">Order from local chefs</strong>
-                <p className="text-sm text-gray-600">Browse menus and place orders</p>
+                <strong className="text-gray-900 dark:text-dark-text">Order from local chefs</strong>
+                <p className="text-sm text-gray-600 dark:text-dark-text-muted">Browse menus and place orders</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-2xl">✓</span>
               <div>
-                <strong className="text-gray-900">Track your orders</strong>
-                <p className="text-sm text-gray-600">Get real-time updates on delivery</p>
+                <strong className="text-gray-900 dark:text-dark-text">Track your orders</strong>
+                <p className="text-sm text-gray-600 dark:text-dark-text-muted">Get real-time updates on delivery</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <span className="text-2xl">✓</span>
               <div>
-                <strong className="text-gray-900">Save your favorites</strong>
-                <p className="text-sm text-gray-600">Quick reorder from your favorite chefs</p>
+                <strong className="text-gray-900 dark:text-dark-text">Save your favorites</strong>
+                <p className="text-sm text-gray-600 dark:text-dark-text-muted">Quick reorder from your favorite chefs</p>
               </div>
             </div>
           </div>

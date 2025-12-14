@@ -54,7 +54,7 @@ export default function BecomeADriverPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:to-dark-bg">
+    <div className="min-h-screen bg-gradient-to-b from-brand-light via-white via-40% to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:via-40% dark:to-dark-bg-elevated">
       {/* Header */}
       <nav className="bg-white dark:bg-dark-bg-elevated shadow-md sticky top-0 z-40 border-b border-gray-200 dark:border-dark-border">
         <div className="max-w-6xl mx-auto px-4">
@@ -79,7 +79,7 @@ export default function BecomeADriverPage() {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-brand-teal/10 via-cyan-50/50 to-transparent dark:from-brand-teal/5 dark:via-cyan-900/10 dark:to-transparent py-20">
+      <div className="relative overflow-hidden py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-brand-teal to-cyan-600 rounded-3xl mb-8 shadow-2xl">
             <Car className="w-12 h-12 text-white" />

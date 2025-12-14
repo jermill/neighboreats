@@ -106,7 +106,7 @@ export default function ExplorePage() {
       </nav>
 
       {/* Hero Section - Vertical Centered */}
-      <div className="relative overflow-hidden bg-gradient-to-b from-brand-light via-orange-50 to-white dark:from-dark-bg dark:via-dark-bg-secondary dark:to-dark-bg-elevated py-16 md:py-20">
+      <div className="relative overflow-hidden py-16 md:py-20">
         {/* Decorative blobs */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-burgundy/10 dark:bg-brand-burgundy/5 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-coral/10 dark:bg-brand-coral/5 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
