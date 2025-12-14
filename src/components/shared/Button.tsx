@@ -21,9 +21,9 @@ export default function Button({
   const baseStyles = 'font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
   
   const variantStyles = {
-    primary: 'bg-teal-600 text-white hover:bg-teal-700 active:bg-teal-800',
+    primary: 'bg-brand-teal text-white hover:bg-teal-700 active:bg-teal-800',
     secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400',
-    outline: 'border-2 border-teal-600 text-teal-600 hover:bg-teal-50 active:bg-teal-100',
+    outline: 'border-2 border-brand-teal text-brand-teal hover:bg-teal-50 active:bg-teal-100',
     danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800'
   }
   

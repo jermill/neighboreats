@@ -27,7 +27,7 @@ export default function GuestChefProfilePage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Chef not found</h1>
-          <Link href="/explore" className="text-teal-600 hover:underline">
+          <Link href="/explore" className="text-brand-teal hover:underline">
             Back to explore
           </Link>
         </div>
@@ -50,33 +50,33 @@ export default function GuestChefProfilePage() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="text-2xl font-bold">
-              🍽️ Neighbor<span className="text-teal-600">Eats</span>
+              🍽️ Neighbor<span className="text-brand-teal">Eats</span>
             </Link>
 
             <div className="flex items-center gap-4">
               <Link
                 href="/auth/signup/chef"
-                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-teal-600 transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-brand-teal transition font-medium"
               >
                 <ChefHat className="w-5 h-5" />
                 Become a Chef
               </Link>
               <Link
                 href="/auth/signup/driver"
-                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-teal-600 transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-brand-teal transition font-medium"
               >
                 <Car className="w-5 h-5" />
                 Become a Driver
               </Link>
               <Link
                 href="/auth/login"
-                className="px-4 py-2 text-gray-700 hover:text-teal-600 transition font-medium"
+                className="px-4 py-2 text-gray-700 hover:text-brand-teal transition font-medium"
               >
                 Log In
               </Link>
               <Link
                 href="/auth/signup/customer"
-                className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition font-medium"
+                className="px-4 py-2 bg-brand-teal text-white rounded-lg hover:bg-brand-teal transition font-medium"
               >
                 Sign Up
               </Link>
@@ -90,7 +90,7 @@ export default function GuestChefProfilePage() {
           {/* Back Button */}
           <Link
             href="/explore"
-            className="inline-flex items-center gap-2 text-gray-700 hover:text-teal-600 transition font-medium"
+            className="inline-flex items-center gap-2 text-gray-700 hover:text-brand-teal transition font-medium"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to all chefs
@@ -145,7 +145,7 @@ export default function GuestChefProfilePage() {
                   {chef.categories.map((category, index) => {
                     const icons = ['🍽️', '🥗', '🍕', '🥘', '🍰'];
                     const colors = [
-                      'bg-teal-500/90',
+                      'bg-brand-teal/90',
                       'bg-amber-500/90',
                       'bg-amber-700/90',
                       'bg-blue-500/90',
@@ -213,7 +213,7 @@ export default function GuestChefProfilePage() {
                     onClick={() => setActiveTab(tab as any)}
                     className={`flex-1 py-3 px-4 font-bold capitalize transition-all rounded-2xl ${
                       activeTab === tab
-                        ? 'bg-teal-600 text-white shadow-lg'
+                        ? 'bg-brand-teal text-white shadow-lg'
                         : 'bg-white text-gray-600 hover:bg-gray-100'
                     }`}
                   >
@@ -247,7 +247,7 @@ export default function GuestChefProfilePage() {
                   <div className="space-y-6">
                     {/* Plan 1 */}
                     <div className="relative overflow-hidden bg-gradient-to-br from-teal-50 to-emerald-50 border-2 border-teal-200 rounded-3xl p-6 md:p-8 hover:shadow-2xl transition-all">
-                      <div className="absolute top-4 right-4 bg-teal-600 text-white px-4 py-1.5 rounded-full text-xs font-bold">
+                      <div className="absolute top-4 right-4 bg-brand-teal text-white px-4 py-1.5 rounded-full text-xs font-bold">
                         SAVE 15%
                       </div>
                       <div className="mb-4">
@@ -256,7 +256,7 @@ export default function GuestChefProfilePage() {
                       </div>
                       <div className="flex items-center justify-between mt-6">
                         <div>
-                          <span className="text-4xl font-bold text-teal-600">$95</span>
+                          <span className="text-4xl font-bold text-brand-teal">$95</span>
                           <span className="text-gray-600 text-lg">/month</span>
                           <p className="text-sm text-gray-500 mt-1">~$19 per day</p>
                         </div>
@@ -299,7 +299,7 @@ export default function GuestChefProfilePage() {
                       <div key={review.id} className="bg-gray-50 rounded-2xl p-6 hover:bg-gray-100 transition-all">
                         <div className="flex items-start gap-4">
                           {/* Avatar */}
-                          <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                          <div className="w-12 h-12 bg-gradient-to-br from-teal-400 to-brand-teal rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
                             {review.customerName.charAt(0)}
                           </div>
                           

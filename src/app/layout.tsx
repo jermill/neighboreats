@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   manifest: '/manifest.json',
-  themeColor: '#f43f5e',
+  themeColor: '#026181',
 }
 
 export const viewport: Viewport = {

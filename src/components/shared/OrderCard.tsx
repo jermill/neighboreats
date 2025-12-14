@@ -74,7 +74,7 @@ export default function OrderCard({ order, userRole, onViewDetails, onAccept, on
         )}
         <div className="flex justify-between font-bold">
           <span>Total</span>
-          <span className="text-teal-600">${order.totalPrice.toFixed(2)}</span>
+          <span className="text-brand-teal">${order.totalPrice.toFixed(2)}</span>
         </div>
       </div>
 

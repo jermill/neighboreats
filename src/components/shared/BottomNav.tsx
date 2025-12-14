@@ -41,7 +41,7 @@ export default function BottomNav({ userRole }: BottomNavProps) {
               key={item.href}
               href={item.href}
               className={`flex flex-col items-center justify-center flex-1 h-full transition ${
-                isActive ? 'text-teal-600' : 'text-gray-600'
+                isActive ? 'text-brand-teal' : 'text-gray-600'
               }`}
             >
               <span className="text-2xl mb-0.5">{item.icon}</span>

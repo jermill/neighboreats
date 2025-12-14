@@ -67,34 +67,34 @@ export default function ExplorePage() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="text-2xl font-bold">
-              🍽️ Neighbor<span className="text-teal-600 dark:text-primary-dark">Eats</span>
+              🍽️ Neighbor<span className="text-brand-teal dark:text-primary-dark">Eats</span>
             </Link>
 
             <div className="flex items-center gap-4">
               <ThemeToggle />
               <Link
                 href="/auth/signup/chef"
-                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-primary-dark transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 <ChefHat className="w-5 h-5" />
                 Become a Chef
               </Link>
               <Link
                 href="/auth/signup/driver"
-                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-primary-dark transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 <Car className="w-5 h-5" />
                 Become a Driver
               </Link>
               <Link
                 href="/auth/login"
-                className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-primary-dark transition font-medium"
+                className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 Log In
               </Link>
               <Link
                 href="/auth/signup/customer"
-                className="px-4 py-2 bg-teal-600 dark:bg-primary-dark text-white rounded-lg hover:bg-teal-700 dark:hover:bg-teal-600 transition font-medium"
+                className="px-4 py-2 bg-brand-teal dark:bg-primary-dark text-white rounded-lg hover:bg-brand-teal dark:hover:bg-brand-teal transition font-medium"
               >
                 Sign Up
               </Link>
@@ -114,7 +114,7 @@ export default function ExplorePage() {
               Browse neighborhood chefs, view their menus, and discover fresh, homemade meals
             </p>
             <div className="inline-flex items-center gap-2 bg-white dark:bg-dark-bg-secondary px-6 py-3 rounded-full shadow-md border border-gray-200 dark:border-gray-700">
-              <Search className="w-5 h-5 text-teal-600 dark:text-primary-dark" />
+              <Search className="w-5 h-5 text-brand-teal dark:text-primary-dark" />
               <span className="text-gray-700 dark:text-gray-300 font-medium">
                 Showing chefs in Wilmington, DE area
               </span>
@@ -162,7 +162,7 @@ export default function ExplorePage() {
                       onClick={() => setSelectedCategory(category)}
                       className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
                         selectedCategory === category
-                          ? 'bg-teal-600 dark:bg-primary-dark text-white shadow-md'
+                          ? 'bg-brand-teal dark:bg-primary-dark text-white shadow-md'
                           : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
                       }`}
                     >
@@ -202,7 +202,7 @@ export default function ExplorePage() {
                   onClick={() => setSortBy('distance')}
                   className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                     sortBy === 'distance'
-                      ? 'bg-teal-600 text-white shadow-lg'
+                      ? 'bg-brand-teal text-white shadow-lg'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >

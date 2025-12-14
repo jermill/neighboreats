@@ -34,7 +34,7 @@ export default function MenuItem({ item, onAddToCart, onEdit, onDelete, showActi
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-lg font-bold text-teal-600">${item.price.toFixed(2)}</span>
+        <span className="text-lg font-bold text-brand-teal">${item.price.toFixed(2)}</span>
         {!item.isAvailable && <Badge variant="warning" size="sm">Unavailable</Badge>}
       </div>
 

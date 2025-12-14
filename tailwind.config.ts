@@ -10,47 +10,54 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Brand Colors - https://coolors.co/282119-8c3030-f8f9fa-026181-ff8c42
+        'brand-dark': '#282119',      // Deep charcoal brown
+        'brand-burgundy': '#8C3030',  // Rich burgundy
+        'brand-light': '#F8F9FA',     // Soft white
+        'brand-teal': '#026181',      // Deep teal
+        'brand-coral': '#FF8C42',     // Vibrant coral
+        
         // Light mode colors
         background: '#ffffff',
         foreground: '#0f1419',
         
         // Dark mode colors
-        'dark-bg': '#1a1410',
+        'dark-bg': '#282119',
         'dark-bg-secondary': '#2a2018',
         'dark-text': '#f8f9fa',
         
         primary: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
-          light: '#208080', // Light mode teal
-          dark: '#1a9b96',  // Dark mode teal
+          50: '#e6f3f7',
+          100: '#cce7ef',
+          200: '#99cfe0',
+          300: '#66b7d0',
+          400: '#339fc1',
+          500: '#026181',    // Brand teal
+          600: '#024e67',
+          700: '#013a4d',
+          800: '#012734',
+          900: '#01131a',
+          light: '#026181',
+          dark: '#339fc1',
         },
         customer: {
-          500: '#f43f5e',
-          600: '#e11d48',
-          700: '#be123c',
+          500: '#8C3030',    // Brand burgundy
+          600: '#702626',
+          700: '#541d1d',
         },
         chef: {
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309',
+          500: '#FF8C42',    // Brand coral
+          600: '#cc7035',
+          700: '#995428',
         },
         driver: {
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
+          500: '#026181',    // Brand teal
+          600: '#024e67',
+          700: '#013a4d',
         },
         accent: {
-          light: '#ff6b35',  // Light mode orange
-          dark: '#ff8c42',   // Dark mode orange
+          light: '#FF8C42',  // Brand coral
+          dark: '#ff8c42',
         },
       },
       // Mobile-optimized spacing

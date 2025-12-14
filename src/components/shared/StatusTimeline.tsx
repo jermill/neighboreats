@@ -21,7 +21,7 @@ export default function StatusTimeline({ currentStatus, statuses }: StatusTimeli
                   isCompleted
                     ? 'bg-green-500 text-white'
                     : isActive
-                    ? 'bg-teal-600 text-white ring-4 ring-teal-100'
+                    ? 'bg-brand-teal text-white ring-4 ring-teal-100'
                     : 'bg-gray-200 text-gray-500'
                 }`}
               >
@@ -39,7 +39,7 @@ export default function StatusTimeline({ currentStatus, statuses }: StatusTimeli
             <div className="flex-1 pb-8">
               <p
                 className={`font-semibold ${
-                  isActive ? 'text-teal-600' : isCompleted ? 'text-green-600' : 'text-gray-500'
+                  isActive ? 'text-brand-teal' : isCompleted ? 'text-green-600' : 'text-gray-500'
                 }`}
               >
                 {status.label}

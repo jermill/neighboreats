@@ -20,11 +20,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-rose-50 via-amber-50 to-emerald-50">
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-light via-orange-50 to-cyan-50">
         {/* Decorative blob shapes */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-burgundy/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-coral/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-brand-teal/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
         
         <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -32,7 +32,7 @@ export default function Home() {
             <div className="text-center lg:text-left space-y-8 animate-fadeIn">
               {/* Logo/Brand */}
               <h1 className="text-6xl md:text-7xl font-bold text-gray-900">
-                Neighbor<span className="text-rose-600">Eats</span>
+                Neighbor<span className="text-customer-500">Eats</span>
               </h1>
               
               <p className="text-3xl md:text-4xl text-gray-800 font-semibold">
@@ -42,28 +42,28 @@ export default function Home() {
               <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
                 A hyper-local marketplace connecting community chefs with customers and drivers.
                 <br />
-                <span className="font-bold text-emerald-600">80-85% goes to chefs</span> · Fair economics · Fresh food
+                <span className="font-bold text-brand-teal">80-85% goes to chefs</span> · Fair economics · Fresh food
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
                 <Link
                   href="/explore"
-                  className="px-8 py-4 bg-rose-500 text-white font-semibold rounded-xl hover:bg-rose-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
+                  className="px-8 py-4 bg-brand-burgundy text-white font-semibold rounded-xl hover:bg-customer-500 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Find Local Chefs
                 </Link>
                 <Link
                   href="/auth/signup/chef"
-                  className="px-8 py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
+                  className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
                 >
                   <ChefHat className="w-5 h-5" />
                   Become a Chef
                 </Link>
                 <Link
                   href="/auth/signup/driver"
-                  className="px-8 py-4 bg-emerald-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
+                  className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
                 >
                   <Car className="w-5 h-5" />
                   Drive & Deliver
@@ -92,8 +92,8 @@ export default function Home() {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-rose-100 to-rose-200 rounded-2xl flex items-center justify-center mb-4">
-              <MapPin className="w-8 h-8 text-rose-600" />
+            <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center mb-4">
+              <MapPin className="w-8 h-8 text-customer-500" />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-900">Hyper-Local</h3>
             <p className="text-gray-600 text-lg">
@@ -102,8 +102,8 @@ export default function Home() {
           </div>
 
           <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-amber-100 to-amber-200 rounded-2xl flex items-center justify-center mb-4">
-              <Video className="w-8 h-8 text-amber-600" />
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center mb-4">
+              <Video className="w-8 h-8 text-brand-coral" />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-900">LIVE Cooking</h3>
             <p className="text-gray-600 text-lg">
@@ -112,8 +112,8 @@ export default function Home() {
           </div>
 
           <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-2xl flex items-center justify-center mb-4">
-              <DollarSign className="w-8 h-8 text-emerald-600" />
+            <div className="w-16 h-16 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-2xl flex items-center justify-center mb-4">
+              <DollarSign className="w-8 h-8 text-brand-teal" />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-900">Fair Economics</h3>
             <p className="text-gray-600 text-lg">
@@ -272,7 +272,7 @@ export default function Home() {
       </div>
 
       {/* Meet Our Community */}
-      <div className="bg-gradient-to-br from-rose-50 via-amber-50 to-emerald-50 py-20">
+      <div className="bg-gradient-to-br from-brand-light via-orange-50 to-cyan-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -294,13 +294,13 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-rose-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-4 right-4 bg-brand-burgundy text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                   Chef
                 </div>
               </div>
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Connie Jones</h3>
-                <p className="text-rose-600 font-semibold mb-3">Italian Cuisine Specialist</p>
+                <p className="text-customer-500 font-semibold mb-3">Italian Cuisine Specialist</p>
                 <p className="text-gray-600 mb-4">
                   "I love sharing my grandmother's recipes with the neighborhood. NeighborEats lets me turn my passion into income."
                 </p>
@@ -321,13 +321,13 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-4 right-4 bg-brand-coral text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                   Home Cook
                 </div>
               </div>
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">James Chen</h3>
-                <p className="text-amber-600 font-semibold mb-3">Healthy Meal Prep Expert</p>
+                <p className="text-brand-coral font-semibold mb-3">Healthy Meal Prep Expert</p>
                 <p className="text-gray-600 mb-4">
                   "As a fitness coach, I prep healthy meals for busy professionals in my area. It's rewarding work!"
                 </p>
@@ -348,13 +348,13 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-4 right-4 bg-driver-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                   Driver
                 </div>
               </div>
               <div className="p-6">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Sarah Johnson</h3>
-                <p className="text-emerald-600 font-semibold mb-3">Community Connector</p>
+                <p className="text-brand-teal font-semibold mb-3">Community Connector</p>
                 <p className="text-gray-600 mb-4">
                   "I deliver fresh food and meet amazing people every day. The flexible hours work perfectly for me."
                 </p>
@@ -374,13 +374,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/auth/signup/chef"
-                className="px-8 py-4 bg-amber-500 text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Start Cooking
               </Link>
               <Link
                 href="/auth/signup/driver"
-                className="px-8 py-4 bg-emerald-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-xl hover:bg-brand-teal transition-all shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Start Driving
               </Link>
@@ -395,8 +395,8 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {/* Stat 1 */}
             <div className="text-center animate-fadeIn">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full mb-4">
-                <ChefHat className="w-10 h-10 text-rose-600" />
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-full mb-4">
+                <ChefHat className="w-10 h-10 text-customer-500" />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">500+</div>
               <div className="text-gray-600 font-medium">Local Chefs</div>
@@ -404,8 +404,8 @@ export default function Home() {
 
             {/* Stat 2 */}
             <div className="text-center animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full mb-4">
-                <UtensilsCrossed className="w-10 h-10 text-amber-600" />
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full mb-4">
+                <UtensilsCrossed className="w-10 h-10 text-brand-coral" />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">10,000+</div>
               <div className="text-gray-600 font-medium">Meals Delivered</div>
@@ -413,8 +413,8 @@ export default function Home() {
 
             {/* Stat 3 */}
             <div className="text-center animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full mb-4">
-                <Star className="w-10 h-10 text-emerald-600 fill-emerald-600" />
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-full mb-4">
+                <Star className="w-10 h-10 text-brand-teal fill-brand-teal" />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">4.8</div>
               <div className="text-gray-600 font-medium">Average Rating</div>
@@ -422,8 +422,8 @@ export default function Home() {
 
             {/* Stat 4 */}
             <div className="text-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-rose-100 to-amber-200 rounded-full mb-4">
-                <DollarSign className="w-10 h-10 text-rose-600" />
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-100 to-orange-200 rounded-full mb-4">
+                <DollarSign className="w-10 h-10 text-customer-500" />
               </div>
               <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">80-85%</div>
               <div className="text-gray-600 font-medium">Goes to Chefs</div>
@@ -433,7 +433,7 @@ export default function Home() {
       </div>
 
       {/* Categories */}
-      <div className="bg-gradient-to-br from-rose-50 to-emerald-50 py-20">
+      <div className="bg-gradient-to-br from-brand-light to-cyan-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">10 Categories Available</h2>
@@ -613,13 +613,13 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto relative">
             {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-rose-200 via-amber-200 to-emerald-200" style={{ top: '80px' }}></div>
+            <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-red-200 via-orange-200 to-cyan-200" style={{ top: '80px' }}></div>
 
             {/* Step 1 */}
             <div className="relative text-center animate-fadeIn">
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-rose-100 to-rose-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <Search className="w-16 h-16 text-rose-600" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-rose-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-red-100 to-red-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
+                <Search className="w-16 h-16 text-customer-500" />
+                <div className="absolute -top-2 -right-2 w-10 h-10 bg-customer-500 text-white rounded-full flex items-center justify-center font-bold text-lg">
                   1
                 </div>
               </div>
@@ -631,9 +631,9 @@ export default function Home() {
 
             {/* Step 2 */}
             <div className="relative text-center animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <Video className="w-16 h-16 text-amber-600" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-amber-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
+                <Video className="w-16 h-16 text-brand-coral" />
+                <div className="absolute -top-2 -right-2 w-10 h-10 bg-brand-coral text-white rounded-full flex items-center justify-center font-bold text-lg">
                   2
                 </div>
               </div>
@@ -645,9 +645,9 @@ export default function Home() {
 
             {/* Step 3 */}
             <div className="relative text-center animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <ShoppingCart className="w-16 h-16 text-emerald-600" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
+                <ShoppingCart className="w-16 h-16 text-brand-teal" />
+                <div className="absolute -top-2 -right-2 w-10 h-10 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-lg">
                   3
                 </div>
               </div>
@@ -659,9 +659,9 @@ export default function Home() {
 
             {/* Step 4 */}
             <div className="relative text-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <Car className="w-16 h-16 text-blue-600" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-cyan-100 to-blue-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
+                <Car className="w-16 h-16 text-brand-teal" />
+                <div className="absolute -top-2 -right-2 w-10 h-10 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-lg">
                   4
                 </div>
               </div>
@@ -680,7 +680,7 @@ export default function Home() {
           <div className="text-center">
             <p className="text-xl text-gray-700">
               Already have an account?{' '}
-              <Link href="/auth/login" className="text-rose-600 font-bold hover:text-rose-700 hover:underline transition text-2xl">
+              <Link href="/auth/login" className="text-customer-500 font-bold hover:text-brand-burgundy hover:underline transition text-2xl">
                 Log in
               </Link>
             </p>

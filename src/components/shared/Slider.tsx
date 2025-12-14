@@ -43,7 +43,7 @@ export default function Slider({
         <div className="h-2 bg-gray-200 rounded-full">
           {/* Progress Fill */}
           <div 
-            className="h-full bg-gradient-to-r from-teal-500 to-teal-600 rounded-full transition-all duration-200"
+            className="h-full bg-gradient-to-r from-teal-500 to-brand-teal rounded-full transition-all duration-200"
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -62,7 +62,7 @@ export default function Slider({
         
         {/* Thumb */}
         <div 
-          className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-4 border-teal-600 rounded-full shadow-lg pointer-events-none transition-all duration-200"
+          className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-4 border-brand-teal rounded-full shadow-lg pointer-events-none transition-all duration-200"
           style={{ 
             left: `calc(${percentage}% - 12px)`,
             zIndex: 5

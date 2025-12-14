@@ -9,7 +9,7 @@ export default function LoadingSpinner({ size = 'md' }: { size?: 'sm' | 'md' | '
     <div className="flex items-center justify-center py-12">
       <div className={`relative ${sizeClasses[size]}`}>
         <div className="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
-        <div className="absolute inset-0 border-4 border-teal-600 border-t-transparent rounded-full animate-spin"></div>
+        <div className="absolute inset-0 border-4 border-brand-teal border-t-transparent rounded-full animate-spin"></div>
       </div>
     </div>
   )

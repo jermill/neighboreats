@@ -40,7 +40,7 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="text-2xl font-bold">
-            🍽️ Neighbor<span className="text-teal-600">Eats</span>
+            🍽️ Neighbor<span className="text-brand-teal">Eats</span>
           </Link>
 
           {userRole && (
@@ -52,8 +52,8 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
                     href={item.href}
                     className={`font-medium transition ${
                       pathname === item.href
-                        ? 'text-teal-600'
-                        : 'text-gray-700 hover:text-teal-600'
+                        ? 'text-brand-teal'
+                        : 'text-gray-700 hover:text-brand-teal'
                     }`}
                   >
                     {item.label}
@@ -65,7 +65,7 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
                 <span className="text-sm text-gray-700">{userName}</span>
                 <Link
                   href={`/dashboard/${userRole}/profile`}
-                  className="w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold"
+                  className="w-10 h-10 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold"
                 >
                   {userName?.charAt(0) || 'U'}
                 </Link>
