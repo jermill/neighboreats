@@ -8,11 +8,14 @@ import Button from '@/components/shared/Button'
 import Input from '@/components/shared/Input'
 import Textarea from '@/components/shared/Textarea'
 import Select from '@/components/shared/Select'
+import Modal from '@/components/shared/Modal'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import DarkModeToggle from '@/components/shared/DarkModeToggle'
 
 export default function BecomeADriverPage() {
   const router = useRouter()
+  const [showModal, setShowModal] = useState(false)
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -34,12 +37,12 @@ export default function BecomeADriverPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Simulate API call
     toast.loading('Submitting application...')
     setTimeout(() => {
       toast.dismiss()
       toast.success('Application submitted! We\'ll contact you within 2-3 business days.')
-      router.push('/')
+      setShowModal(false)
+      setTimeout(() => router.push('/'), 1000)
     }, 2000)
   }
 
@@ -51,10 +54,10 @@ export default function BecomeADriverPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:to-dark-bg">
       {/* Header */}
-      <nav className="bg-white shadow-md">
-        <div className="max-w-4xl mx-auto px-4">
+      <nav className="bg-white dark:bg-dark-bg-elevated shadow-md sticky top-0 z-40 border-b border-gray-200 dark:border-dark-border">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
               <Image
@@ -65,7 +68,7 @@ export default function BecomeADriverPage() {
                 className="h-10 w-auto"
               />
             </Link>
-            <Link href="/" className="text-gray-700 hover:text-brand-teal transition">
+            <Link href="/" className="text-gray-700 dark:text-dark-text-secondary hover:text-brand-teal dark:hover:text-primary-dark transition">
               Back to Home
             </Link>
           </div>
@@ -73,82 +76,83 @@ export default function BecomeADriverPage() {
       </nav>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-brand-teal/10 to-white py-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <Link href="/" className="inline-flex items-center gap-2 text-gray-700 hover:text-brand-teal transition mb-8">
-            <ArrowLeft className="w-5 h-5" />
-            Back
-          </Link>
-
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-brand-teal rounded-full mb-6">
-              <Car className="w-10 h-10 text-white" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Drive & Deliver
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Earn money on your schedule. Deliver fresh, local food and meet amazing people in your community.
-            </p>
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-teal/10 via-cyan-50/50 to-transparent dark:from-brand-teal/5 dark:via-cyan-900/10 dark:to-transparent py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-brand-teal to-cyan-600 rounded-3xl mb-8 shadow-2xl">
+            <Car className="w-12 h-12 text-white" />
           </div>
+          
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-dark-text mb-6">
+            Drive & Deliver
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto mb-8">
+            Earn money on your schedule. Deliver fresh, local food and meet amazing people in your community.
+          </p>
+
+          <button
+            onClick={() => setShowModal(true)}
+            className="px-10 py-5 bg-brand-teal hover:bg-driver-600 text-white font-bold text-xl rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all"
+          >
+            Apply Now
+          </button>
         </div>
       </div>
 
       {/* Benefits Section */}
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Why Drive with NeighborEats?</h2>
+      <div className="max-w-4xl mx-auto px-4 py-16">
+        <h2 className="text-4xl font-bold text-gray-900 dark:text-dark-text mb-12 text-center">Why Drive with NeighborEats?</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <DollarSign className="w-6 h-6 text-brand-teal" />
+              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <DollarSign className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Earn $4-5 Per Delivery</h3>
-                <p className="text-gray-600">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Earn $4-5 Per Delivery</h3>
+                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
                   Fair pay for every delivery. Plus tips! Average $15-25 per hour.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Clock className="w-6 h-6 text-brand-teal" />
+              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Clock className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Flexible Hours</h3>
-                <p className="text-gray-600">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Flexible Hours</h3>
+                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
                   Drive when you want. Work full-time, part-time, or just weekends.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-6 h-6 text-brand-teal" />
+              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Short Distances</h3>
-                <p className="text-gray-600">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Short Distances</h3>
+                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
                   Hyper-local deliveries. Most routes are under 5 miles.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-6 h-6 text-brand-teal" />
+              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Weekly Payouts</h3>
-                <p className="text-gray-600">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Weekly Payouts</h3>
+                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
                   Get paid every week. Fast, reliable deposits directly to your account.
                 </p>
               </div>
@@ -157,221 +161,232 @@ export default function BecomeADriverPage() {
         </div>
 
         {/* Requirements */}
-        <div className="bg-brand-teal/5 rounded-2xl p-8 mb-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Requirements</h3>
-          <ul className="space-y-3">
+        <div className="bg-brand-teal/5 dark:bg-brand-teal/10 rounded-2xl p-8 mb-12 border border-brand-teal/20 dark:border-brand-teal/30">
+          <h3 className="text-3xl font-bold text-gray-900 dark:text-dark-text mb-6">Requirements</h3>
+          <ul className="space-y-4">
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700">Valid driver's license and clean driving record</span>
+              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Valid driver's license and clean driving record</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700">Reliable vehicle (car, truck, or SUV) in good condition</span>
+              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Reliable vehicle (car, truck, or SUV) in good condition</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700">Valid auto insurance with proof of coverage</span>
+              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Valid auto insurance with proof of coverage</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700">Smartphone with data plan (iOS or Android)</span>
+              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Smartphone with data plan (iOS or Android)</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700">Must be 21+ years old</span>
+              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Must be 21+ years old</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700">Pass a background check</span>
+              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Pass a background check</span>
             </li>
           </ul>
         </div>
 
-        {/* Application Form */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Apply Now</h2>
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Personal Information */}
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Personal Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input
-                  label="Full Name"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                  placeholder="John Doe"
-                />
-                <Input
-                  label="Email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="john@example.com"
-                />
-                <Input
-                  label="Phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  placeholder="(302) 555-0100"
-                />
-                <Input
-                  label="Street Address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  required
-                  placeholder="123 Main St"
-                />
-                <Input
-                  label="City"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleChange}
-                  required
-                  placeholder="Wilmington"
-                />
-                <Input
-                  label="State"
-                  name="state"
-                  value={formData.state}
-                  onChange={handleChange}
-                  required
-                  placeholder="DE"
-                />
-                <Input
-                  label="Zip Code"
-                  name="zipCode"
-                  value={formData.zipCode}
-                  onChange={handleChange}
-                  required
-                  placeholder="19801"
-                />
-              </div>
-            </div>
-
-            {/* Vehicle Information */}
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Vehicle Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Select
-                  label="Vehicle Type"
-                  name="vehicleType"
-                  value={formData.vehicleType}
-                  onChange={handleChange}
-                  required
-                  options={[
-                    { value: '', label: 'Select vehicle type' },
-                    { value: 'car', label: 'Car' },
-                    { value: 'suv', label: 'SUV' },
-                    { value: 'truck', label: 'Truck' },
-                    { value: 'van', label: 'Van' },
-                  ]}
-                />
-                <Input
-                  label="Vehicle Year"
-                  name="vehicleYear"
-                  value={formData.vehicleYear}
-                  onChange={handleChange}
-                  required
-                  placeholder="2020"
-                />
-                <Input
-                  label="Vehicle Make"
-                  name="vehicleMake"
-                  value={formData.vehicleMake}
-                  onChange={handleChange}
-                  required
-                  placeholder="Honda"
-                />
-                <Input
-                  label="Vehicle Model"
-                  name="vehicleModel"
-                  value={formData.vehicleModel}
-                  onChange={handleChange}
-                  required
-                  placeholder="Civic"
-                />
-                <Input
-                  label="License Plate"
-                  name="licensePlate"
-                  value={formData.licensePlate}
-                  onChange={handleChange}
-                  required
-                  placeholder="ABC1234"
-                />
-                <Input
-                  label="Insurance Provider"
-                  name="insuranceProvider"
-                  value={formData.insuranceProvider}
-                  onChange={handleChange}
-                  required
-                  placeholder="State Farm"
-                />
-              </div>
-            </div>
-
-            {/* Experience & Availability */}
-            <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Experience & Availability</h3>
-              <div className="space-y-4">
-                <Select
-                  label="Driving Experience"
-                  name="drivingExperience"
-                  value={formData.drivingExperience}
-                  onChange={handleChange}
-                  required
-                  options={[
-                    { value: '', label: 'Select years' },
-                    { value: '1-3', label: '1-3 years' },
-                    { value: '4-6', label: '4-6 years' },
-                    { value: '7-10', label: '7-10 years' },
-                    { value: '10+', label: '10+ years' },
-                  ]}
-                />
-                <Textarea
-                  label="Weekly Availability"
-                  name="availability"
-                  value={formData.availability}
-                  onChange={handleChange}
-                  required
-                  placeholder="e.g., Weekdays 5-9pm, Weekends 10am-8pm"
-                  rows={3}
-                />
-                <Textarea
-                  label="Why do you want to drive for NeighborEats?"
-                  name="whyJoin"
-                  value={formData.whyJoin}
-                  onChange={handleChange}
-                  required
-                  placeholder="Tell us why you're interested in delivering for NeighborEats and serving your local community..."
-                  rows={5}
-                />
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <div className="pt-6">
-              <Button
-                type="submit"
-                className="w-full bg-brand-teal hover:bg-driver-600 text-white py-4 text-lg"
-              >
-                Submit Application
-              </Button>
-              <p className="text-sm text-gray-500 text-center mt-4">
-                We'll review your application and get back to you within 2-3 business days.
-              </p>
-            </div>
-          </form>
+        {/* CTA */}
+        <div className="text-center">
+          <button
+            onClick={() => setShowModal(true)}
+            className="px-12 py-5 bg-brand-teal hover:bg-driver-600 text-white font-bold text-xl rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-105 transition-all"
+          >
+            Start Your Application
+          </button>
         </div>
       </div>
+
+      {/* Application Modal */}
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Driver Application">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Personal Information */}
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Personal Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Input
+                label="Full Name"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                required
+                placeholder="John Doe"
+              />
+              <Input
+                label="Email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="john@example.com"
+              />
+              <Input
+                label="Phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                placeholder="(302) 555-0100"
+              />
+              <Input
+                label="Street Address"
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                required
+                placeholder="123 Main St"
+              />
+              <Input
+                label="City"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                required
+                placeholder="Wilmington"
+              />
+              <Input
+                label="State"
+                name="state"
+                value={formData.state}
+                onChange={handleChange}
+                required
+                placeholder="DE"
+              />
+              <Input
+                label="Zip Code"
+                name="zipCode"
+                value={formData.zipCode}
+                onChange={handleChange}
+                required
+                placeholder="19801"
+              />
+            </div>
+          </div>
+
+          {/* Vehicle Information */}
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Vehicle Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Select
+                label="Vehicle Type"
+                name="vehicleType"
+                value={formData.vehicleType}
+                onChange={handleChange}
+                required
+                options={[
+                  { value: '', label: 'Select vehicle type' },
+                  { value: 'car', label: 'Car' },
+                  { value: 'suv', label: 'SUV' },
+                  { value: 'truck', label: 'Truck' },
+                  { value: 'van', label: 'Van' },
+                ]}
+              />
+              <Input
+                label="Vehicle Year"
+                name="vehicleYear"
+                value={formData.vehicleYear}
+                onChange={handleChange}
+                required
+                placeholder="2020"
+              />
+              <Input
+                label="Vehicle Make"
+                name="vehicleMake"
+                value={formData.vehicleMake}
+                onChange={handleChange}
+                required
+                placeholder="Honda"
+              />
+              <Input
+                label="Vehicle Model"
+                name="vehicleModel"
+                value={formData.vehicleModel}
+                onChange={handleChange}
+                required
+                placeholder="Civic"
+              />
+              <Input
+                label="License Plate"
+                name="licensePlate"
+                value={formData.licensePlate}
+                onChange={handleChange}
+                required
+                placeholder="ABC1234"
+              />
+              <Input
+                label="Insurance Provider"
+                name="insuranceProvider"
+                value={formData.insuranceProvider}
+                onChange={handleChange}
+                required
+                placeholder="State Farm"
+              />
+            </div>
+          </div>
+
+          {/* Experience & Availability */}
+          <div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Experience & Availability</h3>
+            <div className="space-y-4">
+              <Select
+                label="Driving Experience"
+                name="drivingExperience"
+                value={formData.drivingExperience}
+                onChange={handleChange}
+                required
+                options={[
+                  { value: '', label: 'Select years' },
+                  { value: '1-3', label: '1-3 years' },
+                  { value: '4-6', label: '4-6 years' },
+                  { value: '7-10', label: '7-10 years' },
+                  { value: '10+', label: '10+ years' },
+                ]}
+              />
+              <Textarea
+                label="Weekly Availability"
+                name="availability"
+                value={formData.availability}
+                onChange={handleChange}
+                required
+                placeholder="e.g., Weekdays 5-9pm, Weekends 10am-8pm"
+                rows={3}
+              />
+              <Textarea
+                label="Why do you want to drive for NeighborEats?"
+                name="whyJoin"
+                value={formData.whyJoin}
+                onChange={handleChange}
+                required
+                placeholder="Tell us why you're interested in delivering for NeighborEats and serving your local community..."
+                rows={5}
+              />
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <div className="pt-6 border-t border-gray-200 dark:border-dark-border">
+            <Button
+              type="submit"
+              className="w-full bg-brand-teal hover:bg-driver-600 text-white py-4 text-lg"
+            >
+              Submit Application
+            </Button>
+            <p className="text-sm text-gray-500 dark:text-dark-text-muted text-center mt-4">
+              We'll review your application and get back to you within 2-3 business days.
+            </p>
+          </div>
+        </form>
+      </Modal>
+
+      {/* Dark Mode Toggle */}
+      <DarkModeToggle />
     </div>
   )
 }
