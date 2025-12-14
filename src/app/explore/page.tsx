@@ -80,14 +80,14 @@ export default function ExplorePage() {
             <div className="flex items-center gap-4">
               <ThemeToggle />
               <Link
-                href="/auth/signup/chef"
+                href="/apply/chef"
                 className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 <ChefHat className="w-5 h-5" />
                 Become a Chef
               </Link>
               <Link
-                href="/auth/signup/driver"
+                href="/apply/driver"
                 className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
               >
                 <Car className="w-5 h-5" />

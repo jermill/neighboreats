@@ -91,12 +91,12 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">For Partners</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/auth/signup/chef" className="hover:text-teal-400 transition">
+                <Link href="/apply/chef" className="hover:text-teal-400 transition">
                   Become a Chef
                 </Link>
               </li>
               <li>
-                <Link href="/auth/signup/driver" className="hover:text-teal-400 transition">
+                <Link href="/apply/driver" className="hover:text-teal-400 transition">
                   Become a Driver
                 </Link>
               </li>

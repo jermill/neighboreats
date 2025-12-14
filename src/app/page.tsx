@@ -80,14 +80,14 @@ export default function Home() {
                 Find Local Chefs
               </Link>
               <Link
-                href="/auth/signup/chef"
+                href="/apply/chef"
                 className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-2xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3"
               >
                 <ChefHat className="w-5 h-5" />
                 Become a Chef
               </Link>
               <Link
-                href="/auth/signup/driver"
+                href="/apply/driver"
                 className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-2xl hover:bg-brand-teal transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3"
               >
                 <Car className="w-5 h-5" />
@@ -368,13 +368,13 @@ export default function Home() {
             </p>
             <div className="flex flex-col gap-4">
               <Link
-                href="/auth/signup/chef"
+                href="/apply/chef"
                 className="px-10 py-5 bg-brand-coral text-white font-bold text-lg rounded-2xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl"
               >
                 Start Cooking
               </Link>
               <Link
-                href="/auth/signup/driver"
+                href="/apply/driver"
                 className="px-10 py-5 bg-driver-500 text-white font-bold text-lg rounded-2xl hover:bg-brand-teal transition-all shadow-lg hover:shadow-xl"
               >
                 Start Driving
