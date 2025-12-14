@@ -1,0 +1,169 @@
+'use client'
+
+import { useState } from 'react'
+import DashboardLayout from '@/components/shared/DashboardLayout'
+import Card from '@/components/shared/Card'
+import Input from '@/components/shared/Input'
+import Button from '@/components/shared/Button'
+import Badge from '@/components/shared/Badge'
+import toast from 'react-hot-toast'
+
+export default function DriverProfilePage() {
+  const driverName = "Alex Martinez"
+  const [form, setForm] = useState({
+    name: 'Alex Martinez',
+    email: 'alex@example.com',
+    phone: '(302) 555-0201',
+    vehicle: '2020 Honda Civic',
+    licensePlate: 'ABC-1234'
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    toast.success('Profile updated!')
+  }
+
+  return (
+    <DashboardLayout userRole="driver" userName={driverName}>
+      <div className="max-w-4xl mx-auto space-y-6">
+        <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
+
+        {/* Profile Picture */}
+        <Card>
+          <div className="flex items-center gap-6">
+            <div className="w-24 h-24 bg-teal-600 text-white rounded-full flex items-center justify-center text-3xl font-bold">
+              AM
+            </div>
+            <div>
+              <h2 className="text-xl font-bold mb-2">Profile Photo</h2>
+              <Button variant="outline" size="sm">Change Photo</Button>
+            </div>
+          </div>
+        </Card>
+
+        {/* Personal Information */}
+        <Card>
+          <h2 className="text-xl font-bold mb-4">Personal Information</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input
+              label="Full Name"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              required
+            />
+            <Input
+              label="Email"
+              type="email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              required
+            />
+            <Input
+              label="Phone"
+              type="tel"
+              value={form.phone}
+              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              required
+            />
+            <Button type="submit">Save Changes</Button>
+          </form>
+        </Card>
+
+        {/* Vehicle Information */}
+        <Card>
+          <h2 className="text-xl font-bold mb-4">Vehicle Information</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input
+              label="Vehicle Make & Model"
+              value={form.vehicle}
+              onChange={(e) => setForm({ ...form, vehicle: e.target.value })}
+              required
+            />
+            <Input
+              label="License Plate"
+              value={form.licensePlate}
+              onChange={(e) => setForm({ ...form, licensePlate: e.target.value })}
+              required
+            />
+            <Button type="submit">Save Changes</Button>
+          </form>
+        </Card>
+
+        {/* Verification Status */}
+        <Card>
+          <h2 className="text-xl font-bold mb-4">Verification Status</h2>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">✅</span>
+                <div>
+                  <p className="font-semibold">Background Check</p>
+                  <p className="text-sm text-gray-600">Includes driving record - Completed Dec 1, 2025</p>
+                </div>
+              </div>
+              <Badge variant="success">Verified</Badge>
+            </div>
+
+            <div className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">✅</span>
+                <div>
+                  <p className="font-semibold">Stripe Account</p>
+                  <p className="text-sm text-gray-600">Connected and active</p>
+                </div>
+              </div>
+              <Badge variant="success">Connected</Badge>
+            </div>
+
+            <div className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">✅</span>
+                <div>
+                  <p className="font-semibold">Driver's License</p>
+                  <p className="text-sm text-gray-600">Verified and current</p>
+                </div>
+              </div>
+              <Badge variant="success">Valid</Badge>
+            </div>
+          </div>
+        </Card>
+
+        {/* Performance Stats */}
+        <Card>
+          <h2 className="text-xl font-bold mb-4">Performance Statistics</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div>
+              <p className="text-sm text-gray-600">Total Deliveries</p>
+              <p className="text-3xl font-bold text-teal-600">247</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Rating</p>
+              <p className="text-3xl font-bold text-yellow-500">4.9 ⭐</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">On-Time %</p>
+              <p className="text-3xl font-bold text-green-600">98%</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Tier</p>
+              <p className="text-2xl font-bold text-yellow-600">GOLD ⭐</p>
+            </div>
+          </div>
+        </Card>
+
+        {/* Tier Progress */}
+        <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-200">
+          <h3 className="text-lg font-bold mb-3">🏆 Tier Progress</h3>
+          <p className="text-gray-700 mb-4">
+            You're GOLD tier earning $4.50 per delivery. Complete 253 more deliveries with 4.9★+ rating to reach PLATINUM ($5.00/delivery)
+          </p>
+          <div className="w-full bg-gray-200 rounded-full h-4 mb-2">
+            <div className="bg-gradient-to-r from-yellow-400 to-orange-400 h-4 rounded-full" style={{ width: '49.4%' }} />
+          </div>
+          <p className="text-sm text-gray-600">247 / 500 deliveries</p>
+        </Card>
+      </div>
+    </DashboardLayout>
+  )
+}
+
