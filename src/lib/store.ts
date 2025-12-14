@@ -85,3 +85,4 @@ export const useStore = create<AppState>((set, get) => ({
   setMinRating: (rating) => set({ minRating: rating }),
 }))
 
+

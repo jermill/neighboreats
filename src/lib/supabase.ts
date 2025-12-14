@@ -3,3 +3,4 @@ import { Database } from '@/types/database'
 
 export const createClient = () => createClientComponentClient<Database>()
 
+

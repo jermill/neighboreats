@@ -167,3 +167,4 @@ https://neighboreats.com/dashboard/customer/orders
 ```
 
 This creates a clear separation between public browsing and authenticated user experiences.
+

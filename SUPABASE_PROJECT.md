@@ -45,3 +45,4 @@ Replace `your_anon_key_here` and `your_service_role_key_here` with the actual va
 3. Start building your database schema with migrations
 4. Set up your frontend application (Next.js, React, etc.)
 
+

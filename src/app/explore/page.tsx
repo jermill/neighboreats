@@ -8,6 +8,7 @@ import ChefCard from '@/components/shared/ChefCard'
 import EmptyState from '@/components/shared/EmptyState'
 import { mockChefs, calculateDistance } from '@/lib/mockData'
 import { Search, ShoppingCart, ChefHat, Car } from 'lucide-react'
+import ThemeToggle from '@/components/shared/ThemeToggle'
 
 const categories = ['All', 'Mexican', 'Asian', 'American', 'Indian', 'Healthy', 'Baked Goods']
 const dietaryTags = ['Vegan', 'Vegetarian', 'Gluten-Free', 'Keto', 'Healthy']
@@ -60,39 +61,40 @@ export default function ExplorePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg">
       {/* Header/Navbar */}
-      <nav className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="bg-white dark:bg-dark-bg-secondary shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="text-2xl font-bold">
-              🍽️ Neighbor<span className="text-teal-600">Eats</span>
+              🍽️ Neighbor<span className="text-teal-600 dark:text-primary-dark">Eats</span>
             </Link>
 
             <div className="flex items-center gap-4">
+              <ThemeToggle />
               <Link
                 href="/auth/signup/chef"
-                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-teal-600 transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-primary-dark transition font-medium"
               >
                 <ChefHat className="w-5 h-5" />
                 Become a Chef
               </Link>
               <Link
                 href="/auth/signup/driver"
-                className="hidden md:flex items-center gap-2 text-gray-700 hover:text-teal-600 transition font-medium"
+                className="hidden md:flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-primary-dark transition font-medium"
               >
                 <Car className="w-5 h-5" />
                 Become a Driver
               </Link>
               <Link
                 href="/auth/login"
-                className="px-4 py-2 text-gray-700 hover:text-teal-600 transition font-medium"
+                className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-primary-dark transition font-medium"
               >
                 Log In
               </Link>
               <Link
                 href="/auth/signup/customer"
-                className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition font-medium"
+                className="px-4 py-2 bg-teal-600 dark:bg-primary-dark text-white rounded-lg hover:bg-teal-700 dark:hover:bg-teal-600 transition font-medium"
               >
                 Sign Up
               </Link>
@@ -102,18 +104,18 @@ export default function ExplorePage() {
       </nav>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-teal-50 to-emerald-50 py-12">
+      <div className="bg-gradient-to-br from-teal-50 to-emerald-50 dark:from-dark-bg-secondary dark:to-dark-bg py-12">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
               Explore Local Chefs Near You
             </h1>
-            <p className="text-xl text-gray-600 mb-6">
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
               Browse neighborhood chefs, view their menus, and discover fresh, homemade meals
             </p>
-            <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
-              <Search className="w-5 h-5 text-teal-600" />
-              <span className="text-gray-700 font-medium">
+            <div className="inline-flex items-center gap-2 bg-white dark:bg-dark-bg-secondary px-6 py-3 rounded-full shadow-md border border-gray-200 dark:border-gray-700">
+              <Search className="w-5 h-5 text-teal-600 dark:text-primary-dark" />
+              <span className="text-gray-700 dark:text-gray-300 font-medium">
                 Showing chefs in Wilmington, DE area
               </span>
             </div>
@@ -124,91 +126,101 @@ export default function ExplorePage() {
       <div className="container mx-auto px-4 py-8">
         <div className="space-y-6">
           {/* Info Banner */}
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-            <p className="text-amber-900">
+          <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+            <p className="text-amber-900 dark:text-amber-200">
               👋 <strong>Guest Mode:</strong> You're browsing as a guest. 
-              <Link href="/auth/signup/customer" className="text-amber-700 font-semibold hover:underline ml-1">
+              <Link href="/auth/signup/customer" className="text-amber-700 dark:text-amber-400 font-semibold hover:underline ml-1">
                 Sign up for free
               </Link> to place orders and save your favorites!
             </p>
           </div>
 
-          {/* Filters */}
-          <div className="bg-white rounded-lg shadow-md p-6 space-y-6">
+          {/* Filters - Modern Compact Design */}
+          <div className="bg-white dark:bg-dark-bg-secondary rounded-3xl shadow-xl p-5 space-y-5 border border-gray-100 dark:border-gray-800">
             {/* Radius Slider */}
-            <Slider
-              value={searchRadius}
-              onChange={setSearchRadius}
-              min={0.5}
-              max={15}
-              step={0.5}
-              label="Search Radius"
-              valueLabel="miles"
-            />
-
-            {/* Categories */}
             <div>
-              <label className="text-sm font-medium text-gray-700 mb-2 block">Categories</label>
-              <div className="flex flex-wrap gap-2">
-                {categories.map(category => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-full font-medium transition ${
-                      selectedCategory === category
-                        ? 'bg-teal-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
+              <Slider
+                value={searchRadius}
+                onChange={setSearchRadius}
+                min={0.5}
+                max={15}
+                step={0.5}
+                label="Search Radius"
+                valueLabel="miles"
+              />
+            </div>
+
+            {/* Categories and Dietary Combined Row */}
+            <div className="grid md:grid-cols-2 gap-5">
+              {/* Categories */}
+              <div>
+                <label className="text-base font-bold text-gray-900 dark:text-dark-text mb-3 block">Categories</label>
+                <div className="flex flex-wrap gap-2">
+                  {categories.map(category => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+                        selectedCategory === category
+                          ? 'bg-teal-600 dark:bg-primary-dark text-white shadow-md'
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dietary Filters */}
+              <div>
+                <label className="text-base font-bold text-gray-900 dark:text-dark-text mb-3 block">Dietary</label>
+                <div className="flex flex-wrap gap-2">
+                  {dietaryTags.map(tag => (
+                    <button
+                      key={tag}
+                      onClick={() => toggleDietaryTag(tag)}
+                      className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border-2 ${
+                        selectedDietary.includes(tag)
+                          ? 'bg-emerald-600 text-white border-emerald-600'
+                          : 'bg-white dark:bg-dark-bg text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-emerald-400 dark:hover:border-emerald-600'
+                      }`}
+                    >
+                      {selectedDietary.includes(tag) && '✓ '}
+                      {tag}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Dietary Filters */}
-            <div>
-              <label className="text-sm font-medium text-gray-700 mb-2 block">Dietary Preferences</label>
-              <div className="flex flex-wrap gap-2">
-                {dietaryTags.map(tag => (
-                  <button
-                    key={tag}
-                    onClick={() => toggleDietaryTag(tag)}
-                    className={`px-4 py-2 rounded-full font-medium transition ${
-                      selectedDietary.includes(tag)
-                        ? 'bg-teal-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Sort */}
-            <div>
-              <label className="text-sm font-medium text-gray-700 mb-2 block">Sort By</label>
-              <div className="flex gap-2">
+            {/* Sort - Compact */}
+            <div className="flex items-center gap-3">
+              <label className="text-base font-bold text-gray-900 whitespace-nowrap">Sort:</label>
+              <div className="flex gap-2 flex-1">
                 <button
                   onClick={() => setSortBy('distance')}
-                  className={`px-4 py-2 rounded-lg font-medium transition ${
+                  className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                     sortBy === 'distance'
-                      ? 'bg-teal-600 text-white'
+                      ? 'bg-teal-600 text-white shadow-lg'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
-                  📍 Distance
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                  </svg>
+                  Nearest
                 </button>
                 <button
                   onClick={() => setSortBy('rating')}
-                  className={`px-4 py-2 rounded-lg font-medium transition ${
+                  className={`flex-1 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                     sortBy === 'rating'
-                      ? 'bg-teal-600 text-white'
+                      ? 'bg-amber-500 text-white shadow-lg'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
-                  ⭐ Rating
+                  <span>⭐</span>
+                  Top Rated
                 </button>
               </div>
             </div>
@@ -252,3 +264,4 @@ export default function ExplorePage() {
     </div>
   )
 }
+

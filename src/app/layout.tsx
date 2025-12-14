@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import Footer from '@/components/shared/Footer'
+import { ThemeProvider } from '@/contexts/ThemeContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,24 +47,27 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
       </head>
-      <body className={inter.className}>
-        <div className="flex flex-col min-h-screen">
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
-        <Toaster 
-          position="bottom-center"
-          toastOptions={{
-            style: {
-              padding: '16px',
-              fontSize: '16px',
-            },
-          }}
-        />
+      <body className={`${inter.className} bg-white dark:bg-dark-bg text-foreground dark:text-dark-text transition-colors`}>
+        <ThemeProvider>
+          <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <Toaster 
+            position="bottom-center"
+            toastOptions={{
+              style: {
+                padding: '16px',
+                fontSize: '16px',
+              },
+            }}
+          />
+        </ThemeProvider>
       </body>
     </html>
   )
 }
+
 

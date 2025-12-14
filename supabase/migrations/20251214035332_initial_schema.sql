@@ -238,3 +238,4 @@ CREATE POLICY "Users can update their own notifications"
   ON public.notifications FOR UPDATE
   USING (user_id = auth.uid());
 
+

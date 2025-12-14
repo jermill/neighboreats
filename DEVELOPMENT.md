@@ -248,3 +248,4 @@ supabase gen types typescript --linked > src/types/database.ts
 **Last Updated:** December 13, 2025
 **Version:** 0.1.0 (MVP in Progress)
 
+

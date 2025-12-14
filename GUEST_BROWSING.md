@@ -135,3 +135,4 @@ Potential improvements:
 - Authenticated users should continue using dashboard routes
 - Modal component explains value of signing up with benefits list
 - Design matches existing NeighborEats branding and color scheme
+

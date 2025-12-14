@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,6 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Light mode colors
+        background: '#ffffff',
+        foreground: '#0f1419',
+        
+        // Dark mode colors
+        'dark-bg': '#1a1410',
+        'dark-bg-secondary': '#2a2018',
+        'dark-text': '#f8f9fa',
+        
         primary: {
           50: '#f0fdfa',
           100: '#ccfbf1',
@@ -20,6 +30,8 @@ const config: Config = {
           700: '#0f766e',
           800: '#115e59',
           900: '#134e4a',
+          light: '#208080', // Light mode teal
+          dark: '#1a9b96',  // Dark mode teal
         },
         customer: {
           500: '#f43f5e',
@@ -36,6 +48,10 @@ const config: Config = {
           600: '#059669',
           700: '#047857',
         },
+        accent: {
+          light: '#ff6b35',  // Light mode orange
+          dark: '#ff8c42',   // Dark mode orange
+        },
       },
       // Mobile-optimized spacing
       spacing: {
@@ -49,5 +65,7 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+
+
 
 

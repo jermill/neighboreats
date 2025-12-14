@@ -31,3 +31,4 @@ export default function StatCard({ icon, label, value, trend, onClick }: StatCar
   )
 }
 
+

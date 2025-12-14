@@ -74,3 +74,4 @@ export default function ChefCard({ chef, distance, onClick }: ChefCardProps) {
   )
 }
 
+

@@ -248,3 +248,4 @@ ISC
 **Built with ❤️ by the NeighborEats team**
 
 *Last Updated: December 13, 2025*
+
