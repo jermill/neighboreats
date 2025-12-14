@@ -21,10 +21,14 @@ const config: Config = {
         background: '#ffffff',
         foreground: '#0f1419',
         
-        // Dark mode colors
-        'dark-bg': '#282119',
-        'dark-bg-secondary': '#2a2018',
-        'dark-text': '#f8f9fa',
+        // Dark mode colors - Improved contrast
+        'dark-bg': '#0f0e0c',         // Darker background for better contrast
+        'dark-bg-secondary': '#1a1814', // Secondary background
+        'dark-bg-elevated': '#252219', // Elevated cards
+        'dark-text': '#f8f9fa',       // Primary text
+        'dark-text-secondary': '#c7c9cc', // Secondary text
+        'dark-text-muted': '#9ca3af',  // Muted text
+        'dark-border': '#2d2a24',      // Border color
         
         primary: {
           50: '#e6f3f7',
