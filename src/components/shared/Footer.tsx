@@ -16,7 +16,7 @@ export default function Footer() {
                 alt="NeighborEats"
                 width={180}
                 height={54}
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-sm text-gray-400 mb-4">
