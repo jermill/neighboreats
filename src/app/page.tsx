@@ -19,70 +19,40 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-brand-light via-orange-50 to-cyan-50">
+      {/* Hero Section - Vertical Layout */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-brand-light via-orange-50 to-white">
         {/* Decorative blob shapes */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-burgundy/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-coral/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-brand-teal/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/3 left-0 w-96 h-96 bg-brand-coral/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }}></div>
         
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Text content */}
-            <div className="text-center lg:text-left space-y-8 animate-fadeIn">
-              {/* Logo */}
-              <div className="flex justify-center lg:justify-start">
-                <Image
-                  src="/logo.png"
-                  alt="NeighborEats Logo"
-                  width={400}
-                  height={120}
-                  priority
-                  className="w-auto h-24 md:h-32"
-                />
-              </div>
-              
-              <p className="text-3xl md:text-4xl text-gray-800 font-semibold">
-                Discover neighborhood chefs. Support local. Eat fresh.
-              </p>
-
-              <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
-                A hyper-local marketplace connecting community chefs with customers and drivers.
-                <br />
-                <span className="font-bold text-brand-teal">80-85% goes to chefs</span> · Fair economics · Fresh food
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
-                <Link
-                  href="/explore"
-                  className="px-8 py-4 bg-brand-burgundy text-white font-semibold rounded-xl hover:bg-customer-500 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
-                >
-                  <ShoppingCart className="w-5 h-5" />
-                  Find Local Chefs
-                </Link>
-                <Link
-                  href="/auth/signup/chef"
-                  className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
-                >
-                  <ChefHat className="w-5 h-5" />
-                  Become a Chef
-                </Link>
-                <Link
-                  href="/auth/signup/driver"
-                  className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
-                >
-                  <Car className="w-5 h-5" />
-                  Drive & Deliver
-                </Link>
-              </div>
+        <div className="max-w-3xl mx-auto px-4 py-16 relative z-10">
+          {/* Vertical Content Stack */}
+          <div className="flex flex-col items-center text-center space-y-8 animate-fadeIn">
+            {/* Logo */}
+            <div>
+              <Image
+                src="/logo.png"
+                alt="NeighborEats Logo"
+                width={400}
+                height={120}
+                priority
+                className="w-auto h-20 md:h-28"
+              />
             </div>
+            
+            <h1 className="text-3xl md:text-5xl text-gray-800 font-bold max-w-2xl">
+              Discover neighborhood chefs. Support local. Eat fresh.
+            </h1>
 
-            {/* Right side - Hero image */}
-            <div className="relative h-[400px] lg:h-[500px] animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+            <p className="text-lg md:text-xl text-gray-600 max-w-xl">
+              A hyper-local marketplace connecting community chefs with customers and drivers.
+            </p>
+
+            {/* Hero Image - Full Width */}
+            <div className="relative w-full h-[300px] md:h-[400px] animate-fadeIn" style={{ animationDelay: '0.2s' }}>
               <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop"
+                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&h=600&fit=crop"
                   alt="Delicious food prepared by local chefs"
                   fill
                   className="object-cover"
@@ -91,48 +61,93 @@ export default function Home() {
                 />
               </div>
             </div>
+
+            {/* Value Proposition */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-200 w-full max-w-md">
+              <p className="text-lg font-semibold text-gray-800">
+                <span className="text-brand-teal text-2xl font-bold">80-85%</span> goes to chefs
+              </p>
+              <p className="text-gray-600 mt-2">Fair economics · Fresh food · Local support</p>
+            </div>
+
+            {/* CTA Buttons - Vertical Stack */}
+            <div className="flex flex-col gap-4 w-full max-w-md pt-4">
+              <Link
+                href="/explore"
+                className="px-8 py-5 bg-brand-burgundy text-white font-semibold text-lg rounded-2xl hover:bg-customer-500 transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3"
+              >
+                <ShoppingCart className="w-6 h-6" />
+                Find Local Chefs
+              </Link>
+              <Link
+                href="/auth/signup/chef"
+                className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-2xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3"
+              >
+                <ChefHat className="w-5 h-5" />
+                Become a Chef
+              </Link>
+              <Link
+                href="/auth/signup/driver"
+                className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-2xl hover:bg-brand-teal transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3"
+              >
+                <Car className="w-5 h-5" />
+                Drive & Deliver
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center mb-4">
-              <MapPin className="w-8 h-8 text-customer-500" />
+      {/* Features Section - Vertical Cards */}
+      <div className="max-w-2xl mx-auto px-4 py-16">
+        <div className="flex flex-col gap-6">
+          <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+            <div className="flex items-start gap-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-10 h-10 text-customer-500" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">Hyper-Local</h3>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Find chefs within 0.5-15 miles. Support your actual neighbors and get the freshest meals delivered quickly.
+                </p>
+              </div>
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-900">Hyper-Local</h3>
-            <p className="text-gray-600 text-lg">
-              Find chefs within 0.5-15 miles. Support your actual neighbors.
-            </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center mb-4">
-              <Video className="w-8 h-8 text-brand-coral" />
+          <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+            <div className="flex items-start gap-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <Video className="w-10 h-10 text-brand-coral" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">LIVE Cooking</h3>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Watch chefs cook in real-time. Build trust and authenticity by seeing your food being prepared live.
+                </p>
+              </div>
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-900">LIVE Cooking</h3>
-            <p className="text-gray-600 text-lg">
-              Watch chefs cook in real-time. Build trust and authenticity.
-            </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-2xl flex items-center justify-center mb-4">
-              <DollarSign className="w-8 h-8 text-brand-teal" />
+          <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+            <div className="flex items-start gap-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <DollarSign className="w-10 h-10 text-brand-teal" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">Fair Economics</h3>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Chefs keep 80-85%. Drivers earn $4-5 per delivery. You save money. Everyone wins with fair pricing.
+                </p>
+              </div>
             </div>
-            <h3 className="text-2xl font-bold mb-3 text-gray-900">Fair Economics</h3>
-            <p className="text-gray-600 text-lg">
-              Chefs keep 80-85%. Drivers earn $4-5 per delivery. You save money.
-            </p>
           </div>
         </div>
       </div>
 
-      {/* Popular Dishes Showcase */}
-      <div className="bg-gradient-to-br from-gray-50 to-white py-20">
-        <div className="container mx-auto px-4">
+      {/* Popular Dishes Showcase - Vertical Layout */}
+      <div className="bg-gradient-to-b from-white to-gray-50 py-20">
+        <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Popular Dishes from Local Chefs
@@ -142,34 +157,36 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="flex flex-col gap-6">
             {/* Dish Card 1 - Gourmet Burger */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <div className="relative h-56">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop"
+                  src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop"
                   alt="Gourmet burger with fresh ingredients"
                   fill
                   className="object-cover"
                   unoptimized
                 />
               </div>
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Signature Burger</h3>
-                <p className="text-sm text-gray-500 mb-3">by Chef Maria's Kitchen</p>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    <span className="text-sm font-semibold">4.9</span>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Signature Burger</h3>
+                <p className="text-gray-500 mb-4">by Chef Maria's Kitchen</p>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      <span className="text-lg font-semibold">4.9</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-600">
+                      <Clock className="w-5 h-5" />
+                      <span>25 min</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 text-gray-600">
-                    <Clock className="w-4 h-4" />
-                    <span className="text-sm">25 min</span>
-                  </div>
-                  <span className="text-lg font-bold text-gray-900 ml-auto">$18</span>
+                  <span className="text-2xl font-bold text-gray-900">$18</span>
                 </div>
-                <Link href="/explore" className="block w-full">
-                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
+                <Link href="/explore" className="block">
+                  <button className="w-full bg-brand-burgundy text-white py-4 rounded-2xl font-semibold hover:bg-customer-500 transition">
                     Order Now
                   </button>
                 </Link>
@@ -177,32 +194,34 @@ export default function Home() {
             </div>
 
             {/* Dish Card 2 - Fresh Salad */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <div className="relative h-56">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop"
+                  src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&h=600&fit=crop"
                   alt="Fresh healthy salad bowl"
                   fill
                   className="object-cover"
                   unoptimized
                 />
               </div>
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Buddha Bowl</h3>
-                <p className="text-sm text-gray-500 mb-3">by Green Life Kitchen</p>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    <span className="text-sm font-semibold">4.8</span>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Buddha Bowl</h3>
+                <p className="text-gray-500 mb-4">by Green Life Kitchen</p>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      <span className="text-lg font-semibold">4.8</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-600">
+                      <Clock className="w-5 h-5" />
+                      <span>20 min</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 text-gray-600">
-                    <Clock className="w-4 h-4" />
-                    <span className="text-sm">20 min</span>
-                  </div>
-                  <span className="text-lg font-bold text-gray-900 ml-auto">$16</span>
+                  <span className="text-2xl font-bold text-gray-900">$16</span>
                 </div>
-                <Link href="/explore" className="block w-full">
-                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
+                <Link href="/explore" className="block">
+                  <button className="w-full bg-brand-burgundy text-white py-4 rounded-2xl font-semibold hover:bg-customer-500 transition">
                     Order Now
                   </button>
                 </Link>
@@ -210,65 +229,34 @@ export default function Home() {
             </div>
 
             {/* Dish Card 3 - Artisan Pizza */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <div className="relative h-56">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="relative h-64">
                 <Image
-                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
+                  src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&h=600&fit=crop"
                   alt="Artisan wood-fired pizza"
                   fill
                   className="object-cover"
                   unoptimized
                 />
               </div>
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Margherita Pizza</h3>
-                <p className="text-sm text-gray-500 mb-3">by Tony's Pizzeria</p>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    <span className="text-sm font-semibold">4.9</span>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Margherita Pizza</h3>
+                <p className="text-gray-500 mb-4">by Tony's Pizzeria</p>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      <span className="text-lg font-semibold">4.9</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-gray-600">
+                      <Clock className="w-5 h-5" />
+                      <span>30 min</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 text-gray-600">
-                    <Clock className="w-4 h-4" />
-                    <span className="text-sm">30 min</span>
-                  </div>
-                  <span className="text-lg font-bold text-gray-900 ml-auto">$22</span>
+                  <span className="text-2xl font-bold text-gray-900">$22</span>
                 </div>
-                <Link href="/explore" className="block w-full">
-                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
-                    Order Now
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Dish Card 4 - Dessert */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
-              <div className="relative h-56">
-                <Image
-                  src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop"
-                  alt="Artisan chocolate cake"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Chocolate Bliss</h3>
-                <p className="text-sm text-gray-500 mb-3">by Sweet Dreams Bakery</p>
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1">
-                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                    <span className="text-sm font-semibold">5.0</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-gray-600">
-                    <Clock className="w-4 h-4" />
-                    <span className="text-sm">15 min</span>
-                  </div>
-                  <span className="text-lg font-bold text-gray-900 ml-auto">$12</span>
-                </div>
-                <Link href="/explore" className="block w-full">
-                  <button className="w-full bg-gray-900 text-white py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition active:scale-95">
+                <Link href="/explore" className="block">
+                  <button className="w-full bg-brand-burgundy text-white py-4 rounded-2xl font-semibold hover:bg-customer-500 transition">
                     Order Now
                   </button>
                 </Link>
@@ -278,10 +266,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Meet Our Community */}
-      <div className="bg-gradient-to-br from-brand-light via-orange-50 to-cyan-50 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+      {/* Meet Our Community - Vertical Layout */}
+      <div className="bg-gradient-to-b from-gray-50 to-white py-20">
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Meet Our Community
             </h2>
@@ -290,9 +278,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="flex flex-col gap-8">
             {/* Chef Card */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
               <div className="relative h-80">
                 <Image
                   src="/chef-connie.png"
@@ -301,25 +289,25 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-brand-burgundy text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-6 right-6 bg-brand-burgundy text-white px-5 py-2.5 rounded-full font-bold shadow-lg">
                   Chef
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Connie Jones</h3>
-                <p className="text-customer-500 font-semibold mb-3">Italian Cuisine Specialist</p>
-                <p className="text-gray-600 mb-4">
+              <div className="p-8">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Connie Jones</h3>
+                <p className="text-customer-500 font-bold text-lg mb-4">Italian Cuisine Specialist</p>
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
                   "I love sharing my grandmother's recipes with the neighborhood. NeighborEats lets me turn my passion into income."
                 </p>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <MapPin className="w-4 h-4" />
-                  <span>Brooklyn, NY</span>
+                <div className="flex items-center gap-2 text-gray-500">
+                  <MapPin className="w-5 h-5" />
+                  <span className="text-lg">Brooklyn, NY</span>
                 </div>
               </div>
             </div>
 
             {/* Home Cook Card */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
               <div className="relative h-80">
                 <Image
                   src="/homecook-james.png"
@@ -328,25 +316,25 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-brand-coral text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-6 right-6 bg-brand-coral text-white px-5 py-2.5 rounded-full font-bold shadow-lg">
                   Home Cook
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">James Chen</h3>
-                <p className="text-brand-coral font-semibold mb-3">Healthy Meal Prep Expert</p>
-                <p className="text-gray-600 mb-4">
+              <div className="p-8">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">James Chen</h3>
+                <p className="text-brand-coral font-bold text-lg mb-4">Healthy Meal Prep Expert</p>
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
                   "As a fitness coach, I prep healthy meals for busy professionals in my area. It's rewarding work!"
                 </p>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <MapPin className="w-4 h-4" />
-                  <span>Austin, TX</span>
+                <div className="flex items-center gap-2 text-gray-500">
+                  <MapPin className="w-5 h-5" />
+                  <span className="text-lg">Austin, TX</span>
                 </div>
               </div>
             </div>
 
             {/* Driver Card */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
               <div className="relative h-80">
                 <Image
                   src="/driver-sarah.png"
@@ -355,19 +343,19 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-driver-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-6 right-6 bg-driver-500 text-white px-5 py-2.5 rounded-full font-bold shadow-lg">
                   Driver
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Sarah Johnson</h3>
-                <p className="text-brand-teal font-semibold mb-3">Community Connector</p>
-                <p className="text-gray-600 mb-4">
+              <div className="p-8">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Sarah Johnson</h3>
+                <p className="text-brand-teal font-bold text-lg mb-4">Community Connector</p>
+                <p className="text-gray-600 text-lg leading-relaxed mb-6">
                   "I deliver fresh food and meet amazing people every day. The flexible hours work perfectly for me."
                 </p>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
-                  <MapPin className="w-4 h-4" />
-                  <span>Portland, OR</span>
+                <div className="flex items-center gap-2 text-gray-500">
+                  <MapPin className="w-5 h-5" />
+                  <span className="text-lg">Portland, OR</span>
                 </div>
               </div>
             </div>
@@ -375,19 +363,19 @@ export default function Home() {
 
           {/* Join CTA */}
           <div className="text-center mt-16">
-            <p className="text-xl text-gray-700 mb-6">
+            <p className="text-2xl text-gray-800 font-semibold mb-8">
               Ready to join our community?
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col gap-4">
               <Link
                 href="/auth/signup/chef"
-                className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                className="px-10 py-5 bg-brand-coral text-white font-bold text-lg rounded-2xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl"
               >
                 Start Cooking
               </Link>
               <Link
                 href="/auth/signup/driver"
-                className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-xl hover:bg-brand-teal transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                className="px-10 py-5 bg-driver-500 text-white font-bold text-lg rounded-2xl hover:bg-brand-teal transition-all shadow-lg hover:shadow-xl"
               >
                 Start Driving
               </Link>
@@ -396,286 +384,133 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Social Proof Statistics */}
-      <div className="bg-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+      {/* Social Proof Statistics - Vertical List */}
+      <div className="bg-gradient-to-b from-white to-gray-50 py-20">
+        <div className="max-w-xl mx-auto px-4">
+          <div className="flex flex-col gap-6">
             {/* Stat 1 */}
-            <div className="text-center animate-fadeIn">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 rounded-full mb-4">
-                <ChefHat className="w-10 h-10 text-customer-500" />
+            <div className="bg-white rounded-3xl p-8 shadow-lg flex items-center gap-6 animate-fadeIn">
+              <div className="w-24 h-24 bg-gradient-to-br from-red-100 to-red-200 rounded-3xl flex items-center justify-center flex-shrink-0">
+                <ChefHat className="w-12 h-12 text-customer-500" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">500+</div>
-              <div className="text-gray-600 font-medium">Local Chefs</div>
+              <div>
+                <div className="text-5xl font-bold text-gray-900">500+</div>
+                <div className="text-gray-600 font-semibold text-lg mt-1">Local Chefs</div>
+              </div>
             </div>
 
             {/* Stat 2 */}
-            <div className="text-center animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full mb-4">
-                <UtensilsCrossed className="w-10 h-10 text-brand-coral" />
+            <div className="bg-white rounded-3xl p-8 shadow-lg flex items-center gap-6 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+              <div className="w-24 h-24 bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl flex items-center justify-center flex-shrink-0">
+                <UtensilsCrossed className="w-12 h-12 text-brand-coral" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">10,000+</div>
-              <div className="text-gray-600 font-medium">Meals Delivered</div>
+              <div>
+                <div className="text-5xl font-bold text-gray-900">10,000+</div>
+                <div className="text-gray-600 font-semibold text-lg mt-1">Meals Delivered</div>
+              </div>
             </div>
 
             {/* Stat 3 */}
-            <div className="text-center animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-full mb-4">
-                <Star className="w-10 h-10 text-brand-teal fill-brand-teal" />
+            <div className="bg-white rounded-3xl p-8 shadow-lg flex items-center gap-6 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+              <div className="w-24 h-24 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-3xl flex items-center justify-center flex-shrink-0">
+                <Star className="w-12 h-12 text-brand-teal fill-brand-teal" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">4.8</div>
-              <div className="text-gray-600 font-medium">Average Rating</div>
+              <div>
+                <div className="text-5xl font-bold text-gray-900">4.8</div>
+                <div className="text-gray-600 font-semibold text-lg mt-1">Average Rating</div>
+              </div>
             </div>
 
             {/* Stat 4 */}
-            <div className="text-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-100 to-orange-200 rounded-full mb-4">
-                <DollarSign className="w-10 h-10 text-customer-500" />
+            <div className="bg-white rounded-3xl p-8 shadow-lg flex items-center gap-6 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+              <div className="w-24 h-24 bg-gradient-to-br from-red-100 to-orange-200 rounded-3xl flex items-center justify-center flex-shrink-0">
+                <DollarSign className="w-12 h-12 text-customer-500" />
               </div>
-              <div className="text-4xl md:text-5xl font-bold text-gray-900 mb-2">80-85%</div>
-              <div className="text-gray-600 font-medium">Goes to Chefs</div>
+              <div>
+                <div className="text-5xl font-bold text-gray-900">80-85%</div>
+                <div className="text-gray-600 font-semibold text-lg mt-1">Goes to Chefs</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Categories */}
-      <div className="bg-gradient-to-br from-brand-light to-cyan-50 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">10 Categories Available</h2>
-            <p className="text-xl text-gray-600">Browse local chefs by food category</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
-            {/* Category 1 - Meals */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=200&fit=crop"
-                  alt="Meals"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Meals
-              </span>
-            </div>
-
-            {/* Category 2 - Juices & Smoothies */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=300&h=200&fit=crop"
-                  alt="Juices & Smoothies"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Juices & Smoothies
-              </span>
-            </div>
-
-            {/* Category 3 - Baked Goods */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=200&fit=crop"
-                  alt="Baked Goods"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Baked Goods
-              </span>
-            </div>
-
-            {/* Category 4 - Specialty Diets */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=200&fit=crop"
-                  alt="Specialty Diets"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Specialty Diets
-              </span>
-            </div>
-
-            {/* Category 5 - Ethnic Cuisines */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=200&fit=crop"
-                  alt="Ethnic Cuisines"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Ethnic Cuisines
-              </span>
-            </div>
-
-            {/* Category 6 - Healthy/Wellness */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=200&fit=crop"
-                  alt="Healthy/Wellness"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Healthy/Wellness
-              </span>
-            </div>
-
-            {/* Category 7 - Beverages */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=200&fit=crop"
-                  alt="Beverages"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Beverages
-              </span>
-            </div>
-
-            {/* Category 8 - Prepared Components */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=300&h=200&fit=crop"
-                  alt="Prepared Components"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Prepared Components
-              </span>
-            </div>
-
-            {/* Category 9 - Catering */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1555244162-803834f70033?w=300&h=200&fit=crop"
-                  alt="Catering"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Catering
-              </span>
-            </div>
-
-            {/* Category 10 - Meal Plans */}
-            <div className="flex flex-col items-center gap-3 bg-white rounded-2xl shadow-md hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
-              <div className="relative w-full h-32">
-                <Image
-                  src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop"
-                  alt="Meal Plans"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </div>
-              <span className="text-sm font-semibold text-gray-900 text-center pb-4 px-2">
-                Meal Plans
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* How It Works */}
+      {/* How It Works - Vertical Timeline */}
       <div className="bg-white py-20">
-        <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">How It Works</h2>
             <p className="text-xl text-gray-600">From browsing to delivery in four simple steps</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto relative">
-            {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-red-200 via-orange-200 to-cyan-200" style={{ top: '80px' }}></div>
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="absolute left-16 top-0 bottom-0 w-1 bg-gradient-to-b from-brand-burgundy via-brand-coral to-brand-teal"></div>
 
-            {/* Step 1 */}
-            <div className="relative text-center animate-fadeIn">
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-red-100 to-red-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <Search className="w-16 h-16 text-customer-500" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-customer-500 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                  1
+            <div className="flex flex-col gap-12">
+              {/* Step 1 */}
+              <div className="relative flex items-start gap-6 animate-fadeIn">
+                <div className="w-32 h-32 bg-gradient-to-br from-red-100 to-red-200 rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg">
+                  <Search className="w-16 h-16 text-customer-500" />
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-customer-500 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                    1
+                  </div>
+                </div>
+                <div className="flex-1 pt-4">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-3">Browse</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Find local chefs nearby. Filter by cuisine, diet, or distance to discover the perfect meal.
+                  </p>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Browse</h3>
-              <p className="text-gray-600">
-                Find local chefs nearby. Filter by cuisine, diet, or distance.
-              </p>
-            </div>
 
-            {/* Step 2 */}
-            <div className="relative text-center animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <Video className="w-16 h-16 text-brand-coral" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-brand-coral text-white rounded-full flex items-center justify-center font-bold text-lg">
-                  2
+              {/* Step 2 */}
+              <div className="relative flex items-start gap-6 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+                <div className="w-32 h-32 bg-gradient-to-br from-orange-100 to-orange-200 rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg">
+                  <Video className="w-16 h-16 text-brand-coral" />
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-brand-coral text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                    2
+                  </div>
+                </div>
+                <div className="flex-1 pt-4">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-3">Watch Live</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    See chefs cook in real-time. Build trust and authenticity by watching your food being prepared.
+                  </p>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Watch Live</h3>
-              <p className="text-gray-600">
-                See chefs cook in real-time. Build trust and authenticity.
-              </p>
-            </div>
 
-            {/* Step 3 */}
-            <div className="relative text-center animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <ShoppingCart className="w-16 h-16 text-brand-teal" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-lg">
-                  3
+              {/* Step 3 */}
+              <div className="relative flex items-start gap-6 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+                <div className="w-32 h-32 bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg">
+                  <ShoppingCart className="w-16 h-16 text-brand-teal" />
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                    3
+                  </div>
+                </div>
+                <div className="flex-1 pt-4">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-3">Order</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Place your order securely. Pay safely and support your local community with every purchase.
+                  </p>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Order</h3>
-              <p className="text-gray-600">
-                Place your order. Pay securely. Support your community.
-              </p>
-            </div>
 
-            {/* Step 4 */}
-            <div className="relative text-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-              <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-cyan-100 to-blue-200 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
-                <Car className="w-16 h-16 text-brand-teal" />
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-lg">
-                  4
+              {/* Step 4 */}
+              <div className="relative flex items-start gap-6 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+                <div className="w-32 h-32 bg-gradient-to-br from-cyan-100 to-blue-200 rounded-3xl flex items-center justify-center flex-shrink-0 relative z-10 shadow-lg">
+                  <Car className="w-16 h-16 text-brand-teal" />
+                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg">
+                    4
+                  </div>
+                </div>
+                <div className="flex-1 pt-4">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-3">Delivered</h3>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    Fast local delivery. Get fresh food from your neighbor's kitchen delivered right to your door.
+                  </p>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Delivered</h3>
-              <p className="text-gray-600">
-                Fast local delivery. Fresh food from your neighbor's kitchen.
-              </p>
             </div>
           </div>
         </div>
