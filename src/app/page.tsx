@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ShoppingCart, ChefHat, Car, MapPin, Video, DollarSign, UtensilsCrossed, Coffee, Cake, Salad, Pizza, Dumbbell, Wine, Drumstick, PartyPopper, Calendar, Search, Star, Clock, LucideIcon, CheckCircle, X } from 'lucide-react'
 import PWAInstallPrompt from '@/components/shared/PWAInstallPrompt'
+import DarkModeToggle from '@/components/shared/DarkModeToggle'
 
 export default function Home() {
   const categories: { name: string; icon: LucideIcon }[] = [
@@ -358,134 +359,136 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Features Section - Moved to #5 Position */}
-      <div className="max-w-2xl mx-auto px-4 py-20 bg-gray-50 dark:bg-dark-bg">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
-            Why Choose NeighborEats?
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-dark-text-secondary">
-            The better way to order food
-          </p>
-        </div>
-        
-        <div className="flex flex-col gap-6">
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-2xl transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-            <div className="flex items-start gap-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 rounded-2xl flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-10 h-10 text-customer-500 dark:text-red-400" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-dark-text">Hyper-Local</h3>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed">
-                  Find chefs within 0.5-15 miles. Support your actual neighbors and get the freshest meals delivered quickly.
-                </p>
+      {/* Features Section - Mobile/Tablet Optimized */}
+      <div className="bg-gray-50 dark:bg-dark-bg py-12 sm:py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
+              Why Choose NeighborEats?
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-dark-text-secondary px-4">
+              The better way to order food
+            </p>
+          </div>
+          
+          <div className="flex flex-col gap-5 sm:gap-6">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-fadeIn touch-manipulation" style={{ animationDelay: '0.1s' }}>
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-8 h-8 sm:w-10 sm:h-10 text-customer-500 dark:text-red-400" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-dark-text">Hyper-Local</h3>
+                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed">
+                    Find chefs within 0.5-15 miles. Support your actual neighbors and get the freshest meals delivered quickly.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-2xl transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            <div className="flex items-start gap-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 rounded-2xl flex items-center justify-center flex-shrink-0">
-                <Video className="w-10 h-10 text-brand-coral dark:text-orange-400" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-dark-text">LIVE Cooking</h3>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed">
-                  Watch chefs cook in real-time. Build trust and authenticity by seeing your food being prepared live.
-                </p>
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-fadeIn touch-manipulation" style={{ animationDelay: '0.2s' }}>
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/30 dark:to-orange-800/30 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <Video className="w-8 h-8 sm:w-10 sm:h-10 text-brand-coral dark:text-orange-400" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-dark-text">LIVE Cooking</h3>
+                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed">
+                    Watch chefs cook in real-time. Build trust and authenticity by seeing your food being prepared live.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-2xl transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-            <div className="flex items-start gap-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-cyan-100 to-cyan-200 dark:from-cyan-900/30 dark:to-cyan-800/30 rounded-2xl flex items-center justify-center flex-shrink-0">
-                <DollarSign className="w-10 h-10 text-brand-teal dark:text-cyan-400" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-dark-text">Fair Economics</h3>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed">
-                  Chefs keep 80-85%. Drivers earn $4-5 per delivery. You save money. Everyone wins with fair pricing.
-                </p>
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-2xl hover:scale-105 transition-all duration-300 animate-fadeIn touch-manipulation" style={{ animationDelay: '0.3s' }}>
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-cyan-100 to-cyan-200 dark:from-cyan-900/30 dark:to-cyan-800/30 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <DollarSign className="w-8 h-8 sm:w-10 sm:h-10 text-brand-teal dark:text-cyan-400" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-gray-900 dark:text-dark-text">Fair Economics</h3>
+                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed">
+                    Chefs keep 80-85%. Drivers earn $4-5 per delivery. You save money. Everyone wins with fair pricing.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Comparison Section - NEW #6 Position */}
-      <div className="bg-gradient-to-b from-white to-gray-50 dark:from-dark-bg-elevated dark:to-dark-bg py-20">
-        <div className="max-w-3xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
+      {/* Comparison Section - Mobile/Tablet Optimized */}
+      <div className="bg-gradient-to-b from-white to-gray-50 dark:from-dark-bg-elevated dark:to-dark-bg py-12 sm:py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
               Better Than Big Delivery Apps
             </h2>
-            <p className="text-xl text-gray-600 dark:text-dark-text-secondary">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-dark-text-secondary px-4">
               See how we compare to DoorDash, UberEats, and others
             </p>
           </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl p-8 md:p-12 shadow-2xl dark:shadow-xl dark:shadow-black/30 border border-transparent dark:border-dark-border">
-            <div className="flex flex-col gap-8">
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-xl sm:shadow-2xl dark:shadow-xl dark:shadow-black/30 border border-transparent dark:border-dark-border">
+            <div className="flex flex-col gap-6 sm:gap-8">
               {/* Comparison 1 */}
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-600 dark:text-green-400" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">30-50% Cheaper</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text mb-1 sm:mb-2">30-50% Cheaper</h3>
+                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed">
                     Lower fees mean lower prices. Save money on every order compared to traditional delivery apps.
                   </p>
                 </div>
               </div>
 
               {/* Comparison 2 */}
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-600 dark:text-green-400" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Fresher Food</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text mb-1 sm:mb-2">Fresher Food</h3>
+                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed">
                     Made right in your neighborhood. No long distances or cold meals from far-away restaurants.
                   </p>
                 </div>
               </div>
 
               {/* Comparison 3 */}
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-6 h-6 sm:w-8 sm:h-8 text-green-600 dark:text-green-400" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Support Neighbors, Not Corporations</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text mb-1 sm:mb-2">Support Neighbors, Not Corporations</h3>
+                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed">
                     80-85% goes directly to local chefs. Your money stays in your community.
                   </p>
                 </div>
               </div>
 
               {/* Comparison 4 */}
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 bg-brand-coral/20 dark:bg-orange-900/30 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Video className="w-8 h-8 text-brand-coral dark:text-orange-400" />
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-brand-coral/20 dark:bg-orange-900/30 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Video className="w-6 h-6 sm:w-8 sm:h-8 text-brand-coral dark:text-orange-400" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Watch Chefs Cook LIVE</h3>
-                  <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-dark-text mb-1 sm:mb-2">Watch Chefs Cook LIVE</h3>
+                  <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed">
                     Something no other app offers. See your food being made in real-time for ultimate trust and transparency.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-dark-border">
+            {/* CTA - Touch-friendly */}
+            <div className="mt-8 sm:mt-10 md:mt-12 pt-6 sm:pt-8 border-t border-gray-200 dark:border-dark-border">
               <Link
                 href="/explore"
-                className="block w-full px-8 py-5 bg-brand-burgundy text-white font-bold text-xl rounded-2xl hover:bg-customer-500 transition-all shadow-lg hover:shadow-xl text-center"
+                className="block w-full px-6 sm:px-8 py-4 sm:py-5 bg-brand-burgundy text-white font-bold text-lg sm:text-xl rounded-xl sm:rounded-2xl hover:bg-customer-500 active:scale-95 transition-all shadow-lg hover:shadow-xl text-center touch-manipulation"
               >
                 Try NeighborEats Today
               </Link>
@@ -494,108 +497,109 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Meet Our Community - Moved to #7 Position (Customer-Focused) */}
-      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-dark-bg-secondary dark:to-dark-bg-elevated py-20">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-4">
+      {/* Meet Our Community - Mobile/Tablet Optimized */}
+      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-dark-bg-secondary dark:to-dark-bg-elevated py-12 sm:py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text mb-3 sm:mb-4 px-4">
               Loved By Your Neighbors
             </h2>
-            <p className="text-xl text-gray-600 dark:text-dark-text-secondary">
+            <p className="text-lg sm:text-xl text-gray-600 dark:text-dark-text-secondary px-4">
               Real people. Real food. Real connections.
             </p>
           </div>
 
-          <div className="flex flex-col gap-8">
-            {/* Customer Testimonial 1 - NEW */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl transition-all duration-300 border border-transparent dark:border-dark-border">
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-customer-100 to-customer-200 dark:from-red-900/30 dark:to-red-800/30 rounded-full flex items-center justify-center flex-shrink-0 text-3xl">
+          <div className="flex flex-col gap-6 sm:gap-8">
+            {/* Customer Testimonial 1 - Mobile Optimized */}
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border touch-manipulation">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-customer-100 to-customer-200 dark:from-red-900/30 dark:to-red-800/30 rounded-full flex items-center justify-center flex-shrink-0 text-2xl sm:text-3xl">
                   👨‍💼
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center justify-center sm:justify-start gap-1 sm:gap-2 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 dark:text-dark-text-secondary text-lg leading-relaxed mb-4 italic">
+                  <p className="text-gray-700 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed mb-4 italic">
                     "I order from Chef Maria twice a week now. The food is amazing and watching her cook live gives me confidence in the quality. Way better than DoorDash!"
                   </p>
                   <div>
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-dark-text">Michael Rodriguez</h4>
-                    <p className="text-gray-500 dark:text-dark-text-muted">Brooklyn, NY · Customer since 2024</p>
+                    <h4 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-dark-text">Michael Rodriguez</h4>
+                    <p className="text-sm sm:text-base text-gray-500 dark:text-dark-text-muted">Brooklyn, NY · Customer since 2024</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Customer Testimonial 2 - NEW */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl transition-all duration-300 border border-transparent dark:border-dark-border">
-              <div className="flex items-start gap-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-customer-100 to-customer-200 dark:from-red-900/30 dark:to-red-800/30 rounded-full flex items-center justify-center flex-shrink-0 text-3xl">
+            {/* Customer Testimonial 2 - Mobile Optimized */}
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border touch-manipulation">
+              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-customer-100 to-customer-200 dark:from-red-900/30 dark:to-red-800/30 rounded-full flex items-center justify-center flex-shrink-0 text-2xl sm:text-3xl">
                   👩‍⚕️
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center justify-center sm:justify-start gap-1 sm:gap-2 mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 dark:text-dark-text-secondary text-lg leading-relaxed mb-4 italic">
+                  <p className="text-gray-700 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed mb-4 italic">
                     "As a busy nurse, I love supporting local chefs in my neighborhood. The meals are fresh, affordable, and I feel good knowing my money goes to real people."
                   </p>
                   <div>
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-dark-text">Emily Watson</h4>
-                    <p className="text-gray-500 dark:text-dark-text-muted">Portland, OR · Customer since 2024</p>
+                    <h4 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-dark-text">Emily Watson</h4>
+                    <p className="text-sm sm:text-base text-gray-500 dark:text-dark-text-muted">Portland, OR · Customer since 2024</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Chef Card - Simplified */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-3xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl transition-all duration-300 border border-transparent dark:border-dark-border">
-              <div className="relative h-80">
+            {/* Chef Card - Mobile Optimized */}
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border touch-manipulation">
+              <div className="relative h-64 sm:h-72 md:h-80">
                 <Image
                   src="/chef-connie.png"
                   alt="Chef Connie Washington cooking in professional kitchen"
                   fill
                   className="object-cover"
                   unoptimized
+                  sizes="(max-width: 768px) 100vw, 768px"
                 />
-                <div className="absolute top-6 right-6 bg-brand-burgundy text-white px-5 py-2.5 rounded-full font-bold shadow-lg">
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-brand-burgundy text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full font-bold shadow-lg text-sm sm:text-base">
                   Chef
                 </div>
               </div>
-              <div className="p-8">
-                <h3 className="text-3xl font-bold text-gray-900 dark:text-dark-text mb-2">Connie Jones</h3>
-                <p className="text-customer-500 dark:text-red-400 font-bold text-lg mb-4">Italian Cuisine Specialist</p>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg leading-relaxed mb-6">
+              <div className="p-6 sm:p-8">
+                <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-dark-text mb-1 sm:mb-2">Connie Jones</h3>
+                <p className="text-customer-500 dark:text-red-400 font-bold text-base sm:text-lg mb-3 sm:mb-4">Italian Cuisine Specialist</p>
+                <p className="text-gray-600 dark:text-dark-text-secondary text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
                   "I love sharing my grandmother's recipes with the neighborhood. NeighborEats lets me turn my passion into income while staying independent."
                 </p>
                 <div className="flex items-center gap-2 text-gray-500 dark:text-dark-text-muted">
-                  <MapPin className="w-5 h-5" />
-                  <span className="text-lg">Brooklyn, NY</span>
+                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-base sm:text-lg">Brooklyn, NY</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Subtle Chef/Driver CTA */}
-          <div className="text-center mt-16 pt-12 border-t border-gray-200 dark:border-dark-border">
-            <p className="text-lg text-gray-600 dark:text-dark-text-secondary mb-6">
+          {/* Subtle Chef/Driver CTA - Mobile Optimized */}
+          <div className="text-center mt-12 sm:mt-14 md:mt-16 pt-8 sm:pt-10 md:pt-12 border-t border-gray-200 dark:border-dark-border">
+            <p className="text-base sm:text-lg text-gray-600 dark:text-dark-text-secondary mb-5 sm:mb-6 px-4">
               Love to cook or drive?
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <Link
                 href="/apply/chef"
-                className="px-8 py-3 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-md"
+                className="px-6 sm:px-8 py-3 sm:py-3.5 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 active:scale-95 transition-all shadow-md touch-manipulation"
               >
                 Become a Chef
               </Link>
               <Link
                 href="/apply/driver"
-                className="px-8 py-3 bg-driver-500 text-white font-semibold rounded-xl hover:bg-brand-teal transition-all shadow-md"
+                className="px-6 sm:px-8 py-3 sm:py-3.5 bg-driver-500 text-white font-semibold rounded-xl hover:bg-brand-teal active:scale-95 transition-all shadow-md touch-manipulation"
               >
                 Drive & Deliver
               </Link>
@@ -646,6 +650,9 @@ export default function Home() {
       
       {/* PWA Install Prompt */}
       <PWAInstallPrompt />
+      
+      {/* Dark Mode Toggle */}
+      <DarkModeToggle />
     </main>
   )
 }
