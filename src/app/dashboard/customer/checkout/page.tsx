@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useStore } from '@/lib/store'
 import { useRouter } from 'next/navigation'
 import DashboardLayout from '@/components/shared/DashboardLayout'
@@ -27,6 +27,13 @@ export default function CheckoutPage() {
   const deliveryFee = 4.00
   const total = subtotal + deliveryFee
 
+  // Redirect if cart is empty (useEffect to avoid SSR issues)
+  useEffect(() => {
+    if (cart.length === 0) {
+      router.push('/dashboard/customer/cart')
+    }
+  }, [cart.length, router])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Mock order placement
@@ -41,8 +48,8 @@ export default function CheckoutPage() {
     router.push('/dashboard/customer/orders')
   }
 
+  // Show loading if cart is empty
   if (cart.length === 0) {
-    router.push('/dashboard/customer/cart')
     return null
   }
 
