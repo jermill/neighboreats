@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 interface NavbarProps {
@@ -39,8 +40,14 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-2xl font-bold">
-            🍽️ Neighbor<span className="text-brand-teal">Eats</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="NeighborEats"
+              width={160}
+              height={48}
+              className="h-10 w-auto"
+            />
           </Link>
 
           {userRole && (

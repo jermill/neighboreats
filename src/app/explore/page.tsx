@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import Slider from '@/components/shared/Slider'
 import ChefCard from '@/components/shared/ChefCard'
 import EmptyState from '@/components/shared/EmptyState'
@@ -66,8 +67,14 @@ export default function ExplorePage() {
       <nav className="bg-white dark:bg-dark-bg-secondary shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-2xl font-bold">
-              🍽️ Neighbor<span className="text-brand-teal dark:text-primary-dark">Eats</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="NeighborEats"
+                width={160}
+                height={48}
+                className="h-10 w-auto"
+              />
             </Link>
 
             <div className="flex items-center gap-4">

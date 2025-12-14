@@ -30,10 +30,17 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Text content */}
             <div className="text-center lg:text-left space-y-8 animate-fadeIn">
-              {/* Logo/Brand */}
-              <h1 className="text-6xl md:text-7xl font-bold text-gray-900">
-                Neighbor<span className="text-customer-500">Eats</span>
-              </h1>
+              {/* Logo */}
+              <div className="flex justify-center lg:justify-start">
+                <Image
+                  src="/logo.png"
+                  alt="NeighborEats Logo"
+                  width={400}
+                  height={120}
+                  priority
+                  className="w-auto h-24 md:h-32"
+                />
+              </div>
               
               <p className="text-3xl md:text-4xl text-gray-800 font-semibold">
                 Discover neighborhood chefs. Support local. Eat fresh.

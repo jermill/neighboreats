@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -9,8 +10,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 md:col-span-1">
-            <Link href="/" className="text-2xl font-bold text-white mb-4 inline-block">
-              🍽️ Neighbor<span className="text-teal-400">Eats</span>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/logo.png"
+                alt="NeighborEats"
+                width={180}
+                height={54}
+                className="h-12 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="text-sm text-gray-400 mb-4">
               Discover neighborhood chefs. Support local. Eat fresh.

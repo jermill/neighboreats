@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import Rating from '@/components/shared/Rating'
 import Badge from '@/components/shared/Badge'
 import Button from '@/components/shared/Button'
@@ -49,8 +50,14 @@ export default function GuestChefProfilePage() {
       <nav className="bg-white shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-2xl font-bold">
-              🍽️ Neighbor<span className="text-brand-teal">Eats</span>
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/logo.png"
+                alt="NeighborEats"
+                width={160}
+                height={48}
+                className="h-10 w-auto"
+              />
             </Link>
 
             <div className="flex items-center gap-4">
