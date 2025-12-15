@@ -65,18 +65,26 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Primary CTA Button - Touch-friendly */}
-            <div className="w-full max-w-md pt-2 sm:pt-4 px-4">
-              <Link
-                href="/explore"
-                className="block px-6 sm:px-8 py-5 sm:py-6 bg-brand-burgundy text-white font-bold text-lg sm:text-xl rounded-xl sm:rounded-2xl hover:bg-customer-500 active:scale-95 transition-all shadow-xl sm:shadow-2xl hover:shadow-3xl touch-manipulation flex items-center justify-center gap-2 sm:gap-3"
-              >
-                <ShoppingCart className="w-6 h-6 sm:w-7 sm:h-7" />
-                <span>Browse Local Chefs</span>
-              </Link>
+            {/* Primary CTA Buttons - Touch-friendly */}
+            <div className="w-full max-w-xl pt-2 sm:pt-4 px-4 space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <Link
+                  href="/explore"
+                  className="block px-6 sm:px-8 py-5 sm:py-6 bg-brand-burgundy text-white font-bold text-lg sm:text-xl rounded-xl sm:rounded-2xl hover:bg-customer-500 active:scale-95 transition-all shadow-xl sm:shadow-2xl hover:shadow-3xl touch-manipulation flex items-center justify-center gap-2 sm:gap-3"
+                >
+                  <ShoppingCart className="w-6 h-6 sm:w-7 sm:h-7" />
+                  <span>Browse Local Chefs</span>
+                </Link>
+                <Link
+                  href="/auth/signup/customer"
+                  className="block px-6 sm:px-8 py-5 sm:py-6 bg-brand-teal text-white font-bold text-lg sm:text-xl rounded-xl sm:rounded-2xl hover:bg-driver-600 active:scale-95 transition-all shadow-xl sm:shadow-2xl hover:shadow-3xl touch-manipulation flex items-center justify-center gap-2 sm:gap-3"
+                >
+                  <span>Create Account</span>
+                </Link>
+              </div>
               
               {/* Secondary Links for Chefs/Drivers - Better spacing on mobile */}
-              <p className="text-center mt-5 sm:mt-6 text-sm sm:text-base text-gray-600 dark:text-dark-text-secondary px-2">
+              <p className="text-center mt-2 sm:mt-3 text-sm sm:text-base text-gray-600 dark:text-dark-text-secondary px-2">
                 Want to cook or deliver?{' '}
                 <Link href="/apply/chef" className="text-brand-coral dark:text-chef-500 font-semibold hover:underline touch-manipulation inline-block py-1">
                   Apply as a Chef
