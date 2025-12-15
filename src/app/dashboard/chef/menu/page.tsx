@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import MenuItemCard from '@/components/shared/MenuItemCard'
 import Button from '@/components/shared/Button'
@@ -10,7 +10,10 @@ import Textarea from '@/components/shared/Textarea'
 import Select from '@/components/shared/Select'
 import FileUpload from '@/components/shared/FileUpload'
 import Toggle from '@/components/shared/Toggle'
-import { mockMenuItems } from '@/lib/mockData'
+import { MenuItemCardSkeleton } from '@/components/shared/SkeletonLoader'
+import { menuApi } from '@/lib/api-client'
+import { MenuItem } from '@/types'
+import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
 
 const categories = [
@@ -27,21 +30,43 @@ const categories = [
 ]
 
 export default function MenuManagementPage() {
-  const chefName = "Maria Rodriguez"
+  const { currentUser } = useStore()
   const [activeCategory, setActiveCategory] = useState('Meals')
   const [showModal, setShowModal] = useState(false)
-  const [editingItem, setEditingItem] = useState<typeof mockMenuItems[0] | null>(null)
+  const [editingItem, setEditingItem] = useState<MenuItem | null>(null)
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
   const [form, setForm] = useState({
     name: '',
     description: '',
     price: '',
     category: 'Meals',
     dietaryTags: [] as string[],
+    photoUrl: '',
     isAvailable: true
   })
 
-  const chefMenuItems = mockMenuItems.filter(item => item.chefId === '1')
-  const filteredItems = chefMenuItems.filter(item => item.category === activeCategory)
+  useEffect(() => {
+    fetchMenuItems()
+  }, [])
+
+  const fetchMenuItems = async () => {
+    try {
+      setLoading(true)
+      const { menuItems: fetchedItems } = await menuApi.getAll({ 
+        chefId: currentUser?.id 
+      })
+      setMenuItems(fetchedItems)
+    } catch (error: any) {
+      toast.error('Failed to load menu items')
+      console.error('Menu fetch error:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const filteredItems = menuItems.filter(item => item.category === activeCategory)
 
   const handleAddNew = () => {
     setEditingItem(null)
@@ -51,12 +76,13 @@ export default function MenuManagementPage() {
       price: '',
       category: activeCategory,
       dietaryTags: [],
+      photoUrl: '',
       isAvailable: true
     })
     setShowModal(true)
   }
 
-  const handleEdit = (item: typeof mockMenuItems[0]) => {
+  const handleEdit = (item: MenuItem) => {
     setEditingItem(item)
     setForm({
       name: item.name,
@@ -64,19 +90,64 @@ export default function MenuManagementPage() {
       price: item.price.toString(),
       category: item.category,
       dietaryTags: item.dietaryTags,
+      photoUrl: item.photoUrl,
       isAvailable: item.isAvailable
     })
     setShowModal(true)
   }
 
-  const handleSave = () => {
-    toast.success(editingItem ? 'Item updated!' : 'Item added!')
-    setShowModal(false)
+  const handleSave = async () => {
+    if (!form.name || !form.price) {
+      toast.error('Please fill in all required fields')
+      return
+    }
+
+    setSaving(true)
+    try {
+      if (editingItem) {
+        await menuApi.update(editingItem.id, {
+          name: form.name,
+          description: form.description,
+          price: parseFloat(form.price),
+          category: form.category,
+          dietaryTags: form.dietaryTags,
+          photoUrl: form.photoUrl,
+          isAvailable: form.isAvailable
+        })
+        toast.success('Item updated!')
+      } else {
+        await menuApi.create({
+          name: form.name,
+          description: form.description,
+          price: parseFloat(form.price),
+          category: form.category,
+          dietaryTags: form.dietaryTags,
+          photoUrl: form.photoUrl,
+          isAvailable: form.isAvailable
+        })
+        toast.success('Item added!')
+      }
+      
+      setShowModal(false)
+      fetchMenuItems()
+    } catch (error) {
+      toast.error('Failed to save menu item')
+    } finally {
+      setSaving(false)
+    }
   }
 
-  const handleDelete = (item: typeof mockMenuItems[0]) => {
-    if (confirm('Are you sure you want to delete this item?')) {
+  const handleDelete = async (item: MenuItem) => {
+    if (!confirm('Are you sure you want to delete this item?')) {
+      return
+    }
+
+    try {
+      await menuApi.delete(item.id)
       toast.success('Item deleted')
+      fetchMenuItems()
+    } catch (error) {
+      toast.error('Failed to delete item')
     }
   }
 
@@ -90,7 +161,7 @@ export default function MenuManagementPage() {
   }
 
   return (
-    <DashboardLayout userRole="chef" userName={chefName}>
+    <DashboardLayout userRole="chef" userName={currentUser?.name}>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-gray-900">Menu Management</h1>
@@ -121,7 +192,11 @@ export default function MenuManagementPage() {
 
           {/* Menu Items Grid */}
           <div className="p-6">
-            {filteredItems.length > 0 ? (
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <MenuItemCardSkeleton count={6} />
+              </div>
+            ) : filteredItems.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredItems.map(item => (
                   <MenuItemCard

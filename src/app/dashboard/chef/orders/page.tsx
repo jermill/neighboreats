@@ -1,41 +1,78 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import OrderCard from '@/components/shared/OrderCard'
 import EmptyState from '@/components/shared/EmptyState'
-import { mockOrders } from '@/lib/mockData'
+import { OrderCardSkeleton } from '@/components/shared/SkeletonLoader'
+import { ordersApi } from '@/lib/api-client'
+import { Order } from '@/types'
+import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
 
 export default function ChefOrdersPage() {
-  const chefName = "Maria Rodriguez"
+  const { currentUser } = useStore()
   const [activeTab, setActiveTab] = useState<'pending' | 'preparing' | 'ready' | 'completed'>('pending')
+  const [orders, setOrders] = useState<Order[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchOrders()
+  }, [])
+
+  const fetchOrders = async () => {
+    try {
+      setLoading(true)
+      const { orders: fetchedOrders } = await ordersApi.getAll()
+      setOrders(fetchedOrders)
+    } catch (error: any) {
+      toast.error('Failed to load orders')
+      console.error('Orders fetch error:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   // Filter orders by status
-  const orders = {
-    pending: mockOrders.filter(o => o.status === 'pending'),
-    preparing: mockOrders.filter(o => o.status === 'preparing'),
-    ready: mockOrders.filter(o => o.status === 'ready'),
-    completed: mockOrders.filter(o => o.status === 'delivered')
+  const ordersByTab = {
+    pending: orders.filter(o => o.status === 'pending'),
+    preparing: orders.filter(o => o.status === 'preparing'),
+    ready: orders.filter(o => o.status === 'ready'),
+    completed: orders.filter(o => o.status === 'delivered')
   }
 
-  const handleAccept = (orderId: string) => {
-    toast.success('Order accepted!')
-    // In real app, update order status
+  const handleAccept = async (orderId: string) => {
+    try {
+      await ordersApi.updateStatus(orderId, 'accepted')
+      toast.success('Order accepted!')
+      fetchOrders()
+    } catch (error) {
+      toast.error('Failed to accept order')
+    }
   }
 
-  const handleReject = (orderId: string) => {
-    toast.error('Order rejected')
-    // In real app, update order status
+  const handleReject = async (orderId: string) => {
+    try {
+      await ordersApi.updateStatus(orderId, 'cancelled')
+      toast.error('Order rejected')
+      fetchOrders()
+    } catch (error) {
+      toast.error('Failed to reject order')
+    }
   }
 
-  const handleMarkReady = (orderId: string) => {
-    toast.success('Order marked as ready!')
-    // In real app, update order status
+  const handleMarkReady = async (orderId: string) => {
+    try {
+      await ordersApi.updateStatus(orderId, 'ready')
+      toast.success('Order marked as ready!')
+      fetchOrders()
+    } catch (error) {
+      toast.error('Failed to update order')
+    }
   }
 
   return (
-    <DashboardLayout userRole="chef" userName={chefName}>
+    <DashboardLayout userRole="chef" userName={currentUser?.name}>
       <div className="space-y-6">
         <h1 className="text-3xl font-bold text-gray-900">Orders</h1>
 
@@ -44,10 +81,10 @@ export default function ChefOrdersPage() {
           <div className="border-b border-gray-200">
             <div className="flex gap-8 px-6">
               {[
-                { key: 'pending', label: 'Pending', count: orders.pending.length },
-                { key: 'preparing', label: 'Preparing', count: orders.preparing.length },
-                { key: 'ready', label: 'Ready', count: orders.ready.length },
-                { key: 'completed', label: 'Completed', count: orders.completed.length }
+                { key: 'pending', label: 'Pending', count: ordersByTab.pending.length },
+                { key: 'preparing', label: 'Preparing', count: ordersByTab.preparing.length },
+                { key: 'ready', label: 'Ready', count: ordersByTab.ready.length },
+                { key: 'completed', label: 'Completed', count: ordersByTab.completed.length }
               ].map(tab => (
                 <button
                   key={tab.key}
@@ -70,9 +107,13 @@ export default function ChefOrdersPage() {
           </div>
 
           <div className="p-6">
-            {orders[activeTab].length > 0 ? (
+            {loading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {orders[activeTab].map(order => (
+                <OrderCardSkeleton count={6} />
+              </div>
+            ) : ordersByTab[activeTab].length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {ordersByTab[activeTab].map(order => (
                   <OrderCard
                     key={order.id}
                     order={order}

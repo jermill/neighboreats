@@ -1,30 +1,72 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import Card from '@/components/shared/Card'
 import Input from '@/components/shared/Input'
 import Button from '@/components/shared/Button'
 import Badge from '@/components/shared/Badge'
+import { profileApi } from '@/lib/api-client'
+import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
 
 export default function DriverProfilePage() {
-  const driverName = "Alex Martinez"
+  const { currentUser } = useStore()
+  const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
-    name: 'Alex Martinez',
-    email: 'alex@example.com',
-    phone: '(302) 555-0201',
-    vehicle: '2020 Honda Civic',
-    licensePlate: 'ABC-1234'
+    name: currentUser?.name || '',
+    email: currentUser?.email || '',
+    phone: currentUser?.phone || '',
+    vehicle: '',
+    vehicleModel: '',
+    vehicleColor: '',
+    vehiclePlate: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { profile } = await profileApi.get()
+        setForm({
+          name: profile.name || '',
+          email: profile.email || '',
+          phone: profile.phone || '',
+          vehicle: profile.vehicle || '',
+          vehicleModel: profile.vehicleModel || '',
+          vehicleColor: profile.vehicleColor || '',
+          vehiclePlate: profile.vehiclePlate || ''
+        })
+      } catch (error) {
+        console.error('Profile fetch error:', error)
+      }
+    }
+    fetchProfile()
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    toast.success('Profile updated!')
+    
+    setLoading(true)
+    try {
+      await profileApi.update({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        vehicle: form.vehicle,
+        vehicleModel: form.vehicleModel,
+        vehicleColor: form.vehicleColor,
+        vehiclePlate: form.vehiclePlate
+      })
+      toast.success('Profile updated!')
+    } catch (error) {
+      toast.error('Failed to update profile')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
-    <DashboardLayout userRole="driver" userName={driverName}>
+    <DashboardLayout userRole="driver" userName={currentUser?.name}>
       <div className="max-w-4xl mx-auto space-y-6">
         <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
 
@@ -80,9 +122,21 @@ export default function DriverProfilePage() {
               required
             />
             <Input
+              label="Vehicle Model"
+              value={form.vehicleModel}
+              onChange={(e) => setForm({ ...form, vehicleModel: e.target.value })}
+              placeholder="Civic, Camry, etc."
+            />
+            <Input
+              label="Vehicle Color"
+              value={form.vehicleColor}
+              onChange={(e) => setForm({ ...form, vehicleColor: e.target.value })}
+              placeholder="Black, White, etc."
+            />
+            <Input
               label="License Plate"
-              value={form.licensePlate}
-              onChange={(e) => setForm({ ...form, licensePlate: e.target.value })}
+              value={form.vehiclePlate}
+              onChange={(e) => setForm({ ...form, vehiclePlate: e.target.value })}
               required
             />
             <Button type="submit">Save Changes</Button>

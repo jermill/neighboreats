@@ -9,12 +9,14 @@ import Input from '@/components/shared/Input'
 import Textarea from '@/components/shared/Textarea'
 import Card from '@/components/shared/Card'
 import Modal from '@/components/shared/Modal'
+import { ordersApi, paymentsApi } from '@/lib/api-client'
 import toast from 'react-hot-toast'
 
 export default function CheckoutPage() {
   const router = useRouter()
   const { currentUser, cart, getCartTotal, clearCart } = useStore()
   const [showSuccess, setShowSuccess] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({
     address: '',
     city: '',
@@ -34,13 +36,54 @@ export default function CheckoutPage() {
     }
   }, [cart.length, router])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Mock order placement
-    setTimeout(() => {
+    
+    if (cart.length === 0) {
+      toast.error('Your cart is empty')
+      return
+    }
+
+    setSubmitting(true)
+    
+    try {
+      // Get chef ID from first cart item (all items should be from same chef)
+      const chefId = cart[0].chef.id
+      const deliveryAddress = `${form.address}, ${form.city}, ${form.state} ${form.zip}`
+      
+      // Create order
+      const { orderId, order } = await ordersApi.create({
+        chefId,
+        items: cart.map(item => ({
+          menuItemId: item.menuItem.id,
+          quantity: item.quantity
+        })),
+        fulfillmentType: 'delivery',
+        deliveryAddress,
+        specialInstructions: form.specialInstructions
+      })
+
+      // Create payment intent
+      const paymentResponse = await paymentsApi.createPaymentIntent({
+        amount: Math.round(total * 100), // Convert to cents
+        orderId,
+        chefId
+      })
+
+      // In production, you'd process the payment with Stripe Elements here
+      // For now, we'll treat mock payments as successful
+      if (paymentResponse.mock) {
+        toast.success('Order placed successfully (mock payment)')
+      }
+
       setShowSuccess(true)
       clearCart()
-    }, 1000)
+    } catch (error: any) {
+      console.error('Checkout error:', error)
+      toast.error(error.message || 'Failed to place order')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const handleSuccessClose = () => {
@@ -165,8 +208,13 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full mt-6">
-                Place Order - ${total.toFixed(2)}
+              <Button 
+                type="submit" 
+                className="w-full mt-6"
+                disabled={submitting}
+                loading={submitting}
+              >
+                {submitting ? 'Processing...' : `Place Order - $${total.toFixed(2)}`}
               </Button>
             </Card>
           </div>

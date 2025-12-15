@@ -1,16 +1,18 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useStore } from '@/lib/store'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import Card from '@/components/shared/Card'
 import Input from '@/components/shared/Input'
 import Button from '@/components/shared/Button'
 import Badge from '@/components/shared/Badge'
+import { profileApi } from '@/lib/api-client'
 import toast from 'react-hot-toast'
 
 export default function ProfilePage() {
   const { currentUser } = useStore()
+  const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
     name: currentUser?.name || '',
     email: currentUser?.email || '',
@@ -21,9 +23,43 @@ export default function ProfilePage() {
     zip: '19801'
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { profile } = await profileApi.get()
+        setForm({
+          name: profile.name || '',
+          email: profile.email || '',
+          phone: profile.phone || '',
+          address: '123 Main St',
+          city: 'Wilmington',
+          state: 'DE',
+          zip: '19801'
+        })
+      } catch (error) {
+        // Use current user data as fallback
+        console.error('Profile fetch error:', error)
+      }
+    }
+    fetchProfile()
+  }, [])
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    toast.success('Profile updated successfully!')
+    
+    setLoading(true)
+    try {
+      await profileApi.update({
+        name: form.name,
+        email: form.email,
+        phone: form.phone
+      })
+      toast.success('Profile updated successfully!')
+    } catch (error) {
+      toast.error('Failed to update profile')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const dietaryPreferences = ['Vegan', 'Vegetarian', 'Gluten-Free', 'Keto', 'Paleo']
@@ -77,7 +113,9 @@ export default function ProfilePage() {
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
               required
             />
-            <Button type="submit">Save Changes</Button>
+            <Button type="submit" loading={loading} disabled={loading}>
+              {loading ? 'Saving...' : 'Save Changes'}
+            </Button>
           </form>
         </Card>
 

@@ -36,6 +36,11 @@ export default function BecomeADriverPage() {
   })
   const [currentStep, setCurrentStep] = useState(0)
   const steps = ['Personal Information', 'Vehicle Information', 'Experience & Availability']
+  const stepRequirements: string[][] = [
+    ['fullName', 'email', 'phone', 'address', 'city', 'state', 'zipCode'],
+    ['vehicleType', 'vehicleYear', 'vehicleMake', 'vehicleModel', 'licensePlate', 'insuranceProvider'],
+    ['drivingExperience', 'availability', 'whyJoin'],
+  ]
 
   useEffect(() => {
     if (showModal) {
@@ -43,8 +48,30 @@ export default function BecomeADriverPage() {
     }
   }, [showModal])
 
+  const validateStep = (stepIndex: number) => {
+    const requiredFields = stepRequirements[stepIndex]
+    if (!requiredFields) return true
+    const missingField = requiredFields.find((field) => {
+      const value = formData[field as keyof typeof formData]
+      return !value?.toString().trim()
+    })
+    if (missingField) {
+      toast.error('Please complete all required fields on this step before continuing.')
+      return false
+    }
+    return true
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const invalidStep = stepRequirements.findIndex((fields) =>
+      fields.some((field) => !formData[field as keyof typeof formData]?.toString().trim())
+    )
+    if (invalidStep !== -1) {
+      setCurrentStep(invalidStep)
+      toast.error('Please complete every step before submitting your application.')
+      return
+    }
     toast.loading('Submitting application...')
     setTimeout(() => {
       toast.dismiss()
@@ -422,7 +449,12 @@ export default function BecomeADriverPage() {
               <Button
                 type="button"
                 className="flex-1 w-full bg-brand-teal hover:bg-driver-600 text-white py-4 text-lg"
-                onClick={() => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1))}
+                onClick={() => {
+                  if (!validateStep(currentStep)) {
+                    return
+                  }
+                  setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1))
+                }}
               >
                 Continue
               </Button>

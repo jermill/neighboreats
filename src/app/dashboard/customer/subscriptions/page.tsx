@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useStore } from '@/lib/store'
 import { useRouter } from 'next/navigation'
 import DashboardLayout from '@/components/shared/DashboardLayout'
@@ -7,11 +8,43 @@ import Card from '@/components/shared/Card'
 import Badge from '@/components/shared/Badge'
 import Button from '@/components/shared/Button'
 import EmptyState from '@/components/shared/EmptyState'
-import { mockSubscriptions } from '@/lib/mockData'
+import { OrderCardSkeleton } from '@/components/shared/SkeletonLoader'
+import { subscriptionsApi } from '@/lib/api-client'
+import { Subscription } from '@/types'
+import toast from 'react-hot-toast'
 
 export default function SubscriptionsPage() {
   const router = useRouter()
   const { currentUser } = useStore()
+  const [subscriptions, setSubscriptions] = useState<Subscription[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchSubscriptions = async () => {
+      try {
+        setLoading(true)
+        const { subscriptions: fetchedSubs } = await subscriptionsApi.getAll()
+        setSubscriptions(fetchedSubs)
+      } catch (error: any) {
+        toast.error('Failed to load subscriptions')
+        console.error('Subscriptions fetch error:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchSubscriptions()
+  }, [])
+
+  const handleStatusChange = async (id: string, newStatus: 'active' | 'paused' | 'cancelled') => {
+    try {
+      await subscriptionsApi.updateStatus(id, newStatus)
+      toast.success(`Subscription ${newStatus}`)
+      const { subscriptions: updatedSubs } = await subscriptionsApi.getAll()
+      setSubscriptions(updatedSubs)
+    } catch (error) {
+      toast.error('Failed to update subscription')
+    }
+  }
 
   return (
     <DashboardLayout userRole="customer" userName={currentUser?.name}>
@@ -23,9 +56,11 @@ export default function SubscriptionsPage() {
           </Button>
         </div>
 
-        {mockSubscriptions.length > 0 ? (
+        {loading ? (
+          <OrderCardSkeleton count={3} />
+        ) : subscriptions.length > 0 ? (
           <div className="space-y-4">
-            {mockSubscriptions.map((sub) => (
+            {subscriptions.map((sub) => (
               <Card key={sub.id}>
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="w-24 h-24 rounded-lg overflow-hidden bg-gray-200 flex-shrink-0">
@@ -71,13 +106,30 @@ export default function SubscriptionsPage() {
                     <div className="flex flex-wrap gap-2">
                       {sub.status === 'active' && (
                         <>
-                          <Button variant="outline" size="sm">Pause</Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => handleStatusChange(sub.id, 'paused')}
+                          >
+                            Pause
+                          </Button>
                           <Button variant="outline" size="sm">Upgrade</Button>
-                          <Button variant="danger" size="sm">Cancel</Button>
+                          <Button 
+                            variant="danger" 
+                            size="sm"
+                            onClick={() => handleStatusChange(sub.id, 'cancelled')}
+                          >
+                            Cancel
+                          </Button>
                         </>
                       )}
                       {sub.status === 'paused' && (
-                        <Button size="sm">Resume</Button>
+                        <Button 
+                          size="sm"
+                          onClick={() => handleStatusChange(sub.id, 'active')}
+                        >
+                          Resume
+                        </Button>
                       )}
                     </div>
                   </div>

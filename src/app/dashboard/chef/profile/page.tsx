@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import Card from '@/components/shared/Card'
 import Input from '@/components/shared/Input'
@@ -8,22 +8,45 @@ import Textarea from '@/components/shared/Textarea'
 import Button from '@/components/shared/Button'
 import Slider from '@/components/shared/Slider'
 import Badge from '@/components/shared/Badge'
+import { profileApi } from '@/lib/api-client'
+import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
 
 export default function ChefProfilePage() {
-  const chefName = "Maria Rodriguez"
+  const { currentUser } = useStore()
+  const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({
-    name: 'Maria Rodriguez',
-    email: 'maria@example.com',
-    phone: '(302) 555-0101',
-    bio: 'Authentic Mexican cuisine from Oaxaca. Specializing in traditional moles and fresh tortillas.',
-    kitchenAddress: '123 Market St, Wilmington, DE 19801',
+    name: currentUser?.name || '',
+    email: currentUser?.email || '',
+    phone: currentUser?.phone || '',
+    bio: '',
+    kitchenAddress: '',
     deliveryRadius: 5
   })
 
-  const [selectedCategories, setSelectedCategories] = useState(['Mexican', 'Vegan', 'Gluten-Free'])
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
 
   const categories = ['Mexican', 'Asian', 'American', 'Italian', 'Indian', 'Vegan', 'Vegetarian', 'Gluten-Free', 'Keto', 'Healthy']
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const { profile } = await profileApi.get()
+        setForm({
+          name: profile.name || '',
+          email: profile.email || '',
+          phone: profile.phone || '',
+          bio: profile.bio || '',
+          kitchenAddress: profile.kitchenAddress || '',
+          deliveryRadius: profile.deliveryRadius || 5
+        })
+        setSelectedCategories(profile.categories || [])
+      } catch (error) {
+        console.error('Profile fetch error:', error)
+      }
+    }
+    fetchProfile()
+  }, [])
 
   const toggleCategory = (cat: string) => {
     setSelectedCategories(prev =>
@@ -31,13 +54,30 @@ export default function ChefProfilePage() {
     )
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    toast.success('Profile updated!')
+    setLoading(true)
+    
+    try {
+      await profileApi.update({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        bio: form.bio,
+        kitchenAddress: form.kitchenAddress,
+        deliveryRadius: form.deliveryRadius,
+        categories: selectedCategories
+      })
+      toast.success('Profile updated!')
+    } catch (error) {
+      toast.error('Failed to update profile')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
-    <DashboardLayout userRole="chef" userName={chefName}>
+    <DashboardLayout userRole="chef" userName={currentUser?.name}>
       <div className="max-w-4xl mx-auto space-y-6">
         <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
 

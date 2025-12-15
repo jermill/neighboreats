@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useStore } from '@/lib/store'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import OrderCard from '@/components/shared/OrderCard'
@@ -9,7 +9,9 @@ import Rating from '@/components/shared/Rating'
 import Textarea from '@/components/shared/Textarea'
 import Button from '@/components/shared/Button'
 import EmptyState from '@/components/shared/EmptyState'
-import { mockOrders } from '@/lib/mockData'
+import { OrderCardSkeleton } from '@/components/shared/SkeletonLoader'
+import { ordersApi } from '@/lib/api-client'
+import { Order } from '@/types'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
@@ -18,11 +20,29 @@ export default function OrdersPage() {
   const { currentUser } = useStore()
   const [filter, setFilter] = useState<'all' | 'active' | 'completed' | 'cancelled'>('all')
   const [showRating, setShowRating] = useState(false)
-  const [selectedOrder, setSelectedOrder] = useState<typeof mockOrders[0] | null>(null)
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
   const [rating, setRating] = useState(5)
   const [review, setReview] = useState('')
+  const [orders, setOrders] = useState<Order[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const filteredOrders = mockOrders.filter(order => {
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        setLoading(true)
+        const { orders: fetchedOrders } = await ordersApi.getAll()
+        setOrders(fetchedOrders)
+      } catch (error: any) {
+        toast.error('Failed to load orders')
+        console.error('Orders fetch error:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchOrders()
+  }, [])
+
+  const filteredOrders = orders.filter(order => {
     if (filter === 'all') return true
     if (filter === 'active') return ['pending', 'accepted', 'preparing', 'ready', 'out_for_delivery'].includes(order.status)
     if (filter === 'completed') return order.status === 'delivered'
@@ -30,16 +50,27 @@ export default function OrdersPage() {
     return true
   })
 
-  const handleRate = (order: typeof mockOrders[0]) => {
+  const handleRate = (order: Order) => {
     setSelectedOrder(order)
     setShowRating(true)
   }
 
-  const submitRating = () => {
-    toast.success('Thank you for your feedback!')
-    setShowRating(false)
-    setRating(5)
-    setReview('')
+  const submitRating = async () => {
+    if (!selectedOrder) return
+    
+    try {
+      await ordersApi.rate(selectedOrder.id, { chefRating: rating })
+      toast.success('Thank you for your feedback!')
+      setShowRating(false)
+      setRating(5)
+      setReview('')
+      
+      // Refresh orders
+      const { orders: updatedOrders } = await ordersApi.getAll()
+      setOrders(updatedOrders)
+    } catch (error) {
+      toast.error('Failed to submit rating')
+    }
   }
 
   return (
@@ -70,7 +101,11 @@ export default function OrdersPage() {
         </div>
 
         {/* Orders List */}
-        {filteredOrders.length > 0 ? (
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <OrderCardSkeleton count={6} />
+          </div>
+        ) : filteredOrders.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredOrders.map((order) => (
               <OrderCard
