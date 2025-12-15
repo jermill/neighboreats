@@ -55,9 +55,9 @@ const config: Config = {
           700: '#995428',
         },
         driver: {
-          500: '#026181',    // Brand teal
-          600: '#024e67',
-          700: '#013a4d',
+          500: '#059669',    // Emerald green
+          600: '#047857',
+          700: '#065f46',
         },
         accent: {
           light: '#FF8C42',  // Brand coral

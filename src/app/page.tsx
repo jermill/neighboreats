@@ -32,9 +32,18 @@ export default function Home() {
             {/* Centered Text Content */}
             <div className="text-center space-y-8 animate-fadeIn mb-12">
               {/* Logo/Brand */}
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-dark-text">
-                Neighbor<span className="text-customer-500 dark:text-primary-dark">Eats</span>
-              </h1>
+              <div className="flex items-center justify-center gap-4">
+                <Image
+                  src="/logo.png"
+                  alt="NeighborEats Logo"
+                  width={100}
+                  height={100}
+                  className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
+                />
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-dark-text">
+                  Neighbor<span className="text-amber-600 dark:text-primary-dark">Eats</span>
+                </h1>
+              </div>
               
               <p className="text-3xl md:text-4xl lg:text-5xl text-gray-800 dark:text-dark-text font-semibold max-w-4xl mx-auto">
                 Discover neighborhood chefs. Support local. Eat fresh.
@@ -64,7 +73,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/apply/driver"
-                  className="px-8 py-4 bg-driver-500 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2 text-lg"
+                  className="px-8 py-4 bg-emerald-400 text-white font-bold rounded-xl hover:bg-emerald-500 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2 text-lg"
                 >
                   <Car className="w-5 h-5" />
                   Drive & Deliver
@@ -295,7 +304,7 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-brand-burgundy text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-4 right-4 bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                   Chef
                 </div>
               </div>
@@ -349,7 +358,7 @@ export default function Home() {
                   className="object-cover"
                   unoptimized
                 />
-                <div className="absolute top-4 right-4 bg-driver-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                <div className="absolute top-4 right-4 bg-amber-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                   Driver
                 </div>
               </div>
@@ -387,7 +396,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/apply/driver"
-                className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                className="px-8 py-4 bg-emerald-400 text-white font-semibold rounded-xl hover:bg-emerald-500 transition-all shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Start Driving
               </Link>
