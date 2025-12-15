@@ -101,7 +101,7 @@ export default function Home() {
       {/* Features Section */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
             <div className="w-16 h-16 bg-gradient-to-br from-rose-100 via-amber-100 to-emerald-100 dark:from-rose-900/30 dark:via-amber-900/30 dark:to-emerald-900/30 rounded-2xl flex items-center justify-center mb-4">
               <MapPin className="w-8 h-8 text-customer-500 dark:text-primary-dark" />
             </div>
@@ -111,7 +111,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
             <div className="w-16 h-16 bg-gradient-to-br from-rose-100 via-amber-100 to-emerald-100 dark:from-rose-900/30 dark:via-amber-900/30 dark:to-emerald-900/30 rounded-2xl flex items-center justify-center mb-4">
               <Video className="w-8 h-8 text-amber-600 dark:text-amber-400" />
             </div>
@@ -121,7 +121,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
             <div className="w-16 h-16 bg-gradient-to-br from-rose-100 via-amber-100 to-emerald-100 dark:from-rose-900/30 dark:via-amber-900/30 dark:to-emerald-900/30 rounded-2xl flex items-center justify-center mb-4">
               <DollarSign className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
             </div>
@@ -147,7 +147,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {/* Dish Card 1 - Gourmet Burger */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-56">
                 <Image
                   src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop"
@@ -180,7 +180,7 @@ export default function Home() {
             </div>
 
             {/* Dish Card 2 - Fresh Salad */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-56">
                 <Image
                   src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop"
@@ -213,7 +213,7 @@ export default function Home() {
             </div>
 
             {/* Dish Card 3 - Artisan Pizza */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-56">
                 <Image
                   src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
@@ -246,7 +246,7 @@ export default function Home() {
             </div>
 
             {/* Dish Card 4 - Dessert */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-56">
                 <Image
                   src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop"
@@ -295,7 +295,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Chef Card */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-80">
                 <Image
                   src="/chef-connie.png"
@@ -322,7 +322,7 @@ export default function Home() {
             </div>
 
             {/* Home Cook Card */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-80">
                 <Image
                   src="/homecook-james.png"
@@ -349,7 +349,7 @@ export default function Home() {
             </div>
 
             {/* Driver Card */}
-            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-transparent dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl overflow-hidden shadow-lg dark:shadow-xl dark:shadow-black/20 hover:shadow-2xl hover:scale-105 transition-all duration-300">
               <div className="relative h-80">
                 <Image
                   src="/driver-sarah.png"
@@ -457,7 +457,7 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-5xl mx-auto">
             {/* Category 1 - Meals */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=200&fit=crop"
@@ -473,7 +473,7 @@ export default function Home() {
             </div>
 
             {/* Category 2 - Juices & Smoothies */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=300&h=200&fit=crop"
@@ -489,7 +489,7 @@ export default function Home() {
             </div>
 
             {/* Category 3 - Baked Goods */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=200&fit=crop"
@@ -505,7 +505,7 @@ export default function Home() {
             </div>
 
             {/* Category 4 - Specialty Diets */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=200&fit=crop"
@@ -521,7 +521,7 @@ export default function Home() {
             </div>
 
             {/* Category 5 - Ethnic Cuisines */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=200&fit=crop"
@@ -537,7 +537,7 @@ export default function Home() {
             </div>
 
             {/* Category 6 - Healthy/Wellness */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300&h=200&fit=crop"
@@ -553,7 +553,7 @@ export default function Home() {
             </div>
 
             {/* Category 7 - Beverages */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=300&h=200&fit=crop"
@@ -569,7 +569,7 @@ export default function Home() {
             </div>
 
             {/* Category 8 - Prepared Components */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=300&h=200&fit=crop"
@@ -585,7 +585,7 @@ export default function Home() {
             </div>
 
             {/* Category 9 - Catering */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1555244162-803834f70033?w=300&h=200&fit=crop"
@@ -601,7 +601,7 @@ export default function Home() {
             </div>
 
             {/* Category 10 - Meal Plans */}
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border border-transparent dark:border-dark-border">
+            <div className="flex flex-col items-center gap-3 bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-md dark:shadow-xl dark:shadow-black/20 hover:shadow-xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden">
               <div className="relative w-full h-32">
                 <Image
                   src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop"
@@ -688,7 +688,7 @@ export default function Home() {
       </div>
 
       {/* Login Section */}
-      <div className="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-dark-bg-secondary dark:to-dark-bg py-16 border-t border-gray-200 dark:border-dark-border">
+      <div className="bg-gradient-to-br from-gray-100 to-gray-50 dark:from-dark-bg-secondary dark:to-dark-bg py-16">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <p className="text-xl text-gray-700 dark:text-dark-text-secondary">
