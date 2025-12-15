@@ -28,26 +28,26 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '2s' }}></div>
         
         <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side - Text content */}
-            <div className="text-center lg:text-left space-y-8 animate-fadeIn">
+          <div className="max-w-6xl mx-auto">
+            {/* Centered Text Content */}
+            <div className="text-center space-y-8 animate-fadeIn mb-12">
               {/* Logo/Brand */}
-              <h1 className="text-6xl md:text-7xl font-bold text-gray-900 dark:text-dark-text">
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 dark:text-dark-text">
                 Neighbor<span className="text-customer-500 dark:text-primary-dark">Eats</span>
               </h1>
               
-              <p className="text-3xl md:text-4xl text-gray-800 dark:text-dark-text font-semibold">
+              <p className="text-3xl md:text-4xl lg:text-5xl text-gray-800 dark:text-dark-text font-semibold max-w-4xl mx-auto">
                 Discover neighborhood chefs. Support local. Eat fresh.
               </p>
 
-              <p className="text-lg md:text-xl text-gray-600 dark:text-dark-text-secondary max-w-2xl">
+              <p className="text-lg md:text-xl text-gray-600 dark:text-dark-text-secondary max-w-3xl mx-auto">
                 A hyper-local marketplace connecting community chefs with customers and drivers.
                 <br />
                 <span className="font-bold text-emerald-600 dark:text-emerald-400">80-85% goes to chefs</span> · Fair economics · Fresh food
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                 <Link
                   href="/explore"
                   className="px-8 py-4 bg-brand-burgundy text-white font-semibold rounded-xl hover:bg-customer-500 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
@@ -72,11 +72,11 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right side - Hero image */}
-            <div className="relative h-[400px] lg:h-[500px] animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+            {/* Hero Image - Below Content */}
+            <div className="relative h-[400px] md:h-[500px] lg:h-[600px] animate-fadeIn" style={{ animationDelay: '0.2s' }}>
               <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop"
+                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&h=800&fit=crop"
                   alt="Delicious food prepared by local chefs"
                   fill
                   className="object-cover"
