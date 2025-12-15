@@ -102,7 +102,7 @@ export default function Home() {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.1s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-rose-100 to-rose-200 dark:from-rose-900/30 dark:to-rose-800/30 rounded-2xl flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-rose-100 via-amber-100 to-emerald-100 dark:from-rose-900/30 dark:via-amber-900/30 dark:to-emerald-900/30 rounded-2xl flex items-center justify-center mb-4">
               <MapPin className="w-8 h-8 text-customer-500 dark:text-primary-dark" />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-dark-text">Hyper-Local</h3>
@@ -112,7 +112,7 @@ export default function Home() {
           </div>
 
           <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 rounded-2xl flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-rose-100 via-amber-100 to-emerald-100 dark:from-rose-900/30 dark:via-amber-900/30 dark:to-emerald-900/30 rounded-2xl flex items-center justify-center mb-4">
               <Video className="w-8 h-8 text-amber-600 dark:text-amber-400" />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-dark-text">LIVE Cooking</h3>
@@ -122,7 +122,7 @@ export default function Home() {
           </div>
 
           <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-md dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:shadow-xl hover:scale-105 transition-all duration-300 animate-fadeIn" style={{ animationDelay: '0.3s' }}>
-            <div className="w-16 h-16 bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900/30 dark:to-emerald-800/30 rounded-2xl flex items-center justify-center mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-rose-100 via-amber-100 to-emerald-100 dark:from-rose-900/30 dark:via-amber-900/30 dark:to-emerald-900/30 rounded-2xl flex items-center justify-center mb-4">
               <DollarSign className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
             </div>
             <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-dark-text">Fair Economics</h3>
