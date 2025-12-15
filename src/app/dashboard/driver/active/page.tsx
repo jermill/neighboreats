@@ -1,77 +1,38 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import Card from '@/components/shared/Card'
 import Button from '@/components/shared/Button'
 import Map from '@/components/shared/Map'
 import StatusTimeline from '@/components/shared/StatusTimeline'
-import { ordersApi } from '@/lib/api-client'
-import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
 
+const timelineStages = [
+  { key: 'heading_to_chef', label: 'Heading to Chef', status: 'out_for_delivery' },
+  { key: 'arrived_at_chef', label: 'Arrived at Chef', status: 'out_for_delivery' },
+  { key: 'picked_up', label: 'Picked Up Meal', status: 'out_for_delivery' },
+  { key: 'heading_to_customer', label: 'Heading to Customer', status: 'out_for_delivery' },
+  { key: 'delivered', label: 'Delivered', status: 'delivered' }
+]
+
 export default function ActiveDeliveryPage() {
-  const router = useRouter()
-  const { currentUser } = useStore()
-  const [currentStatus, setCurrentStatus] = useState('out_for_delivery')
-  const [activeOrderId, setActiveOrderId] = useState<string | null>(null)
-  const [updating, setUpdating] = useState(false)
+  const driverName = "Alex Martinez"
+  const [stageIndex, setStageIndex] = useState(0)
+  const currentStage = timelineStages[stageIndex]
+  const currentStatus = currentStage.status
 
-  const statuses = [
-    { key: 'out_for_delivery', label: 'Heading to Chef', timestamp: new Date() },
-    { key: 'arrived_at_chef', label: 'Arrived at Chef' },
-    { key: 'picked_up', label: 'Picked Up Meal' },
-    { key: 'heading_to_customer', label: 'Heading to Customer' },
-    { key: 'delivered', label: 'Delivered' }
-  ]
-
-  // In a real app, you'd fetch the active delivery order
-  useEffect(() => {
-    const fetchActiveDelivery = async () => {
-      try {
-        const { orders } = await ordersApi.getAll({ status: 'out_for_delivery' })
-        if (orders.length > 0) {
-          setActiveOrderId(orders[0].id)
-        }
-      } catch (error) {
-        console.error('Failed to fetch active delivery:', error)
-      }
-    }
-    fetchActiveDelivery()
-  }, [])
-
-  const handleNextStatus = async () => {
-    if (!activeOrderId) {
-      toast.error('No active delivery found')
-      return
-    }
-
-    const currentIndex = statuses.findIndex(s => s.key === currentStatus)
-    if (currentIndex < statuses.length - 1) {
-      const nextStatus = statuses[currentIndex + 1]
-      
-      setUpdating(true)
-      try {
-        await ordersApi.updateStatus(activeOrderId, nextStatus.key)
-        setCurrentStatus(nextStatus.key)
-        toast.success(`Status updated: ${nextStatus.label}`)
-        
-        if (nextStatus.key === 'delivered') {
-          setTimeout(() => {
-            router.push('/dashboard/driver/deliveries')
-          }, 2000)
-        }
-      } catch (error) {
-        toast.error('Failed to update status')
-      } finally {
-        setUpdating(false)
-      }
+  const handleNextStatus = () => {
+    if (stageIndex < timelineStages.length - 1) {
+      const nextIndex = stageIndex + 1
+      setStageIndex(nextIndex)
+      const nextStage = timelineStages[nextIndex]
+      toast.success(`Status updated: ${nextStage.label}`)
     }
   }
 
   return (
-    <DashboardLayout userRole="driver" userName={currentUser?.name}>
+    <DashboardLayout userRole="driver" userName={driverName}>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold text-gray-900">Active Delivery</h1>
@@ -119,23 +80,14 @@ export default function ActiveDeliveryPage() {
         {/* Status Timeline */}
         <Card>
           <h2 className="text-lg font-bold mb-4">Delivery Progress</h2>
-          <StatusTimeline currentStatus={currentStatus} statuses={statuses} />
+          <StatusTimeline currentStatus={currentStage.key} statuses={timelineStages} />
           
           {currentStatus !== 'delivered' && (
-            <Button 
-              className="w-full mt-6" 
-              onClick={handleNextStatus}
-              loading={updating}
-              disabled={updating}
-            >
-              {updating ? 'Updating...' : (
-                <>
-                  {currentStatus === 'out_for_delivery' && '✓ Arrived at Chef'}
-                  {currentStatus === 'arrived_at_chef' && '✓ Picked Up Meal'}
-                  {currentStatus === 'picked_up' && '🚗 Start Delivery to Customer'}
-                  {currentStatus === 'heading_to_customer' && '✓ Mark as Delivered'}
-                </>
-              )}
+            <Button className="w-full mt-6" onClick={handleNextStatus}>
+              {currentStage.key === 'heading_to_chef' && '✓ Arrived at Chef'}
+              {currentStage.key === 'arrived_at_chef' && '✓ Picked Up Meal'}
+              {currentStage.key === 'picked_up' && '🚗 Start Delivery to Customer'}
+              {currentStage.key === 'heading_to_customer' && '✓ Mark as Delivered'}
             </Button>
           )}
 
@@ -144,9 +96,7 @@ export default function ActiveDeliveryPage() {
               <div className="text-5xl mb-3">🎉</div>
               <h3 className="text-xl font-bold mb-2">Delivery Complete!</h3>
               <p className="text-gray-600 mb-4">Great job! You earned $4.50</p>
-              <Button className="w-full" onClick={() => router.push('/dashboard/driver/deliveries')}>
-                Find Next Delivery
-              </Button>
+              <Button className="w-full">Find Next Delivery</Button>
             </div>
           )}
         </Card>
@@ -162,5 +112,4 @@ export default function ActiveDeliveryPage() {
     </DashboardLayout>
   )
 }
-
 
