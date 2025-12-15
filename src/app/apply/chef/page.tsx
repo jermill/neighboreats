@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, ChefHat, DollarSign, Clock, Users, CheckCircle, X } from 'lucide-react'
@@ -31,6 +31,14 @@ export default function BecomeAChefPage() {
     availability: '',
     whyJoin: '',
   })
+  const [currentStep, setCurrentStep] = useState(0)
+  const steps = ['Personal Information', 'Culinary Background', 'About You']
+
+  useEffect(() => {
+    if (showModal) {
+      setCurrentStep(0)
+    }
+  }, [showModal])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -49,6 +57,10 @@ export default function BecomeAChefPage() {
       [e.target.name]: e.target.value
     })
   }
+
+  const isLastStep = currentStep === steps.length - 1
+  const progressPercent =
+    steps.length > 1 ? (currentStep / (steps.length - 1)) * 100 : 100
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-light via-white via-40% to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:via-40% dark:to-dark-bg-elevated">
@@ -201,157 +213,191 @@ export default function BecomeAChefPage() {
       {/* Application Modal */}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Chef Application">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Personal Information */}
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Personal Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                label="Full Name"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                required
-                placeholder="John Doe"
-              />
-              <Input
-                label="Email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="john@example.com"
-              />
-              <Input
-                label="Phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                placeholder="(302) 555-0100"
-              />
-              <Input
-                label="Street Address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-                placeholder="123 Main St"
-              />
-              <Input
-                label="City"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                required
-                placeholder="Wilmington"
-              />
-              <Input
-                label="State"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                required
-                placeholder="DE"
-              />
-              <Input
-                label="Zip Code"
-                name="zipCode"
-                value={formData.zipCode}
-                onChange={handleChange}
-                required
-                placeholder="19801"
+          <div className="space-y-4">
+            <div className="flex items-center justify-between text-sm font-medium text-gray-600 dark:text-dark-text-secondary">
+              <span>Step {currentStep + 1} of {steps.length}</span>
+              <span>{steps[currentStep]}</span>
+            </div>
+            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-dark-border">
+              <div
+                className="h-full bg-brand-coral dark:bg-brand-coral/80 transition-all"
+                style={{ width: `${progressPercent}%` }}
               />
             </div>
           </div>
 
-          {/* Culinary Background */}
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Culinary Background</h3>
-            <div className="space-y-4">
-              <Input
-                label="Cuisine Specialties"
-                name="cuisineSpecialties"
-                value={formData.cuisineSpecialties}
-                onChange={handleChange}
-                required
-                placeholder="e.g., Italian, Mexican, Vegan"
-              />
-              <Select
-                label="Years of Cooking Experience"
-                name="yearsOfExperience"
-                value={formData.yearsOfExperience}
-                onChange={handleChange}
-                required
-                options={[
-                  { value: '', label: 'Select years' },
-                  { value: '0-2', label: '0-2 years' },
-                  { value: '3-5', label: '3-5 years' },
-                  { value: '6-10', label: '6-10 years' },
-                  { value: '10+', label: '10+ years' },
-                ]}
-              />
-              <Select
-                label="Kitchen Type"
-                name="kitchenType"
-                value={formData.kitchenType}
-                onChange={handleChange}
-                required
-                options={[
-                  { value: '', label: 'Select kitchen type' },
-                  { value: 'home', label: 'Home Kitchen' },
-                  { value: 'commercial', label: 'Commercial Kitchen' },
-                  { value: 'shared', label: 'Shared Kitchen Space' },
-                ]}
-              />
-              <Input
-                label="Certifications"
-                name="certifications"
-                value={formData.certifications}
-                onChange={handleChange}
-                placeholder="Food Handler's Certificate, ServSafe, etc."
-              />
+          {currentStep === 0 && (
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Personal Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input
+                  label="Full Name"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                  placeholder="John Doe"
+                />
+                <Input
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="john@example.com"
+                />
+                <Input
+                  label="Phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="(302) 555-0100"
+                />
+                <Input
+                  label="Street Address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                  placeholder="123 Main St"
+                />
+                <Input
+                  label="City"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  required
+                  placeholder="Wilmington"
+                />
+                <Input
+                  label="State"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  required
+                  placeholder="DE"
+                />
+                <Input
+                  label="Zip Code"
+                  name="zipCode"
+                  value={formData.zipCode}
+                  onChange={handleChange}
+                  required
+                  placeholder="19801"
+                />
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Availability & Motivation */}
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">About You</h3>
-            <div className="space-y-4">
-              <Textarea
-                label="Weekly Availability"
-                name="availability"
-                value={formData.availability}
-                onChange={handleChange}
-                required
-                placeholder="e.g., Weekdays 5-9pm, Weekends 10am-8pm"
-                rows={3}
-              />
-              <Textarea
-                label="Why do you want to join NeighborEats?"
-                name="whyJoin"
-                value={formData.whyJoin}
-                onChange={handleChange}
-                required
-                placeholder="Tell us about your passion for cooking and why you want to share your food with the community..."
-                rows={5}
-              />
+          {currentStep === 1 && (
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Culinary Background</h3>
+              <div className="space-y-4">
+                <Input
+                  label="Cuisine Specialties"
+                  name="cuisineSpecialties"
+                  value={formData.cuisineSpecialties}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g., Italian, Mexican, Vegan"
+                />
+                <Select
+                  label="Years of Cooking Experience"
+                  name="yearsOfExperience"
+                  value={formData.yearsOfExperience}
+                  onChange={handleChange}
+                  required
+                  options={[
+                    { value: '', label: 'Select years' },
+                    { value: '0-2', label: '0-2 years' },
+                    { value: '3-5', label: '3-5 years' },
+                    { value: '6-10', label: '6-10 years' },
+                    { value: '10+', label: '10+ years' },
+                  ]}
+                />
+                <Select
+                  label="Kitchen Type"
+                  name="kitchenType"
+                  value={formData.kitchenType}
+                  onChange={handleChange}
+                  required
+                  options={[
+                    { value: '', label: 'Select kitchen type' },
+                    { value: 'home', label: 'Home Kitchen' },
+                    { value: 'commercial', label: 'Commercial Kitchen' },
+                    { value: 'shared', label: 'Shared Kitchen Space' },
+                  ]}
+                />
+                <Input
+                  label="Certifications"
+                  name="certifications"
+                  value={formData.certifications}
+                  onChange={handleChange}
+                  placeholder="Food Handler's Certificate, ServSafe, etc."
+                />
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Submit Button */}
-          <div className="pt-6 border-t border-gray-200 dark:border-dark-border">
+          {currentStep === 2 && (
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">About You</h3>
+              <div className="space-y-4">
+                <Textarea
+                  label="Weekly Availability"
+                  name="availability"
+                  value={formData.availability}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g., Weekdays 5-9pm, Weekends 10am-8pm"
+                  rows={3}
+                />
+                <Textarea
+                  label="Why do you want to join NeighborEats?"
+                  name="whyJoin"
+                  value={formData.whyJoin}
+                  onChange={handleChange}
+                  required
+                  placeholder="Tell us about your passion for cooking and why you want to share your food with the community..."
+                  rows={5}
+                />
+              </div>
+            </div>
+          )}
+
+          <div className="pt-6 border-t border-gray-200 dark:border-dark-border flex gap-3">
             <Button
-              type="submit"
-              className="w-full bg-brand-coral hover:bg-amber-600 text-white py-4 text-lg"
+              type="button"
+              variant="secondary"
+              className="flex-1"
+              onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
+              disabled={currentStep === 0}
             >
-              Submit Application
+              Back
             </Button>
-            <p className="text-sm text-gray-500 dark:text-dark-text-muted text-center mt-4">
-              We'll review your application and get back to you within 2-3 business days.
-            </p>
+            {isLastStep ? (
+              <Button
+                type="submit"
+                className="flex-1 w-full bg-brand-coral hover:bg-amber-600 text-white py-4 text-lg"
+              >
+                Submit Application
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                className="flex-1 w-full bg-brand-coral hover:bg-amber-600 text-white py-4 text-lg"
+                onClick={() => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1))}
+              >
+                Continue
+              </Button>
+            )}
           </div>
+          <p className="text-sm text-gray-500 dark:text-dark-text-muted text-center mt-4">
+            We'll review your application and get back to you within 2-3 business days.
+          </p>
         </form>
       </Modal>
 

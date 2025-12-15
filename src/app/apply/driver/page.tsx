@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft, Car, DollarSign, Clock, MapPin, CheckCircle, TrendingUp } from 'lucide-react'
@@ -34,6 +34,14 @@ export default function BecomeADriverPage() {
     availability: '',
     whyJoin: '',
   })
+  const [currentStep, setCurrentStep] = useState(0)
+  const steps = ['Personal Information', 'Vehicle Information', 'Experience & Availability']
+
+  useEffect(() => {
+    if (showModal) {
+      setCurrentStep(0)
+    }
+  }, [showModal])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -52,6 +60,10 @@ export default function BecomeADriverPage() {
       [e.target.name]: e.target.value
     })
   }
+
+  const isLastStep = currentStep === steps.length - 1
+  const progressPercent =
+    steps.length > 1 ? (currentStep / (steps.length - 1)) * 100 : 100
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-light via-white via-40% to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:via-40% dark:to-dark-bg-elevated">
@@ -208,183 +220,217 @@ export default function BecomeADriverPage() {
       {/* Application Modal */}
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Driver Application">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Personal Information */}
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Personal Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Input
-                label="Full Name"
-                name="fullName"
-                value={formData.fullName}
-                onChange={handleChange}
-                required
-                placeholder="John Doe"
-              />
-              <Input
-                label="Email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="john@example.com"
-              />
-              <Input
-                label="Phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-                placeholder="(302) 555-0100"
-              />
-              <Input
-                label="Street Address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-                placeholder="123 Main St"
-              />
-              <Input
-                label="City"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                required
-                placeholder="Wilmington"
-              />
-              <Input
-                label="State"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                required
-                placeholder="DE"
-              />
-              <Input
-                label="Zip Code"
-                name="zipCode"
-                value={formData.zipCode}
-                onChange={handleChange}
-                required
-                placeholder="19801"
+          <div className="space-y-4">
+            <div className="flex items-center justify-between text-sm font-medium text-gray-600 dark:text-dark-text-secondary">
+              <span>Step {currentStep + 1} of {steps.length}</span>
+              <span>{steps[currentStep]}</span>
+            </div>
+            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-dark-border">
+              <div
+                className="h-full bg-brand-teal transition-all"
+                style={{ width: `${progressPercent}%` }}
               />
             </div>
           </div>
 
-          {/* Vehicle Information */}
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Vehicle Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Select
-                label="Vehicle Type"
-                name="vehicleType"
-                value={formData.vehicleType}
-                onChange={handleChange}
-                required
-                options={[
-                  { value: '', label: 'Select vehicle type' },
-                  { value: 'car', label: 'Car' },
-                  { value: 'suv', label: 'SUV' },
-                  { value: 'truck', label: 'Truck' },
-                  { value: 'van', label: 'Van' },
-                ]}
-              />
-              <Input
-                label="Vehicle Year"
-                name="vehicleYear"
-                value={formData.vehicleYear}
-                onChange={handleChange}
-                required
-                placeholder="2020"
-              />
-              <Input
-                label="Vehicle Make"
-                name="vehicleMake"
-                value={formData.vehicleMake}
-                onChange={handleChange}
-                required
-                placeholder="Honda"
-              />
-              <Input
-                label="Vehicle Model"
-                name="vehicleModel"
-                value={formData.vehicleModel}
-                onChange={handleChange}
-                required
-                placeholder="Civic"
-              />
-              <Input
-                label="License Plate"
-                name="licensePlate"
-                value={formData.licensePlate}
-                onChange={handleChange}
-                required
-                placeholder="ABC1234"
-              />
-              <Input
-                label="Insurance Provider"
-                name="insuranceProvider"
-                value={formData.insuranceProvider}
-                onChange={handleChange}
-                required
-                placeholder="State Farm"
-              />
+          {currentStep === 0 && (
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Personal Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input
+                  label="Full Name"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  required
+                  placeholder="John Doe"
+                />
+                <Input
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="john@example.com"
+                />
+                <Input
+                  label="Phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="(302) 555-0100"
+                />
+                <Input
+                  label="Street Address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  required
+                  placeholder="123 Main St"
+                />
+                <Input
+                  label="City"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                  required
+                  placeholder="Wilmington"
+                />
+                <Input
+                  label="State"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  required
+                  placeholder="DE"
+                />
+                <Input
+                  label="Zip Code"
+                  name="zipCode"
+                  value={formData.zipCode}
+                  onChange={handleChange}
+                  required
+                  placeholder="19801"
+                />
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Experience & Availability */}
-          <div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Experience & Availability</h3>
-            <div className="space-y-4">
-              <Select
-                label="Driving Experience"
-                name="drivingExperience"
-                value={formData.drivingExperience}
-                onChange={handleChange}
-                required
-                options={[
-                  { value: '', label: 'Select years' },
-                  { value: '1-3', label: '1-3 years' },
-                  { value: '4-6', label: '4-6 years' },
-                  { value: '7-10', label: '7-10 years' },
-                  { value: '10+', label: '10+ years' },
-                ]}
-              />
-              <Textarea
-                label="Weekly Availability"
-                name="availability"
-                value={formData.availability}
-                onChange={handleChange}
-                required
-                placeholder="e.g., Weekdays 5-9pm, Weekends 10am-8pm"
-                rows={3}
-              />
-              <Textarea
-                label="Why do you want to drive for NeighborEats?"
-                name="whyJoin"
-                value={formData.whyJoin}
-                onChange={handleChange}
-                required
-                placeholder="Tell us why you're interested in delivering for NeighborEats and serving your local community..."
-                rows={5}
-              />
+          {currentStep === 1 && (
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Vehicle Information</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Select
+                  label="Vehicle Type"
+                  name="vehicleType"
+                  value={formData.vehicleType}
+                  onChange={handleChange}
+                  required
+                  options={[
+                    { value: '', label: 'Select vehicle type' },
+                    { value: 'car', label: 'Car' },
+                    { value: 'suv', label: 'SUV' },
+                    { value: 'truck', label: 'Truck' },
+                    { value: 'van', label: 'Van' },
+                  ]}
+                />
+                <Input
+                  label="Vehicle Year"
+                  name="vehicleYear"
+                  value={formData.vehicleYear}
+                  onChange={handleChange}
+                  required
+                  placeholder="2020"
+                />
+                <Input
+                  label="Vehicle Make"
+                  name="vehicleMake"
+                  value={formData.vehicleMake}
+                  onChange={handleChange}
+                  required
+                  placeholder="Honda"
+                />
+                <Input
+                  label="Vehicle Model"
+                  name="vehicleModel"
+                  value={formData.vehicleModel}
+                  onChange={handleChange}
+                  required
+                  placeholder="Civic"
+                />
+                <Input
+                  label="License Plate"
+                  name="licensePlate"
+                  value={formData.licensePlate}
+                  onChange={handleChange}
+                  required
+                  placeholder="ABC1234"
+                />
+                <Input
+                  label="Insurance Provider"
+                  name="insuranceProvider"
+                  value={formData.insuranceProvider}
+                  onChange={handleChange}
+                  required
+                  placeholder="State Farm"
+                />
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Submit Button */}
-          <div className="pt-6 border-t border-gray-200 dark:border-dark-border">
+          {currentStep === 2 && (
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Experience & Availability</h3>
+              <div className="space-y-4">
+                <Select
+                  label="Driving Experience"
+                  name="drivingExperience"
+                  value={formData.drivingExperience}
+                  onChange={handleChange}
+                  required
+                  options={[
+                    { value: '', label: 'Select years' },
+                    { value: '1-3', label: '1-3 years' },
+                    { value: '4-6', label: '4-6 years' },
+                    { value: '7-10', label: '7-10 years' },
+                    { value: '10+', label: '10+ years' },
+                  ]}
+                />
+                <Textarea
+                  label="Weekly Availability"
+                  name="availability"
+                  value={formData.availability}
+                  onChange={handleChange}
+                  required
+                  placeholder="e.g., Weekdays 5-9pm, Weekends 10am-8pm"
+                  rows={3}
+                />
+                <Textarea
+                  label="Why do you want to drive for NeighborEats?"
+                  name="whyJoin"
+                  value={formData.whyJoin}
+                  onChange={handleChange}
+                  required
+                  placeholder="Tell us why you're interested in delivering for NeighborEats and serving your local community..."
+                  rows={5}
+                />
+              </div>
+            </div>
+          )}
+
+          <div className="pt-6 border-t border-gray-200 dark:border-dark-border flex gap-3">
             <Button
-              type="submit"
-              className="w-full bg-brand-teal hover:bg-driver-600 text-white py-4 text-lg"
+              type="button"
+              variant="secondary"
+              className="flex-1"
+              onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
+              disabled={currentStep === 0}
             >
-              Submit Application
+              Back
             </Button>
-            <p className="text-sm text-gray-500 dark:text-dark-text-muted text-center mt-4">
-              We'll review your application and get back to you within 2-3 business days.
-            </p>
+            {isLastStep ? (
+              <Button
+                type="submit"
+                className="flex-1 w-full bg-brand-teal hover:bg-driver-600 text-white py-4 text-lg"
+              >
+                Submit Application
+              </Button>
+            ) : (
+              <Button
+                type="button"
+                className="flex-1 w-full bg-brand-teal hover:bg-driver-600 text-white py-4 text-lg"
+                onClick={() => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1))}
+              >
+                Continue
+              </Button>
+            )}
           </div>
+          <p className="text-sm text-gray-500 dark:text-dark-text-muted text-center mt-4">
+            We'll review your application and get back to you within 2-3 business days.
+          </p>
         </form>
       </Modal>
 
