@@ -48,6 +48,54 @@ export default function ChefEarningsPage() {
           </Card>
         </div>
 
+        {/* Commission Breakdown */}
+        <Card className="bg-gradient-to-br from-blue-50 to-teal-50 border-2 border-teal-200">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">Commission Breakdown</h2>
+              <p className="text-sm text-gray-600 mt-1">This month's earnings breakdown</p>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-600">Your Rate</p>
+              <p className="text-2xl font-bold text-teal-600">85%</p>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-gray-700 font-medium">Total Order Value</span>
+                <span className="text-xl font-bold text-gray-900">${(earnings.month / 0.85).toFixed(2)}</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
+                <div className="bg-gray-400 h-2 rounded-full" style={{ width: '100%' }} />
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <span className="w-3 h-3 bg-teal-600 rounded-full mr-2"></span>
+                    <span className="text-gray-700">Your Earnings (85%)</span>
+                  </div>
+                  <span className="font-bold text-teal-600">${earnings.month.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <span className="w-3 h-3 bg-gray-400 rounded-full mr-2"></span>
+                    <span className="text-gray-700">Platform Fee (15%)</span>
+                  </div>
+                  <span className="font-bold text-gray-600">${((earnings.month / 0.85) * 0.15).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p className="text-sm text-blue-900">
+                <strong>💡 How it works:</strong> NeighborEats takes a 15% commission from each order to cover payment processing, customer support, platform maintenance, and marketing. You keep 85% of every sale!
+              </p>
+            </div>
+          </div>
+        </Card>
+
         {/* Revenue Chart Placeholder */}
         <Card>
           <h2 className="text-xl font-bold mb-4">Revenue Trend</h2>

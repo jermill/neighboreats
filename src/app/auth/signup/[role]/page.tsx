@@ -111,13 +111,13 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-blue-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center p-4">
+      <div className="bg-gray-800 border border-gray-700 rounded-lg shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-white">
             Join as {roleLabels[role] || 'User'}
           </h1>
-          <p className="text-gray-600 mt-2">Create your NeighborEats account</p>
+          <p className="text-gray-400 mt-2">Create your NeighborEats account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -173,14 +173,14 @@ export default function SignupPage() {
         </form>
 
         <div className="mt-6 text-center space-y-2">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             Already have an account?{' '}
-            <Link href="/auth/login" className="text-teal-600 font-semibold hover:underline">
+            <Link href="/auth/login" className="text-brand-teal font-semibold hover:text-teal-400 transition">
               Log in
             </Link>
           </p>
-          <p className="text-sm text-gray-600">
-            <Link href="/" className="text-teal-600 hover:underline">
+          <p className="text-sm text-gray-400">
+            <Link href="/" className="text-brand-teal hover:text-teal-400 transition">
               ← Back to home
             </Link>
           </p>

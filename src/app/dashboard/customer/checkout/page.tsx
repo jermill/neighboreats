@@ -3,20 +3,31 @@
 import { useState, useEffect } from 'react'
 import { useStore } from '@/lib/store'
 import { useRouter } from 'next/navigation'
+import { loadStripe } from '@stripe/stripe-js'
+import { Elements } from '@stripe/react-stripe-js'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import Button from '@/components/shared/Button'
 import Input from '@/components/shared/Input'
 import Textarea from '@/components/shared/Textarea'
 import Card from '@/components/shared/Card'
 import Modal from '@/components/shared/Modal'
+import StripeCheckout from '@/components/shared/StripeCheckout'
 import { ordersApi, paymentsApi } from '@/lib/api-client'
 import toast from 'react-hot-toast'
+
+// Initialize Stripe
+const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY 
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  : null
 
 export default function CheckoutPage() {
   const router = useRouter()
   const { currentUser, cart, getCartTotal, clearCart } = useStore()
   const [showSuccess, setShowSuccess] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [clientSecret, setClientSecret] = useState<string | null>(null)
+  const [orderId, setOrderId] = useState<string | null>(null)
+  const [step, setStep] = useState<'delivery' | 'payment'>('delivery')
   const [form, setForm] = useState({
     address: '',
     city: '',
@@ -27,6 +38,7 @@ export default function CheckoutPage() {
 
   const subtotal = getCartTotal()
   const deliveryFee = 4.00
+  const platformFee = Math.round((subtotal + deliveryFee) * 0.15 * 100) / 100
   const total = subtotal + deliveryFee
 
   // Redirect if cart is empty (useEffect to avoid SSR issues)
@@ -36,7 +48,7 @@ export default function CheckoutPage() {
     }
   }, [cart.length, router])
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleDeliverySubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     if (cart.length === 0) {
@@ -52,7 +64,7 @@ export default function CheckoutPage() {
       const deliveryAddress = `${form.address}, ${form.city}, ${form.state} ${form.zip}`
       
       // Create order
-      const { orderId, order } = await ordersApi.create({
+      const { orderId: newOrderId } = await ordersApi.create({
         chefId,
         items: cart.map(item => ({
           menuItemId: item.menuItem.id,
@@ -63,27 +75,40 @@ export default function CheckoutPage() {
         specialInstructions: form.specialInstructions
       })
 
+      setOrderId(newOrderId)
+
       // Create payment intent
       const paymentResponse = await paymentsApi.createPaymentIntent({
         amount: Math.round(total * 100), // Convert to cents
-        orderId,
+        orderId: newOrderId,
         chefId
       })
 
-      // In production, you'd process the payment with Stripe Elements here
-      // For now, we'll treat mock payments as successful
+      // Check if mock payment
       if (paymentResponse.mock) {
         toast.success('Order placed successfully (mock payment)')
+        setShowSuccess(true)
+        clearCart()
+      } else {
+        // Real Stripe payment - proceed to payment step
+        setClientSecret(paymentResponse.clientSecret)
+        setStep('payment')
       }
-
-      setShowSuccess(true)
-      clearCart()
     } catch (error: any) {
       console.error('Checkout error:', error)
-      toast.error(error.message || 'Failed to place order')
+      toast.error(error.message || 'Failed to create order')
     } finally {
       setSubmitting(false)
     }
+  }
+
+  const handlePaymentSuccess = () => {
+    setShowSuccess(true)
+    clearCart()
+  }
+
+  const handlePaymentError = (error: string) => {
+    console.error('Payment error:', error)
   }
 
   const handleSuccessClose = () => {
@@ -99,80 +124,111 @@ export default function CheckoutPage() {
   return (
     <DashboardLayout userRole="customer" userName={currentUser?.name}>
       <div className="max-w-4xl mx-auto space-y-6">
-        <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
+          {step === 'payment' && (
+            <Button
+              variant="secondary"
+              onClick={() => setStep('delivery')}
+            >
+              ← Back to Delivery
+            </Button>
+          )}
+        </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Delivery Info */}
+        {/* Progress Indicator */}
+        <div className="flex items-center justify-center space-x-4">
+          <div className={`flex items-center ${step === 'delivery' ? 'text-teal-600' : 'text-gray-400'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'delivery' ? 'bg-teal-600 text-white' : 'bg-gray-200'}`}>
+              1
+            </div>
+            <span className="ml-2 font-medium">Delivery</span>
+          </div>
+          <div className="w-16 h-1 bg-gray-200">
+            <div className={`h-full ${step === 'payment' ? 'bg-teal-600' : 'bg-gray-200'}`} />
+          </div>
+          <div className={`flex items-center ${step === 'payment' ? 'text-teal-600' : 'text-gray-400'}`}>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'payment' ? 'bg-teal-600 text-white' : 'bg-gray-200'}`}>
+              2
+            </div>
+            <span className="ml-2 font-medium">Payment</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
-            <Card>
-              <h2 className="text-xl font-bold mb-4">Delivery Information</h2>
-              <div className="space-y-4">
-                <Input
-                  label="Street Address"
-                  value={form.address}
-                  onChange={(e) => setForm({ ...form, address: e.target.value })}
-                  placeholder="123 Main St"
-                  required
-                />
-                <div className="grid grid-cols-2 gap-4">
-                  <Input
-                    label="City"
-                    value={form.city}
-                    onChange={(e) => setForm({ ...form, city: e.target.value })}
-                    placeholder="Wilmington"
-                    required
-                  />
-                  <Input
-                    label="State"
-                    value={form.state}
-                    onChange={(e) => setForm({ ...form, state: e.target.value })}
-                    placeholder="DE"
-                    required
-                  />
-                </div>
-                <Input
-                  label="ZIP Code"
-                  value={form.zip}
-                  onChange={(e) => setForm({ ...form, zip: e.target.value })}
-                  placeholder="19801"
-                  required
-                />
-                <Textarea
-                  label="Special Instructions"
-                  value={form.specialInstructions}
-                  onChange={(e) => setForm({ ...form, specialInstructions: e.target.value })}
-                  placeholder="e.g., Ring doorbell, leave at door, etc."
-                />
-              </div>
-            </Card>
-
-            <Card>
-              <h2 className="text-xl font-bold mb-4">Payment Method</h2>
-              <div className="space-y-4">
-                <Input
-                  label="Card Number"
-                  placeholder="4242 4242 4242 4242"
-                  required
-                />
-                <div className="grid grid-cols-2 gap-4">
-                  <Input
-                    label="Expiry Date"
-                    placeholder="MM/YY"
-                    required
-                  />
-                  <Input
-                    label="CVV"
-                    placeholder="123"
-                    required
-                  />
-                </div>
-                <Input
-                  label="Cardholder Name"
-                  placeholder="John Doe"
-                  required
-                />
-              </div>
-            </Card>
+            {step === 'delivery' ? (
+              <form onSubmit={handleDeliverySubmit}>
+                <Card>
+                  <h2 className="text-xl font-bold mb-4">Delivery Information</h2>
+                  <div className="space-y-4">
+                    <Input
+                      label="Street Address"
+                      value={form.address}
+                      onChange={(e) => setForm({ ...form, address: e.target.value })}
+                      placeholder="123 Main St"
+                      required
+                    />
+                    <div className="grid grid-cols-2 gap-4">
+                      <Input
+                        label="City"
+                        value={form.city}
+                        onChange={(e) => setForm({ ...form, city: e.target.value })}
+                        placeholder="Wilmington"
+                        required
+                      />
+                      <Input
+                        label="State"
+                        value={form.state}
+                        onChange={(e) => setForm({ ...form, state: e.target.value })}
+                        placeholder="DE"
+                        required
+                      />
+                    </div>
+                    <Input
+                      label="ZIP Code"
+                      value={form.zip}
+                      onChange={(e) => setForm({ ...form, zip: e.target.value })}
+                      placeholder="19801"
+                      required
+                    />
+                    <Textarea
+                      label="Special Instructions"
+                      value={form.specialInstructions}
+                      onChange={(e) => setForm({ ...form, specialInstructions: e.target.value })}
+                      placeholder="e.g., Ring doorbell, leave at door, etc."
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full mt-6"
+                    disabled={submitting}
+                    loading={submitting}
+                  >
+                    {submitting ? 'Creating Order...' : 'Continue to Payment'}
+                  </Button>
+                </Card>
+              </form>
+            ) : (
+              <Card>
+                <h2 className="text-xl font-bold mb-4">Payment Method</h2>
+                {clientSecret && stripePromise ? (
+                  <Elements stripe={stripePromise} options={{ clientSecret }}>
+                    <StripeCheckout
+                      amount={total}
+                      onSuccess={handlePaymentSuccess}
+                      onError={handlePaymentError}
+                    />
+                  </Elements>
+                ) : (
+                  <div className="text-center py-8">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading payment form...</p>
+                  </div>
+                )}
+              </Card>
+            )}
           </div>
 
           {/* Order Summary */}
@@ -202,23 +258,24 @@ export default function CheckoutPage() {
                   <span>Delivery Fee</span>
                   <span>${deliveryFee.toFixed(2)}</span>
                 </div>
+                <div className="flex justify-between text-xs text-gray-500 border-t pt-2">
+                  <span>Platform Fee (15%)</span>
+                  <span>${platformFee.toFixed(2)}</span>
+                </div>
                 <div className="flex justify-between text-xl font-bold text-gray-900 pt-2 border-t">
                   <span>Total</span>
                   <span className="text-teal-600">${total.toFixed(2)}</span>
                 </div>
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full mt-6"
-                disabled={submitting}
-                loading={submitting}
-              >
-                {submitting ? 'Processing...' : `Place Order - $${total.toFixed(2)}`}
-              </Button>
+              <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-xs text-green-800">
+                  🔒 Secure payment powered by Stripe
+                </p>
+              </div>
             </Card>
           </div>
-        </form>
+        </div>
       </div>
 
       {/* Success Modal */}

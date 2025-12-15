@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useStore } from '@/lib/store'
 import { useRouter } from 'next/navigation'
 import DashboardLayout from '@/components/shared/DashboardLayout'
@@ -9,6 +9,7 @@ import Slider from '@/components/shared/Slider'
 import Badge from '@/components/shared/Badge'
 import EmptyState from '@/components/shared/EmptyState'
 import { mockChefs, calculateDistance } from '@/lib/mockData'
+import { Chef } from '@/types'
 
 const categories = ['All', 'Mexican', 'Asian', 'American', 'Indian', 'Healthy', 'Baked Goods']
 const dietaryTags = ['Vegan', 'Vegetarian', 'Gluten-Free', 'Keto', 'Healthy']
@@ -19,40 +20,68 @@ export default function SearchPage() {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [selectedDietary, setSelectedDietary] = useState<string[]>([])
   const [sortBy, setSortBy] = useState<'distance' | 'rating'>('distance')
+  const [chefs, setChefs] = useState<Chef[]>([])
+  const [loading, setLoading] = useState(true)
 
   const customerLat = 39.7459
   const customerLon = -75.5466
 
+  useEffect(() => {
+    async function fetchChefs() {
+      try {
+        const response = await fetch('/api/chefs')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.chefs && data.chefs.length > 0) {
+            setChefs(data.chefs)
+          } else {
+            setChefs(mockChefs)
+          }
+        } else {
+          setChefs(mockChefs)
+        }
+      } catch (error) {
+        console.error('Error fetching chefs:', error)
+        setChefs(mockChefs)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchChefs()
+  }, [])
+
   const filteredChefs = useMemo(() => {
-    let chefs = mockChefs.map(chef => ({
+    if (loading) return []
+    
+    let filteredList = chefs.map(chef => ({
       ...chef,
       distance: calculateDistance(customerLat, customerLon, chef.latitude, chef.longitude)
     }))
 
     // Filter by radius
-    chefs = chefs.filter(chef => chef.distance <= searchRadius)
+    filteredList = filteredList.filter(chef => chef.distance <= searchRadius)
 
     // Filter by category
     if (selectedCategory !== 'All') {
-      chefs = chefs.filter(chef => chef.categories.includes(selectedCategory))
+      filteredList = filteredList.filter(chef => chef.categories.includes(selectedCategory))
     }
 
     // Filter by dietary tags
     if (selectedDietary.length > 0) {
-      chefs = chefs.filter(chef =>
+      filteredList = filteredList.filter(chef =>
         selectedDietary.some(tag => chef.categories.includes(tag))
       )
     }
 
     // Sort
     if (sortBy === 'distance') {
-      chefs.sort((a, b) => a.distance - b.distance)
+      filteredList.sort((a, b) => a.distance - b.distance)
     } else {
-      chefs.sort((a, b) => b.rating - a.rating)
+      filteredList.sort((a, b) => b.rating - a.rating)
     }
 
-    return chefs
-  }, [searchRadius, selectedCategory, selectedDietary, sortBy])
+    return filteredList
+  }, [chefs, loading, searchRadius, selectedCategory, selectedDietary, sortBy])
 
   const toggleDietaryTag = (tag: string) => {
     setSelectedDietary(prev =>

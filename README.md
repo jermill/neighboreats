@@ -76,11 +76,15 @@ npm run dev
 - **Next.js API Routes** - Serverless functions
 - **Row Level Security** - Database security
 
-### Integrations (To Implement)
-- **Stripe** - Payments & Connect
-- **Checkr** - Background checks
-- **Agora** - Live streaming
-- **SendGrid** - Email notifications
+### Integrations
+- **Stripe** - ✅ Payments & Connect (Ready to use)
+  - Stripe Elements checkout
+  - 15% platform commission
+  - Connect onboarding for chefs/drivers
+  - Webhook handling
+- **Checkr** - Background checks (To Implement)
+- **Agora** - Live streaming (To Implement)
+- **SendGrid** - Email notifications (To Implement)
 
 ## 📂 Project Structure
 
@@ -193,13 +197,18 @@ http://localhost:3000/dashboard/driver
 
 ## 📝 Next Steps
 
-1. **Backend Integration**
+1. **Stripe Setup** ⚡ Priority
+   - Add Stripe API keys to `.env.local`
+   - Run database migration: `supabase db push`
+   - Test payment flow with test cards
+   - See `STRIPE_SETUP.md` for detailed guide
+
+2. **Backend Integration**
    - Connect Supabase to all pages
    - Replace mock data with real queries
    - Implement authentication flow
 
-2. **Third-Party APIs**
-   - Stripe payment processing
+3. **Third-Party APIs**
    - Checkr background checks
    - Agora live streaming
    - SendGrid emails
@@ -218,6 +227,7 @@ http://localhost:3000/dashboard/driver
 
 ## 📚 Documentation
 
+- `STRIPE_SETUP.md` - **Stripe payment integration guide**
 - `FRONTEND_STATUS.md` - Detailed frontend progress
 - `STATUS_SUMMARY.md` - Complete project overview
 - `DEVELOPMENT.md` - Development guide

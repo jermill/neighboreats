@@ -1,5 +1,19 @@
 import { Chef, MenuItem, Order, Subscription, Driver, Delivery, Review, SubscriptionTier } from '@/types'
 
+/**
+ * MOCK DATA - For Development and Demo Purposes Only
+ * 
+ * This file contains mock/sample data that is used as fallback when:
+ * 1. No real chefs/data exist in the database yet
+ * 2. API calls fail
+ * 3. During development and testing
+ * 
+ * Once real chefs are onboarded and approved in the database,
+ * the application will automatically use real data instead of these mocks.
+ * 
+ * The stock images and fake profiles below will NOT be shown when real data exists.
+ */
+
 // Mock Chefs
 export const mockChefs: Chef[] = [
   {

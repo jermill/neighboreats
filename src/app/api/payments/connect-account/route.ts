@@ -41,55 +41,56 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({
         accountLink: `https://connect.stripe.com/express/oauth/v2/authorize?client_id=MOCK_CLIENT_ID&state=${user.id}`,
         mock: true,
-        message: 'Configure STRIPE_SECRET_KEY and STRIPE_CONNECT_CLIENT_ID in .env.local'
+        message: 'Configure STRIPE_SECRET_KEY in .env.local'
       })
     }
 
-    // In production:
-    // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-    
-    // Check if user already has a Connect account
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
     const supabase = createServerClient()
     const table = user.role === 'chef' ? 'chefs' : 'drivers'
     
+    // Check if user already has a Connect account
     const { data: profileData } = await supabase
       .from(table)
-      .select('stripe_account_id')
+      .select('stripe_account_id, email')
       .eq('id', user.id)
       .single()
 
     let accountId = profileData?.stripe_account_id
 
     // Create or retrieve Connect account
-    // if (!accountId) {
-    //   const account = await stripe.accounts.create({
-    //     type: 'express',
-    //     email: user.email,
-    //     capabilities: {
-    //       card_payments: { requested: true },
-    //       transfers: { requested: true }
-    //     }
-    //   })
-    //   accountId = account.id
-    //   
-    //   await supabase
-    //     .from(table)
-    //     .update({ stripe_account_id: accountId })
-    //     .eq('id', user.id)
-    // }
+    if (!accountId) {
+      const account = await stripe.accounts.create({
+        type: 'express',
+        email: user.email || profileData?.email,
+        capabilities: {
+          card_payments: { requested: true },
+          transfers: { requested: true }
+        },
+        business_type: 'individual',
+        metadata: {
+          userId: user.id,
+          userRole: user.role
+        }
+      })
+      accountId = account.id
+      
+      await supabase
+        .from(table)
+        .update({ stripe_account_id: accountId })
+        .eq('id', user.id)
+    }
 
-    // Create account link
-    // const accountLink = await stripe.accountLinks.create({
-    //   account: accountId,
-    //   refresh_url: refreshUrl,
-    //   return_url: returnUrl,
-    //   type: 'account_onboarding'
-    // })
+    // Create account link for onboarding
+    const accountLink = await stripe.accountLinks.create({
+      account: accountId,
+      refresh_url: refreshUrl,
+      return_url: returnUrl,
+      type: 'account_onboarding'
+    })
 
     return NextResponse.json({
-      accountLink: `https://connect.stripe.com/express/oauth/v2/authorize?client_id=MOCK&state=${user.id}`,
-      mock: true,
-      message: 'Configure Stripe to enable real Connect onboarding'
+      accountLink: accountLink.url
     })
 
   } catch (error: any) {
@@ -117,7 +118,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({
         accountId: null,
         verified: false,
-        payoutsEnabled: false
+        payoutsEnabled: false,
+        chargesEnabled: false
       })
     }
 
@@ -126,19 +128,36 @@ export async function GET(request: NextRequest) {
         accountId: profileData.stripe_account_id,
         verified: profileData.stripe_verified || false,
         payoutsEnabled: profileData.stripe_verified || false,
+        chargesEnabled: profileData.stripe_verified || false,
         mock: true
       })
     }
 
-    // In production, fetch actual account status
-    // const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
-    // const account = await stripe.accounts.retrieve(profileData.stripe_account_id)
+    // Fetch actual account status from Stripe
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+    const account = await stripe.accounts.retrieve(profileData.stripe_account_id)
+
+    const verified = account.payouts_enabled && account.charges_enabled
+    const detailsSubmitted = account.details_submitted
+
+    // Update local database if status changed
+    if (verified !== profileData.stripe_verified) {
+      await supabase
+        .from(table)
+        .update({ 
+          stripe_verified: verified,
+          account_status: verified ? 'ACTIVE' : 'PENDING'
+        })
+        .eq('id', user.id)
+    }
 
     return NextResponse.json({
-      accountId: profileData.stripe_account_id,
-      verified: profileData.stripe_verified || false,
-      payoutsEnabled: profileData.stripe_verified || false,
-      mock: true
+      accountId: account.id,
+      verified,
+      payoutsEnabled: account.payouts_enabled,
+      chargesEnabled: account.charges_enabled,
+      detailsSubmitted,
+      requirementsNeeded: account.requirements?.currently_due || []
     })
 
   } catch (error: any) {

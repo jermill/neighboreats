@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { useStore } from '@/lib/store'
 import DashboardLayout from '@/components/shared/DashboardLayout'
@@ -10,6 +10,7 @@ import Button from '@/components/shared/Button'
 import MenuItemCard from '@/components/shared/MenuItemCard'
 import LiveBadge from '@/components/shared/LiveBadge'
 import { mockChefs, mockMenuItems, mockReviews, calculateDistance } from '@/lib/mockData'
+import { Chef, MenuItem, Review } from '@/types'
 import toast from 'react-hot-toast'
 
 export default function ChefProfilePage() {
@@ -17,13 +18,62 @@ export default function ChefProfilePage() {
   const router = useRouter()
   const { currentUser, addToCart, cart } = useStore()
   const [activeTab, setActiveTab] = useState<'menu' | 'subscriptions' | 'reviews'>('menu')
+  const [chef, setChef] = useState<Chef | null>(null)
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([])
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const chef = mockChefs.find(c => c.id === params.id)
-  const menuItems = mockMenuItems.filter(item => item.chefId === params.id)
-  const reviews = mockReviews.filter(r => r.chefId === params.id)
+  useEffect(() => {
+    async function fetchChefDetails() {
+      try {
+        const response = await fetch(`/api/chefs/${params.id}`)
+        if (response.ok) {
+          const data = await response.json()
+          setChef(data.chef)
+          setMenuItems(data.menuItems || [])
+          setReviews(data.reviews || [])
+        } else {
+          // Fallback to mock data
+          const mockChef = mockChefs.find(c => c.id === params.id)
+          if (mockChef) {
+            setChef(mockChef)
+            setMenuItems(mockMenuItems.filter(item => item.chefId === params.id))
+            setReviews(mockReviews.filter(r => r.chefId === params.id))
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching chef details:', error)
+        // Fallback to mock data
+        const mockChef = mockChefs.find(c => c.id === params.id)
+        if (mockChef) {
+          setChef(mockChef)
+          setMenuItems(mockMenuItems.filter(item => item.chefId === params.id))
+          setReviews(mockReviews.filter(r => r.chefId === params.id))
+        }
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchChefDetails()
+  }, [params.id])
+
+  if (loading) {
+    return (
+      <DashboardLayout userRole="customer" userName={currentUser?.name}>
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-600"></div>
+        </div>
+      </DashboardLayout>
+    )
+  }
 
   if (!chef) {
-    return <div>Chef not found</div>
+    return (
+      <DashboardLayout userRole="customer" userName={currentUser?.name}>
+        <div>Chef not found</div>
+      </DashboardLayout>
+    )
   }
 
   const customerLat = 39.7459

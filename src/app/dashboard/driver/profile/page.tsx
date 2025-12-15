@@ -6,6 +6,7 @@ import Card from '@/components/shared/Card'
 import Input from '@/components/shared/Input'
 import Button from '@/components/shared/Button'
 import Badge from '@/components/shared/Badge'
+import ConnectOnboarding from '@/components/shared/ConnectOnboarding'
 import { profileApi } from '@/lib/api-client'
 import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
@@ -82,6 +83,9 @@ export default function DriverProfilePage() {
             </div>
           </div>
         </Card>
+
+        {/* Stripe Connect Onboarding */}
+        <ConnectOnboarding userRole="driver" />
 
         {/* Personal Information */}
         <Card>

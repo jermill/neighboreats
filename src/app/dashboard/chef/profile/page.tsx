@@ -8,6 +8,7 @@ import Textarea from '@/components/shared/Textarea'
 import Button from '@/components/shared/Button'
 import Slider from '@/components/shared/Slider'
 import Badge from '@/components/shared/Badge'
+import ConnectOnboarding from '@/components/shared/ConnectOnboarding'
 import { profileApi } from '@/lib/api-client'
 import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
@@ -93,6 +94,9 @@ export default function ChefProfilePage() {
             </div>
           </div>
         </Card>
+
+        {/* Stripe Connect Onboarding */}
+        <ConnectOnboarding userRole="chef" />
 
         {/* Public Profile Preview */}
         <Card className="bg-gray-50">

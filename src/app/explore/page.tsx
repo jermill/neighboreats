@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -8,6 +8,7 @@ import Slider from '@/components/shared/Slider'
 import ChefCard from '@/components/shared/ChefCard'
 import EmptyState from '@/components/shared/EmptyState'
 import { mockChefs, calculateDistance } from '@/lib/mockData'
+import { Chef } from '@/types'
 import { Search, ShoppingCart, ChefHat, Car, MapPin, Star, TrendingUp, Filter, X } from 'lucide-react'
 import DarkModeToggle from '@/components/shared/DarkModeToggle'
 
@@ -21,40 +22,74 @@ export default function ExplorePage() {
   const [selectedDietary, setSelectedDietary] = useState<string[]>([])
   const [sortBy, setSortBy] = useState<'distance' | 'rating'>('distance')
   const [showFilters, setShowFilters] = useState(false)
+  const [chefs, setChefs] = useState<Chef[]>([])
+  const [loading, setLoading] = useState(true)
 
   const customerLat = 39.7459
   const customerLon = -75.5466
 
+  // Fetch real chefs from database
+  useEffect(() => {
+    async function fetchChefs() {
+      try {
+        const response = await fetch('/api/chefs')
+        if (response.ok) {
+          const data = await response.json()
+          // Only use real chefs if we have any, otherwise fall back to mock data
+          if (data.chefs && data.chefs.length > 0) {
+            setChefs(data.chefs)
+          } else {
+            // Use mock data when no real chefs exist
+            setChefs(mockChefs)
+          }
+        } else {
+          // Fallback to mock data on error
+          setChefs(mockChefs)
+        }
+      } catch (error) {
+        console.error('Error fetching chefs:', error)
+        // Fallback to mock data on error
+        setChefs(mockChefs)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchChefs()
+  }, [])
+
   const filteredChefs = useMemo(() => {
-    let chefs = mockChefs.map(chef => ({
+    if (loading) return []
+    
+    let filteredList = chefs.map(chef => ({
       ...chef,
       distance: calculateDistance(customerLat, customerLon, chef.latitude, chef.longitude)
     }))
 
     // Filter by radius
-    chefs = chefs.filter(chef => chef.distance <= searchRadius)
+    filteredList = filteredList.filter(chef => chef.distance <= searchRadius)
 
     // Filter by category
     if (selectedCategory !== 'All') {
-      chefs = chefs.filter(chef => chef.categories.includes(selectedCategory))
+      filteredList = filteredList.filter(chef => chef.categories.includes(selectedCategory))
     }
 
     // Filter by dietary tags
     if (selectedDietary.length > 0) {
-      chefs = chefs.filter(chef =>
+      filteredList = filteredList.filter(chef =>
         selectedDietary.some(tag => chef.categories.includes(tag))
       )
     }
 
     // Sort
     if (sortBy === 'distance') {
-      chefs.sort((a, b) => a.distance - b.distance)
+      filteredList.sort((a, b) => a.distance - b.distance)
     } else {
-      chefs.sort((a, b) => b.rating - a.rating)
+      filteredList.sort((a, b) => b.rating - a.rating)
     }
 
-    return chefs
-  }, [searchRadius, selectedCategory, selectedDietary, sortBy])
+    return filteredList
+  }, [chefs, loading, searchRadius, selectedCategory, selectedDietary, sortBy])
 
   const toggleDietaryTag = (tag: string) => {
     setSelectedDietary(prev =>
@@ -290,7 +325,11 @@ export default function ExplorePage() {
 
         {/* Chef Cards - Vertical Stack */}
         <div className="space-y-6">
-          {filteredChefs.length > 0 ? (
+          {loading ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-burgundy"></div>
+            </div>
+          ) : filteredChefs.length > 0 ? (
             filteredChefs.map((chef, index) => (
               <div 
                 key={chef.id}

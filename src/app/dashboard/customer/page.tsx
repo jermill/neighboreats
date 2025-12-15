@@ -1,19 +1,44 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useStore } from '@/lib/store'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import StatCard from '@/components/shared/StatCard'
 import OrderCard from '@/components/shared/OrderCard'
 import ChefCard from '@/components/shared/ChefCard'
 import { mockOrders, mockChefs, calculateDistance } from '@/lib/mockData'
+import { Chef } from '@/types'
 import { useRouter } from 'next/navigation'
 
 export default function CustomerDashboard() {
   const router = useRouter()
   const { currentUser } = useStore()
+  const [chefs, setChefs] = useState<Chef[]>([])
+
+  useEffect(() => {
+    async function fetchChefs() {
+      try {
+        const response = await fetch('/api/chefs')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.chefs && data.chefs.length > 0) {
+            setChefs(data.chefs)
+          } else {
+            setChefs(mockChefs)
+          }
+        } else {
+          setChefs(mockChefs)
+        }
+      } catch (error) {
+        console.error('Error fetching chefs:', error)
+        setChefs(mockChefs)
+      }
+    }
+    fetchChefs()
+  }, [])
 
   const recentOrders = mockOrders.slice(0, 3)
-  const liveChefs = mockChefs.filter(chef => chef.isLive)
+  const liveChefs = chefs.filter(chef => chef.isLive)
   const customerLat = 39.7459
   const customerLon = -75.5466
 
