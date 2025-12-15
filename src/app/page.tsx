@@ -47,24 +47,24 @@ export default function Home() {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center pt-4 max-w-4xl mx-auto">
                 <Link
-                  href="/explore"
-                  className="px-8 py-4 bg-brand-burgundy text-white font-semibold rounded-xl hover:bg-customer-500 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
+                  href="/auth/signup/customer"
+                  className="px-8 py-4 bg-brand-teal dark:bg-primary-dark text-white font-bold rounded-xl hover:bg-brand-teal/90 dark:hover:bg-primary-dark/90 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2 text-lg"
                 >
                   <ShoppingCart className="w-5 h-5" />
-                  Find Local Chefs
+                  Join as Customer
                 </Link>
                 <Link
-                  href="/auth/signup/chef"
-                  className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
+                  href="/apply/chef"
+                  className="px-8 py-4 bg-brand-coral text-white font-bold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2 text-lg"
                 >
                   <ChefHat className="w-5 h-5" />
                   Become a Chef
                 </Link>
                 <Link
-                  href="/auth/signup/driver"
-                  className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2"
+                  href="/apply/driver"
+                  className="px-8 py-4 bg-driver-500 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105 w-full sm:w-auto flex items-center justify-center gap-2 text-lg"
                 >
                   <Car className="w-5 h-5" />
                   Drive & Deliver
@@ -374,13 +374,19 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
-                href="/auth/signup/chef"
+                href="/auth/signup/customer"
+                className="px-8 py-4 bg-brand-teal dark:bg-primary-dark text-white font-semibold rounded-xl hover:bg-brand-teal/90 dark:hover:bg-primary-dark/90 transition-all shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                Join as Customer
+              </Link>
+              <Link
+                href="/apply/chef"
                 className="px-8 py-4 bg-brand-coral text-white font-semibold rounded-xl hover:bg-amber-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Start Cooking
               </Link>
               <Link
-                href="/auth/signup/driver"
+                href="/apply/driver"
                 className="px-8 py-4 bg-driver-500 text-white font-semibold rounded-xl hover:bg-emerald-600 transition-all shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Start Driving
