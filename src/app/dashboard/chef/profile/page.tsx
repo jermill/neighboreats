@@ -116,84 +116,98 @@ export default function ChefProfilePage() {
           </div>
         </Card>
 
-        {/* Personal Information */}
-        <Card>
-          <h2 className="text-xl font-bold mb-4">Personal Information</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              label="Full Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
-            />
-            <Input
-              label="Email"
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-            />
-            <Input
-              label="Phone"
-              type="tel"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              required
-            />
-            <Textarea
-              label="Bio"
-              value={form.bio}
-              onChange={(e) => setForm({ ...form, bio: e.target.value })}
-              helperText="Tell customers about your cooking style and specialties"
-              required
-            />
-            <Button type="submit">Save Changes</Button>
-          </form>
-        </Card>
+        {/* Profile Form */}
+        <form onSubmit={handleSubmit}>
+          {/* Personal Information */}
+          <Card>
+            <h2 className="text-xl font-bold mb-4">Personal Information</h2>
+            <div className="space-y-4">
+              <Input
+                label="Full Name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                required
+              />
+              <Input
+                label="Email"
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                required
+              />
+              <Input
+                label="Phone"
+                type="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                required
+              />
+              <Textarea
+                label="Bio"
+                value={form.bio}
+                onChange={(e) => setForm({ ...form, bio: e.target.value })}
+                helperText="Tell customers about your cooking style and specialties"
+                required
+              />
+            </div>
+          </Card>
 
-        {/* Kitchen Information */}
-        <Card>
-          <h2 className="text-xl font-bold mb-4">Kitchen Information</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              label="Kitchen Address"
-              value={form.kitchenAddress}
-              onChange={(e) => setForm({ ...form, kitchenAddress: e.target.value })}
-              required
-            />
-            <Slider
-              value={form.deliveryRadius}
-              onChange={(val) => setForm({ ...form, deliveryRadius: val })}
-              min={1}
-              max={15}
-              step={0.5}
-              label="Delivery Radius"
-              valueLabel="miles"
-            />
-            <Button type="submit">Save Changes</Button>
-          </form>
-        </Card>
+          {/* Kitchen Information */}
+          <Card>
+            <h2 className="text-xl font-bold mb-4">Kitchen Information</h2>
+            <div className="space-y-4">
+              <Input
+                label="Kitchen Address"
+                value={form.kitchenAddress}
+                onChange={(e) => setForm({ ...form, kitchenAddress: e.target.value })}
+                required
+              />
+              <Slider
+                value={form.deliveryRadius}
+                onChange={(val) => setForm({ ...form, deliveryRadius: val })}
+                min={1}
+                max={15}
+                step={0.5}
+                label="Delivery Radius"
+                valueLabel="miles"
+              />
+            </div>
+          </Card>
 
-        {/* Categories */}
-        <Card>
-          <h2 className="text-xl font-bold mb-4">Your Categories</h2>
-          <p className="text-gray-600 mb-4">Select all that apply to your cooking style</p>
-          <div className="flex flex-wrap gap-2">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => toggleCategory(cat)}
-                className={`px-4 py-2 rounded-full font-medium transition ${
-                  selectedCategories.includes(cat)
-                    ? 'bg-teal-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </Card>
+          {/* Categories */}
+          <Card>
+            <h2 className="text-xl font-bold mb-4">Your Categories</h2>
+            <p className="text-gray-600 mb-4">Select all that apply to your cooking style</p>
+            <div className="flex flex-wrap gap-2">
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => toggleCategory(cat)}
+                  className={`px-4 py-2 rounded-full font-medium transition ${
+                    selectedCategories.includes(cat)
+                      ? 'bg-teal-600 text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </Card>
+
+          {/* Save Button */}
+          <Card>
+            <Button 
+              type="submit" 
+              className="w-full"
+              loading={loading}
+              disabled={loading}
+            >
+              {loading ? 'Saving...' : 'Save All Changes'}
+            </Button>
+          </Card>
+        </form>
 
         {/* Verification Status */}
         <Card>

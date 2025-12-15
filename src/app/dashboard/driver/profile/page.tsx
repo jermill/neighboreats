@@ -87,65 +87,78 @@ export default function DriverProfilePage() {
         {/* Stripe Connect Onboarding */}
         <ConnectOnboarding userRole="driver" />
 
-        {/* Personal Information */}
-        <Card>
-          <h2 className="text-xl font-bold mb-4">Personal Information</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              label="Full Name"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
-            />
-            <Input
-              label="Email"
-              type="email"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-            />
-            <Input
-              label="Phone"
-              type="tel"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              required
-            />
-            <Button type="submit">Save Changes</Button>
-          </form>
-        </Card>
+        {/* Profile Form */}
+        <form onSubmit={handleSubmit}>
+          {/* Personal Information */}
+          <Card>
+            <h2 className="text-xl font-bold mb-4">Personal Information</h2>
+            <div className="space-y-4">
+              <Input
+                label="Full Name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                required
+              />
+              <Input
+                label="Email"
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                required
+              />
+              <Input
+                label="Phone"
+                type="tel"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                required
+              />
+            </div>
+          </Card>
 
-        {/* Vehicle Information */}
-        <Card>
-          <h2 className="text-xl font-bold mb-4">Vehicle Information</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              label="Vehicle Make & Model"
-              value={form.vehicle}
-              onChange={(e) => setForm({ ...form, vehicle: e.target.value })}
-              required
-            />
-            <Input
-              label="Vehicle Model"
-              value={form.vehicleModel}
-              onChange={(e) => setForm({ ...form, vehicleModel: e.target.value })}
-              placeholder="Civic, Camry, etc."
-            />
-            <Input
-              label="Vehicle Color"
-              value={form.vehicleColor}
-              onChange={(e) => setForm({ ...form, vehicleColor: e.target.value })}
-              placeholder="Black, White, etc."
-            />
-            <Input
-              label="License Plate"
-              value={form.vehiclePlate}
-              onChange={(e) => setForm({ ...form, vehiclePlate: e.target.value })}
-              required
-            />
-            <Button type="submit">Save Changes</Button>
-          </form>
-        </Card>
+          {/* Vehicle Information */}
+          <Card>
+            <h2 className="text-xl font-bold mb-4">Vehicle Information</h2>
+            <div className="space-y-4">
+              <Input
+                label="Vehicle Make & Model"
+                value={form.vehicle}
+                onChange={(e) => setForm({ ...form, vehicle: e.target.value })}
+                required
+              />
+              <Input
+                label="Vehicle Model"
+                value={form.vehicleModel}
+                onChange={(e) => setForm({ ...form, vehicleModel: e.target.value })}
+                placeholder="Civic, Camry, etc."
+              />
+              <Input
+                label="Vehicle Color"
+                value={form.vehicleColor}
+                onChange={(e) => setForm({ ...form, vehicleColor: e.target.value })}
+                placeholder="Black, White, etc."
+              />
+              <Input
+                label="License Plate"
+                value={form.vehiclePlate}
+                onChange={(e) => setForm({ ...form, vehiclePlate: e.target.value })}
+                required
+              />
+            </div>
+          </Card>
+
+          {/* Save Button */}
+          <Card>
+            <Button 
+              type="submit" 
+              className="w-full"
+              loading={loading}
+              disabled={loading}
+            >
+              {loading ? 'Saving...' : 'Save All Changes'}
+            </Button>
+          </Card>
+        </form>
 
         {/* Verification Status */}
         <Card>
