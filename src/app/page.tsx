@@ -628,9 +628,6 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-6xl mx-auto relative">
-            {/* Connecting line for desktop */}
-            <div className="hidden md:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-rose-200 via-amber-200 to-emerald-200" style={{ top: '80px' }}></div>
-
             {/* Step 1 */}
             <div className="relative text-center animate-fadeIn">
               <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-br from-rose-100 to-rose-200 dark:from-rose-900/30 dark:to-rose-800/30 rounded-full mb-6 relative z-10 hover:scale-110 transition-transform duration-300">
