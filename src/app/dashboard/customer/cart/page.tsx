@@ -8,6 +8,7 @@ import Button from '@/components/shared/Button'
 import Card from '@/components/shared/Card'
 import EmptyState from '@/components/shared/EmptyState'
 import toast from 'react-hot-toast'
+import { DELIVERY_FEE } from '@/lib/fees'
 
 export default function CartPage() {
   const router = useRouter()
@@ -15,7 +16,7 @@ export default function CartPage() {
   const [fulfillmentType, setFulfillmentType] = useState<'pickup' | 'delivery'>('delivery')
 
   const subtotal = getCartTotal()
-  const deliveryFee = fulfillmentType === 'delivery' ? 4.00 : 0
+  const deliveryFee = fulfillmentType === 'delivery' ? DELIVERY_FEE : 0
   const total = subtotal + deliveryFee
 
   if (cart.length === 0) {

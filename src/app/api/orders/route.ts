@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient, requireRole } from '@/lib/supabase-server'
+import { DELIVERY_FEE } from '@/lib/fees'
 
 /**
  * API Contract: Orders
@@ -175,7 +176,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Calculate delivery fee (mock - would be based on distance in production)
-    const deliveryFee = fulfillmentType === 'delivery' ? 5.99 : 0
+    const deliveryFee = fulfillmentType === 'delivery' ? DELIVERY_FEE : 0
 
     // Create order
     const { data: order, error: orderError } = await supabase
