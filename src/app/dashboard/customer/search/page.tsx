@@ -8,7 +8,7 @@ import ChefCard from '@/components/shared/ChefCard'
 import Slider from '@/components/shared/Slider'
 import Badge from '@/components/shared/Badge'
 import EmptyState from '@/components/shared/EmptyState'
-import { mockChefs, calculateDistance } from '@/lib/mockData'
+import { useGeolocation, calculateDistance } from '@/lib/useGeolocation'
 import { Chef } from '@/types'
 
 const categories = ['All', 'Mexican', 'Asian', 'American', 'Indian', 'Healthy', 'Baked Goods']
@@ -22,31 +22,29 @@ export default function SearchPage() {
   const [sortBy, setSortBy] = useState<'distance' | 'rating'>('distance')
   const [chefs, setChefs] = useState<Chef[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  const customerLat = 39.7459
-  const customerLon = -75.5466
+  const { coords, status: geoStatus } = useGeolocation()
+  const customerLat = coords.latitude
+  const customerLon = coords.longitude
+
+  const fetchChefs = async () => {
+    setLoading(true)
+    setError(false)
+    try {
+      const response = await fetch('/api/chefs')
+      if (!response.ok) throw new Error('Failed to fetch chefs')
+      const data = await response.json()
+      setChefs(data.chefs || [])
+    } catch (err) {
+      console.error('Error fetching chefs:', err)
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    async function fetchChefs() {
-      try {
-        const response = await fetch('/api/chefs')
-        if (response.ok) {
-          const data = await response.json()
-          if (data.chefs && data.chefs.length > 0) {
-            setChefs(data.chefs)
-          } else {
-            setChefs(mockChefs)
-          }
-        } else {
-          setChefs(mockChefs)
-        }
-      } catch (error) {
-        console.error('Error fetching chefs:', error)
-        setChefs(mockChefs)
-      } finally {
-        setLoading(false)
-      }
-    }
     fetchChefs()
   }, [])
 
@@ -180,11 +178,33 @@ export default function SearchPage() {
 
         {/* Results */}
         <div>
+          {(geoStatus === 'denied' || geoStatus === 'unavailable') && (
+            <p className="text-sm text-gray-500 mb-2">
+              Using default location — enable location access for chefs near you
+            </p>
+          )}
           <p className="text-gray-600 mb-4">
             Found {filteredChefs.length} chef{filteredChefs.length !== 1 ? 's' : ''} within {searchRadius} miles
           </p>
 
-          {filteredChefs.length > 0 ? (
+          {error ? (
+            <EmptyState
+              icon="⚠️"
+              title="Couldn't load chefs"
+              description="Something went wrong on our end"
+              action={{ label: 'Try Again', onClick: fetchChefs }}
+            />
+          ) : !loading && chefs.length === 0 ? (
+            <EmptyState
+              icon="👨‍🍳"
+              title="No chefs in your area yet"
+              description="NeighborEats is just getting started in your neighborhood — check back soon, or be the first!"
+              action={{
+                label: 'Become a Chef',
+                onClick: () => router.push('/apply/chef')
+              }}
+            />
+          ) : filteredChefs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredChefs.map(chef => (
                 <ChefCard

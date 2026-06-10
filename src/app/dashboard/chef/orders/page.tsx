@@ -8,6 +8,7 @@ import { OrderCardSkeleton } from '@/components/shared/SkeletonLoader'
 import { ordersApi } from '@/lib/api-client'
 import { Order } from '@/types'
 import { useStore } from '@/lib/store'
+import { useOrdersRealtime } from '@/lib/useOrdersRealtime'
 import toast from 'react-hot-toast'
 
 export default function ChefOrdersPage() {
@@ -20,9 +21,15 @@ export default function ChefOrdersPage() {
     fetchOrders()
   }, [])
 
+  useOrdersRealtime((payload) => {
+    fetchOrders()
+    if (payload.eventType === 'INSERT') {
+      toast.success('New order received!')
+    }
+  })
+
   const fetchOrders = async () => {
     try {
-      setLoading(true)
       const { orders: fetchedOrders } = await ordersApi.getAll()
       setOrders(fetchedOrders)
     } catch (error: any) {

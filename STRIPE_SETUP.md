@@ -296,3 +296,4 @@ After setup, you have:
 - ✅ Webhook handling for payment events
 
 **Questions?** Check the [Stripe Documentation](https://stripe.com/docs) or [contact support](https://support.stripe.com).
+

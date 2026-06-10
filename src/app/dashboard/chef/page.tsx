@@ -1,31 +1,67 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import DashboardLayout from '@/components/shared/DashboardLayout'
 import StatCard from '@/components/shared/StatCard'
 import OrderCard from '@/components/shared/OrderCard'
 import Button from '@/components/shared/Button'
-import LiveBadge from '@/components/shared/LiveBadge'
-import { mockOrders } from '@/lib/mockData'
+import { ordersApi, profileApi } from '@/lib/api-client'
+import { useStore } from '@/lib/store'
+import { Order } from '@/types'
+import toast from 'react-hot-toast'
 
 export default function ChefDashboard() {
   const router = useRouter()
-  const chefName = "Maria Rodriguez" // Mock chef
+  const { currentUser } = useStore()
+  const [orders, setOrders] = useState<Order[]>([])
+  const [rating, setRating] = useState<number | null>(null)
 
-  const pendingOrders = mockOrders.filter(o => o.status === 'pending').slice(0, 3)
-  const todayOrders = 8
-  const weekRevenue = 1247.50
-  const activeSubscribers = 24
-  const rating = 4.9
+  const fetchOrders = async () => {
+    try {
+      const { orders: fetched } = await ordersApi.getAll()
+      setOrders(fetched)
+    } catch (error) {
+      console.error('Orders fetch error:', error)
+    }
+  }
+
+  useEffect(() => {
+    fetchOrders()
+    profileApi.get()
+      .then(({ profile }) => setRating(profile?.chef?.rating ?? profile?.rating ?? null))
+      .catch(() => {})
+  }, [])
+
+  const handleStatus = async (orderId: string, status: string) => {
+    try {
+      await ordersApi.updateStatus(orderId, status)
+      toast.success(status === 'accepted' ? 'Order accepted!' : 'Order updated')
+      fetchOrders()
+    } catch {
+      toast.error('Failed to update order')
+    }
+  }
+
+  const pendingOrders = orders.filter(o => o.status === 'pending').slice(0, 3)
+  const today = new Date().toDateString()
+  const todayOrders = orders.filter(o => new Date(o.createdAt).toDateString() === today).length
+  const weekStart = new Date()
+  weekStart.setDate(weekStart.getDate() - 7)
+  const weekRevenue = orders
+    .filter(o => new Date(o.createdAt) >= weekStart && o.status !== 'cancelled')
+    .reduce((sum, o) => sum + (o.totalPrice - o.deliveryFee), 0)
+
+  const firstName = currentUser?.name?.split(' ')[0] || 'Chef'
 
   return (
-    <DashboardLayout userRole="chef" userName={chefName}>
+    <DashboardLayout userRole="chef" userName={currentUser?.name}>
       <div className="space-y-6">
         {/* Welcome Section */}
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Welcome back, Maria! 👨‍🍳
+              Welcome back, {firstName}! 👨‍🍳
             </h1>
             <p className="text-gray-600">Here's what's happening with your kitchen today</p>
           </div>
@@ -44,24 +80,21 @@ export default function ChefDashboard() {
             icon="📦"
             label="Orders Today"
             value={todayOrders}
-            trend={{ value: 12, isPositive: true }}
           />
           <StatCard
             icon="💰"
             label="Revenue This Week"
             value={`$${weekRevenue.toFixed(0)}`}
-            trend={{ value: 8, isPositive: true }}
           />
           <StatCard
-            icon="👥"
-            label="Active Subscribers"
-            value={activeSubscribers}
+            icon="🧾"
+            label="Total Orders"
+            value={orders.length}
           />
           <StatCard
             icon="⭐"
             label="Your Rating"
-            value={rating}
-            trend={{ value: 0.2, isPositive: true }}
+            value={rating !== null ? rating.toFixed(1) : '—'}
           />
         </div>
 
@@ -84,8 +117,8 @@ export default function ChefDashboard() {
                   key={order.id}
                   order={order}
                   userRole="chef"
-                  onAccept={() => alert('Order accepted')}
-                  onReject={() => alert('Order rejected')}
+                  onAccept={() => handleStatus(order.id, 'accepted')}
+                  onReject={() => handleStatus(order.id, 'cancelled')}
                 />
               ))}
             </div>
@@ -121,45 +154,7 @@ export default function ChefDashboard() {
             <p className="text-gray-600">Track your revenue and payouts</p>
           </button>
         </div>
-
-        {/* Today's Schedule */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-bold mb-4">Today's Schedule</h2>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3 p-3 bg-green-50 border border-green-200 rounded-lg">
-              <span className="font-bold text-green-700">11:00 AM</span>
-              <span className="text-gray-700">Lunch prep starts - 5 orders</span>
-            </div>
-            <div className="flex items-center gap-3 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <span className="font-bold text-blue-700">5:00 PM</span>
-              <span className="text-gray-700">Dinner prep starts - 3 orders</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Recent Reviews */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-bold mb-4">Recent Reviews</h2>
-          <div className="space-y-4">
-            <div className="border-b border-gray-200 pb-3">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="font-semibold">John Doe</span>
-                <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
-              </div>
-              <p className="text-gray-700">"Best mole sauce I've ever had! Will definitely order again."</p>
-            </div>
-            <div className="border-b border-gray-200 pb-3">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="font-semibold">Jane Smith</span>
-                <span className="text-yellow-500">⭐⭐⭐⭐⭐</span>
-              </div>
-              <p className="text-gray-700">"Authentic flavors and generous portions. Highly recommend!"</p>
-            </div>
-          </div>
-        </div>
       </div>
     </DashboardLayout>
   )
 }
-
-

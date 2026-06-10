@@ -13,6 +13,7 @@ import { OrderCardSkeleton } from '@/components/shared/SkeletonLoader'
 import { ordersApi } from '@/lib/api-client'
 import { Order } from '@/types'
 import { useRouter } from 'next/navigation'
+import { useOrdersRealtime } from '@/lib/useOrdersRealtime'
 import toast from 'react-hot-toast'
 
 export default function OrdersPage() {
@@ -26,21 +27,29 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        setLoading(true)
-        const { orders: fetchedOrders } = await ordersApi.getAll()
-        setOrders(fetchedOrders)
-      } catch (error: any) {
-        toast.error('Failed to load orders')
-        console.error('Orders fetch error:', error)
-      } finally {
-        setLoading(false)
-      }
+  const fetchOrders = async () => {
+    try {
+      const { orders: fetchedOrders } = await ordersApi.getAll()
+      setOrders(fetchedOrders)
+    } catch (error: any) {
+      toast.error('Failed to load orders')
+      console.error('Orders fetch error:', error)
+    } finally {
+      setLoading(false)
     }
+  }
+
+  useEffect(() => {
     fetchOrders()
   }, [])
+
+  useOrdersRealtime((payload) => {
+    fetchOrders()
+    const newStatus = (payload.new as any)?.status
+    if (payload.eventType === 'UPDATE' && newStatus) {
+      toast(`Order update: ${newStatus.replace(/_/g, ' ')}`)
+    }
+  })
 
   const filteredOrders = orders.filter(order => {
     if (filter === 'all') return true

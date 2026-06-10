@@ -9,7 +9,7 @@ import Badge from '@/components/shared/Badge'
 import Button from '@/components/shared/Button'
 import MenuItemCard from '@/components/shared/MenuItemCard'
 import LiveBadge from '@/components/shared/LiveBadge'
-import { mockChefs, mockMenuItems, mockReviews, calculateDistance } from '@/lib/mockData'
+import { calculateDistance } from '@/lib/useGeolocation'
 import { Chef, MenuItem, Review } from '@/types'
 import toast from 'react-hot-toast'
 
@@ -32,24 +32,9 @@ export default function ChefProfilePage() {
           setChef(data.chef)
           setMenuItems(data.menuItems || [])
           setReviews(data.reviews || [])
-        } else {
-          // Fallback to mock data
-          const mockChef = mockChefs.find(c => c.id === params.id)
-          if (mockChef) {
-            setChef(mockChef)
-            setMenuItems(mockMenuItems.filter(item => item.chefId === params.id))
-            setReviews(mockReviews.filter(r => r.chefId === params.id))
-          }
         }
       } catch (error) {
         console.error('Error fetching chef details:', error)
-        // Fallback to mock data
-        const mockChef = mockChefs.find(c => c.id === params.id)
-        if (mockChef) {
-          setChef(mockChef)
-          setMenuItems(mockMenuItems.filter(item => item.chefId === params.id))
-          setReviews(mockReviews.filter(r => r.chefId === params.id))
-        }
       } finally {
         setLoading(false)
       }

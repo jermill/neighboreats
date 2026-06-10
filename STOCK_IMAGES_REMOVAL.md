@@ -121,3 +121,4 @@ When you're ready to test with real chefs:
 3. Visit any chef browsing page - you'll see real chefs instead of mock data!
 
 The transition is seamless and automatic. 🎉
+

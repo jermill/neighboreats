@@ -7,6 +7,7 @@ import Card from '@/components/shared/Card'
 import Input from '@/components/shared/Input'
 import Button from '@/components/shared/Button'
 import Badge from '@/components/shared/Badge'
+import FileUpload from '@/components/shared/FileUpload'
 import { profileApi } from '@/lib/api-client'
 import toast from 'react-hot-toast'
 
@@ -84,7 +85,18 @@ export default function ProfilePage() {
             </div>
             <div>
               <h2 className="text-xl font-bold mb-2">{currentUser?.name}</h2>
-              <Button variant="outline" size="sm">Change Photo</Button>
+              <FileUpload
+                buttonText="Change Photo"
+                showPreview={false}
+                onUploaded={async (url) => {
+                  try {
+                    await profileApi.update({ photoUrl: url })
+                    toast.success('Photo updated!')
+                  } catch {
+                    toast.error('Failed to save photo')
+                  }
+                }}
+              />
             </div>
           </div>
         </Card>

@@ -6,41 +6,53 @@ import DashboardLayout from '@/components/shared/DashboardLayout'
 import StatCard from '@/components/shared/StatCard'
 import OrderCard from '@/components/shared/OrderCard'
 import ChefCard from '@/components/shared/ChefCard'
-import { mockOrders, mockChefs, calculateDistance } from '@/lib/mockData'
-import { Chef } from '@/types'
+import { ordersApi, subscriptionsApi } from '@/lib/api-client'
+import { useGeolocation, calculateDistance } from '@/lib/useGeolocation'
+import { Chef, Order } from '@/types'
 import { useRouter } from 'next/navigation'
 
 export default function CustomerDashboard() {
   const router = useRouter()
   const { currentUser } = useStore()
   const [chefs, setChefs] = useState<Chef[]>([])
+  const [orders, setOrders] = useState<Order[]>([])
+  const [activeSubs, setActiveSubs] = useState(0)
+  const { coords } = useGeolocation()
 
   useEffect(() => {
-    async function fetchChefs() {
+    async function fetchData() {
       try {
         const response = await fetch('/api/chefs')
         if (response.ok) {
           const data = await response.json()
-          if (data.chefs && data.chefs.length > 0) {
-            setChefs(data.chefs)
-          } else {
-            setChefs(mockChefs)
-          }
-        } else {
-          setChefs(mockChefs)
+          setChefs(data.chefs || [])
         }
       } catch (error) {
         console.error('Error fetching chefs:', error)
-        setChefs(mockChefs)
+      }
+      try {
+        const { orders: fetched } = await ordersApi.getAll()
+        setOrders(fetched)
+      } catch (error) {
+        console.error('Error fetching orders:', error)
+      }
+      try {
+        const { subscriptions } = await subscriptionsApi.getAll()
+        setActiveSubs((subscriptions || []).filter((s: any) => s.status === 'ACTIVE' || s.status === 'active').length)
+      } catch (error) {
+        console.error('Error fetching subscriptions:', error)
       }
     }
-    fetchChefs()
+    fetchData()
   }, [])
 
-  const recentOrders = mockOrders.slice(0, 3)
+  const recentOrders = orders.slice(0, 3)
   const liveChefs = chefs.filter(chef => chef.isLive)
-  const customerLat = 39.7459
-  const customerLon = -75.5466
+  const now = new Date()
+  const ordersThisMonth = orders.filter(o => {
+    const d = new Date(o.createdAt)
+    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()
+  }).length
 
   return (
     <DashboardLayout userRole="customer" userName={currentUser?.name}>
@@ -58,24 +70,22 @@ export default function CustomerDashboard() {
           <StatCard
             icon="📦"
             label="Orders this Month"
-            value="8"
-            trend={{ value: 25, isPositive: true }}
+            value={String(ordersThisMonth)}
           />
           <StatCard
-            icon="⭐"
-            label="Favorite Chefs"
-            value="3"
+            icon="🧾"
+            label="Total Orders"
+            value={String(orders.length)}
           />
           <StatCard
-            icon="💰"
-            label="Total Saved"
-            value="$127"
-            trend={{ value: 15, isPositive: true }}
+            icon="👨‍🍳"
+            label="Chefs Near You"
+            value={String(chefs.length)}
           />
           <StatCard
             icon="🔥"
-            label="Active Subscription"
-            value="1"
+            label="Active Subscriptions"
+            value={String(activeSubs)}
           />
         </div>
 
@@ -90,7 +100,7 @@ export default function CustomerDashboard() {
                 <ChefCard
                   key={chef.id}
                   chef={chef}
-                  distance={calculateDistance(customerLat, customerLon, chef.latitude, chef.longitude)}
+                  distance={calculateDistance(coords.latitude, coords.longitude, chef.latitude, chef.longitude)}
                   onClick={() => router.push(`/dashboard/customer/chef/${chef.id}`)}
                 />
               ))}
@@ -99,27 +109,29 @@ export default function CustomerDashboard() {
         )}
 
         {/* Recent Orders */}
-        <div>
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-gray-900">Recent Orders</h2>
-            <button
-              onClick={() => router.push('/dashboard/customer/orders')}
-              className="text-teal-600 hover:text-teal-700 font-medium"
-            >
-              View All →
-            </button>
+        {recentOrders.length > 0 && (
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-gray-900">Recent Orders</h2>
+              <button
+                onClick={() => router.push('/dashboard/customer/orders')}
+                className="text-teal-600 hover:text-teal-700 font-medium"
+              >
+                View All →
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {recentOrders.map((order) => (
+                <OrderCard
+                  key={order.id}
+                  order={order}
+                  userRole="customer"
+                  onViewDetails={() => router.push(`/dashboard/customer/orders`)}
+                />
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {recentOrders.map((order) => (
-              <OrderCard
-                key={order.id}
-                order={order}
-                userRole="customer"
-                onViewDetails={() => router.push(`/dashboard/customer/orders`)}
-              />
-            ))}
-          </div>
-        </div>
+        )}
 
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-teal-600 to-teal-700 rounded-lg p-8 text-white text-center">
@@ -136,5 +148,3 @@ export default function CustomerDashboard() {
     </DashboardLayout>
   )
 }
-
-

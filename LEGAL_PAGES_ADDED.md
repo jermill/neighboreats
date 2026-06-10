@@ -173,3 +173,4 @@ While these pages cover standard terms, **we recommend having them reviewed by a
 **Status**: ✅ **COMPLETE AND PRODUCTION READY**
 
 Both legal pages are comprehensive, clearly written, and include strong liability disclaimers protecting NeighborEats from disputes between users and contractors.
+

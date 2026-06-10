@@ -1,6 +1,12 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { LogOut } from 'lucide-react'
+import { createClient } from '@/lib/supabase'
+import { useStore } from '@/lib/store'
+import toast from 'react-hot-toast'
 
 interface NavbarProps {
   userRole?: 'customer' | 'chef' | 'driver' | 'admin'
@@ -9,6 +15,18 @@ interface NavbarProps {
 
 export default function Navbar({ userRole, userName }: NavbarProps) {
   const pathname = usePathname()
+  const router = useRouter()
+  const setCurrentUser = useStore((s) => s.setCurrentUser)
+  const clearCart = useStore((s) => s.clearCart)
+
+  const handleSignOut = async () => {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    setCurrentUser(null)
+    clearCart()
+    toast.success('Signed out')
+    router.push('/')
+  }
 
   const navItems: Record<'customer' | 'chef' | 'driver' | 'admin', { href: string; label: string }[]> = {
     customer: [
@@ -76,6 +94,14 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
                 >
                   {userName?.charAt(0) || 'U'}
                 </Link>
+                <button
+                  onClick={handleSignOut}
+                  title="Sign out"
+                  aria-label="Sign out"
+                  className="text-gray-500 hover:text-brand-teal transition p-2"
+                >
+                  <LogOut className="w-5 h-5" />
+                </button>
               </div>
             </>
           )}
@@ -84,4 +110,3 @@ export default function Navbar({ userRole, userName }: NavbarProps) {
     </nav>
   )
 }
-

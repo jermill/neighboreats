@@ -19,3 +19,4 @@ CREATE INDEX IF NOT EXISTS idx_drivers_stripe_account_id ON public.drivers(strip
 COMMENT ON COLUMN public.users.stripe_customer_id IS 'Stripe customer ID for payment processing';
 COMMENT ON COLUMN public.chefs.stripe_verified IS 'Whether the chef''s Stripe Connect account is verified and can receive payouts';
 COMMENT ON COLUMN public.drivers.stripe_verified IS 'Whether the driver''s Stripe Connect account is verified and can receive payouts';
+

@@ -7,7 +7,7 @@ import Image from 'next/image'
 import Slider from '@/components/shared/Slider'
 import ChefCard from '@/components/shared/ChefCard'
 import EmptyState from '@/components/shared/EmptyState'
-import { mockChefs, calculateDistance } from '@/lib/mockData'
+import { useGeolocation, calculateDistance } from '@/lib/useGeolocation'
 import { Chef } from '@/types'
 import { Search, ShoppingCart, ChefHat, Car, MapPin, Star, TrendingUp, Filter, X } from 'lucide-react'
 import DarkModeToggle from '@/components/shared/DarkModeToggle'
@@ -25,8 +25,9 @@ export default function ExplorePage() {
   const [chefs, setChefs] = useState<Chef[]>([])
   const [loading, setLoading] = useState(true)
 
-  const customerLat = 39.7459
-  const customerLon = -75.5466
+  const { coords, status: geoStatus } = useGeolocation()
+  const customerLat = coords.latitude
+  const customerLon = coords.longitude
 
   // Fetch real chefs from database
   useEffect(() => {
@@ -35,21 +36,10 @@ export default function ExplorePage() {
         const response = await fetch('/api/chefs')
         if (response.ok) {
           const data = await response.json()
-          // Only use real chefs if we have any, otherwise fall back to mock data
-          if (data.chefs && data.chefs.length > 0) {
-            setChefs(data.chefs)
-          } else {
-            // Use mock data when no real chefs exist
-            setChefs(mockChefs)
-          }
-        } else {
-          // Fallback to mock data on error
-          setChefs(mockChefs)
+          setChefs(data.chefs || [])
         }
       } catch (error) {
         console.error('Error fetching chefs:', error)
-        // Fallback to mock data on error
-        setChefs(mockChefs)
       } finally {
         setLoading(false)
       }

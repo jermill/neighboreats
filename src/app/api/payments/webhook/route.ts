@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminClient } from '@/lib/supabase-admin'
 
 /**
  * API Contract: Stripe Webhook Handler
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
       console.warn('Stripe webhook not configured, accepting mock events')
       const event = JSON.parse(body)
-      const supabase = createServerClient()
+      const supabase = createAdminClient()
       await processWebhookEvent(event, supabase)
       return NextResponse.json({ received: true, mock: true })
     }
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const supabase = createServerClient()
+    const supabase = createAdminClient()
     await processWebhookEvent(event, supabase)
 
     return NextResponse.json({ received: true })
@@ -165,3 +165,4 @@ async function processWebhookEvent(event: any, supabase: any) {
       console.log('Unhandled webhook event:', event.type)
   }
 }
+

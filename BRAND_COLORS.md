@@ -177,3 +177,4 @@ Step 4 (Delivered): Cyan/Blue gradient, brand-teal accent
 
 ## Theme Color
 PWA and browser theme color set to: `#026181` (brand-teal)
+

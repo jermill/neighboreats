@@ -265,7 +265,8 @@ export default function MenuManagementPage() {
 
           <FileUpload
             label="Photo"
-            onChange={(file) => console.log('File:', file)}
+            preview={form.photoUrl || undefined}
+            onUploaded={(url) => setForm(prev => ({ ...prev, photoUrl: url }))}
           />
 
           <div>

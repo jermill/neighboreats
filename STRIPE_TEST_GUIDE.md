@@ -219,3 +219,4 @@ Once testing is complete:
 **Your Stripe integration is ready to test!** 🎉
 
 Start with Test 1 (Chef Onboarding) and work through each test.
+

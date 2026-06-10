@@ -92,8 +92,34 @@ export async function PATCH(
       )
     }
 
+    // Driver claiming an unassigned ready order — atomic: the .is('driver_id', null)
+    // match means only one of two concurrent claims can succeed
+    if (user.role === 'driver' && body.claim === true) {
+      const { data: claimed, error: claimError } = await supabase
+        .from('orders')
+        .update({ driver_id: user.id })
+        .eq('id', id)
+        .is('driver_id', null)
+        .eq('status', 'ready')
+        .select()
+
+      if (claimError) {
+        return NextResponse.json(
+          { error: 'Failed to claim order', details: claimError.message },
+          { status: 500 }
+        )
+      }
+      if (!claimed || claimed.length === 0) {
+        return NextResponse.json(
+          { error: 'Order already claimed by another driver' },
+          { status: 409 }
+        )
+      }
+      return NextResponse.json({ order: claimed[0] })
+    }
+
     // Verify user has permission to update
-    const canUpdate = 
+    const canUpdate =
       (user.role === 'chef' && existingOrder.chef_id === user.id) ||
       (user.role === 'driver' && existingOrder.driver_id === user.id) ||
       (user.role === 'customer' && existingOrder.customer_id === user.id)
@@ -103,6 +129,17 @@ export async function PATCH(
         { error: 'Forbidden - You cannot update this order' },
         { status: 403 }
       )
+    }
+
+    // Drivers may only progress their order along the delivery flow
+    if (user.role === 'driver' && body.status) {
+      const next: Record<string, string> = { ready: 'out_for_delivery', out_for_delivery: 'delivered' }
+      if (next[existingOrder.status] !== body.status) {
+        return NextResponse.json(
+          { error: 'Invalid status transition for driver' },
+          { status: 400 }
+        )
+      }
     }
 
     // Update order
@@ -134,3 +171,4 @@ export async function PATCH(
     )
   }
 }
+

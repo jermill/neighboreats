@@ -23,18 +23,68 @@ import { createServerClient, requireRole } from '@/lib/supabase-server'
  * - Response: { orderId: string, order: Order }
  */
 
+// Map raw Supabase rows (snake_case, nested joins) to the app's Order shape
+function transformOrder(row: any) {
+  return {
+    id: row.id,
+    customerId: row.customer_id,
+    chefId: row.chef_id,
+    driverId: row.driver_id,
+    chef: row.chef
+      ? {
+          id: row.chef.id,
+          name: row.chef.user?.name || 'Chef',
+          photoUrl: row.chef.user?.photo_url || undefined,
+          rating: row.chef.rating,
+          kitchenAddress: row.chef.kitchen_address || '',
+          latitude: row.chef.latitude,
+          longitude: row.chef.longitude,
+        }
+      : null,
+    customer: row.customer
+      ? { id: row.customer.id, name: row.customer.name, phone: row.customer.phone }
+      : null,
+    items: (row.order_items || []).map((oi: any) => ({
+      quantity: oi.quantity,
+      menuItem: oi.menu_item
+        ? {
+            id: oi.menu_item.id,
+            chefId: oi.menu_item.chef_id,
+            name: oi.menu_item.name,
+            description: oi.menu_item.description,
+            price: oi.menu_item.price,
+            category: oi.menu_item.category,
+            dietaryTags: oi.menu_item.dietary_tags || [],
+            photoUrl: oi.menu_item.photo_url || '',
+            isAvailable: oi.menu_item.is_available,
+          }
+        : { id: oi.menu_item_id, name: 'Item', price: oi.price_at_time, quantity: oi.quantity },
+    })),
+    totalPrice: row.total_price,
+    deliveryFee: row.delivery_fee || 0,
+    status: row.status,
+    fulfillmentType: row.fulfillment_type,
+    deliveryAddress: row.delivery_address || undefined,
+    specialInstructions: row.special_instructions || undefined,
+    createdAt: row.created_at,
+    chefRating: row.chef_rating || undefined,
+    driverRating: row.driver_rating || undefined,
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const user = await requireRole(['customer', 'chef', 'driver'])
     const supabase = createServerClient()
     const { searchParams } = new URL(request.url)
     const status = searchParams.get('status')
+    const available = searchParams.get('available')
 
     let query = supabase
       .from('orders')
       .select(`
         *,
-        chef:chefs(*),
+        chef:chefs(*, user:users(name, photo_url)),
         customer:users!orders_customer_id_fkey(*),
         order_items(
           *,
@@ -48,7 +98,12 @@ export async function GET(request: NextRequest) {
     } else if (user.role === 'chef') {
       query = query.eq('chef_id', user.id)
     } else if (user.role === 'driver') {
-      query = query.eq('driver_id', user.id)
+      if (available === 'true') {
+        // unclaimed orders ready for pickup (RLS limits this to active drivers)
+        query = query.eq('status', 'ready').is('driver_id', null)
+      } else {
+        query = query.eq('driver_id', user.id)
+      }
     }
 
     // Filter by status if provided
@@ -68,7 +123,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    return NextResponse.json({ orders: orders || [] })
+    return NextResponse.json({ orders: (orders || []).map(transformOrder) })
   } catch (error: any) {
     console.error('Orders API error:', error)
     return NextResponse.json(
@@ -128,7 +183,9 @@ export async function POST(request: NextRequest) {
       .insert({
         customer_id: user.id,
         chef_id: chefId,
-        total_price: totalPrice,
+        order_type: 'a_la_carte',
+        meal_price: totalPrice,
+        total_price: totalPrice + deliveryFee,
         delivery_fee: deliveryFee,
         status: 'pending',
         fulfillment_type: fulfillmentType,
@@ -180,3 +237,4 @@ export async function POST(request: NextRequest) {
     )
   }
 }
+

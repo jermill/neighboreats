@@ -209,3 +209,4 @@ When ready to accept real payments:
 **Questions?** Review the full setup guide in `STRIPE_SETUP.md`
 
 **Ready to go live?** See `STRIPE_IMPLEMENTATION_SUMMARY.md` production checklist
+

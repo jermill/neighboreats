@@ -4,6 +4,7 @@ import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import Footer from '@/components/shared/Footer'
 import { ThemeProvider } from '@/contexts/ThemeContext'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -49,13 +50,14 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-white dark:bg-dark-bg text-foreground dark:text-dark-text transition-colors`}>
         <ThemeProvider>
+          <AuthProvider>
           <div className="flex flex-col min-h-screen">
             <main className="flex-grow">
               {children}
             </main>
             <Footer />
           </div>
-          <Toaster 
+          <Toaster
             position="bottom-center"
             toastOptions={{
               style: {
@@ -64,6 +66,7 @@ export default function RootLayout({
               },
             }}
           />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

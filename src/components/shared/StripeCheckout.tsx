@@ -64,3 +64,4 @@ export default function StripeCheckout({ onSuccess, onError, amount }: StripeChe
     </form>
   )
 }
+

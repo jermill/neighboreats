@@ -9,6 +9,7 @@ import Button from '@/components/shared/Button'
 import Slider from '@/components/shared/Slider'
 import Badge from '@/components/shared/Badge'
 import ConnectOnboarding from '@/components/shared/ConnectOnboarding'
+import FileUpload from '@/components/shared/FileUpload'
 import { profileApi } from '@/lib/api-client'
 import { useStore } from '@/lib/store'
 import toast from 'react-hot-toast'
@@ -90,7 +91,18 @@ export default function ChefProfilePage() {
             </div>
             <div>
               <h2 className="text-xl font-bold mb-2">Profile Photo</h2>
-              <Button variant="outline" size="sm">Change Photo</Button>
+              <FileUpload
+                buttonText="Change Photo"
+                showPreview={false}
+                onUploaded={async (url) => {
+                  try {
+                    await profileApi.update({ photoUrl: url })
+                    toast.success('Photo updated!')
+                  } catch {
+                    toast.error('Failed to save photo')
+                  }
+                }}
+              />
             </div>
           </div>
         </Card>

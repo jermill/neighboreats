@@ -27,15 +27,8 @@ interface AppState {
 }
 
 export const useStore = create<AppState>((set, get) => ({
-  // User
-  currentUser: {
-    id: 'customer-1',
-    name: 'John Doe',
-    email: 'john@example.com',
-    phone: '(302) 555-0100',
-    role: 'customer',
-    photoUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400'
-  },
+  // User — null until AuthProvider hydrates it from the Supabase session
+  currentUser: null,
   setCurrentUser: (user) => set({ currentUser: user }),
 
   // Cart

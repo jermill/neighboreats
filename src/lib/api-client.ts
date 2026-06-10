@@ -20,6 +20,29 @@ export const ordersApi = {
     return res.json()
   },
 
+  // Drivers: orders that are ready and unclaimed (driver_id IS NULL)
+  getAvailable: async () => {
+    const res = await fetch('/api/orders?available=true')
+    if (!res.ok) throw new Error('Failed to fetch available deliveries')
+    return res.json()
+  },
+
+  // Drivers: atomically claim an unclaimed order (409 if already claimed)
+  claim: async (id: string) => {
+    const res = await fetch(`/api/orders/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ claim: true })
+    })
+    if (!res.ok) {
+      const error = await res.json().catch(() => ({}))
+      const err = new Error(error.error || 'Failed to claim delivery') as Error & { status?: number }
+      err.status = res.status
+      throw err
+    }
+    return res.json()
+  },
+
   create: async (data: {
     chefId: string
     items: Array<{ menuItemId: string; quantity: number }>
@@ -323,3 +346,4 @@ export const integrationsApi = {
     }
   }
 }
+
