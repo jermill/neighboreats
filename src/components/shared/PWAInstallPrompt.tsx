@@ -82,7 +82,7 @@ export default function PWAInstallPrompt() {
       <div className="bg-white rounded-2xl shadow-2xl border-2 border-rose-200 p-6">
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition"
+          className="absolute top-3 right-3 text-gray-500 hover:text-gray-600 transition"
           aria-label="Dismiss"
         >
           <X className="w-5 h-5" />

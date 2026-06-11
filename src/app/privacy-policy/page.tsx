@@ -5,9 +5,9 @@ import Image from 'next/image'
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <nav className="bg-white dark:bg-dark-bg-elevated shadow-md sticky top-0 z-40 border-b border-gray-200 dark:border-dark-border">
+      <nav className="bg-white shadow-md sticky top-0 z-40 border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
             </Link>
             <Link 
               href="/" 
-              className="px-5 py-2.5 bg-brand-teal dark:bg-primary-dark text-white rounded-xl hover:bg-brand-teal/90 dark:hover:bg-primary-dark/90 transition font-semibold shadow-md"
+              className="px-5 py-2.5 bg-brand-teal text-white rounded-xl hover:bg-brand-teal/90 transition font-semibold shadow-md"
             >
               Back to Home
             </Link>
@@ -31,17 +31,17 @@ export default function PrivacyPolicyPage() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-lg p-8 md:p-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-dark-text mb-4">Privacy Policy</h1>
-          <p className="text-gray-600 dark:text-dark-text-secondary mb-8">
+        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
+          <p className="text-gray-600 mb-8">
             <strong>Effective Date:</strong> December 14, 2025<br />
             <strong>Last Updated:</strong> December 14, 2025
           </p>
 
-          <div className="space-y-8 text-gray-700 dark:text-dark-text-secondary">
+          <div className="space-y-8 text-gray-700">
             {/* Introduction */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">1. Introduction</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
               <p className="mb-4">
                 Welcome to NeighborEats ("we," "our," or "us"). We are committed to protecting your privacy and ensuring 
                 the security of your personal information. This Privacy Policy explains how we collect, use, disclose, 
@@ -55,9 +55,9 @@ export default function PrivacyPolicyPage() {
 
             {/* Information We Collect */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">2. Information We Collect</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
               
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">2.1 Information You Provide</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">2.1 Information You Provide</h3>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li><strong>Account Information:</strong> Name, email address, phone number, password, and profile photo</li>
                 <li><strong>Profile Details:</strong> Delivery address, payment methods, dietary preferences</li>
@@ -66,7 +66,7 @@ export default function PrivacyPolicyPage() {
                 <li><strong>Communications:</strong> Messages, reviews, ratings, and support inquiries</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">2.2 Automatically Collected Information</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">2.2 Automatically Collected Information</h3>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li><strong>Usage Data:</strong> Pages visited, features used, time spent on platform, search queries</li>
                 <li><strong>Device Information:</strong> IP address, browser type, device type, operating system</li>
@@ -77,7 +77,7 @@ export default function PrivacyPolicyPage() {
 
             {/* How We Use Your Information */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">3. How We Use Your Information</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
               <p className="mb-4">We use the information we collect to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Provide, operate, and maintain our platform</li>
@@ -95,9 +95,9 @@ export default function PrivacyPolicyPage() {
 
             {/* Information Sharing */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">4. How We Share Your Information</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. How We Share Your Information</h2>
               
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">4.1 With Service Providers</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">4.1 With Service Providers</h3>
               <p className="mb-4">We share information with third-party service providers who help us operate our platform:</p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li><strong>Payment Processing:</strong> Stripe (for payment and payout processing)</li>
@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
                 <li><strong>Database & Hosting:</strong> Supabase, Netlify (for data storage and hosting)</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">4.2 Between Users</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">4.2 Between Users</h3>
               <p className="mb-4">
                 When you place an order, we share necessary information between parties to facilitate the transaction:
               </p>
@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
                 <li>Drivers receive pickup and delivery addresses and customer contact information</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">4.3 Legal Requirements</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">4.3 Legal Requirements</h3>
               <p className="mb-4">We may disclose your information if required by law or to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Comply with legal processes, court orders, or government requests</li>
@@ -128,7 +128,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Data Security */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">5. Data Security</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Data Security</h2>
               <p className="mb-4">
                 We implement appropriate technical and organizational security measures to protect your personal information, including:
               </p>
@@ -146,7 +146,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Data Retention */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">6. Data Retention</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Data Retention</h2>
               <p>
                 We retain your personal information for as long as necessary to provide our services and comply with legal obligations. 
                 When you delete your account, we will delete or anonymize your personal information within 90 days, except where we 
@@ -156,7 +156,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Your Rights */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">7. Your Privacy Rights</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Your Privacy Rights</h2>
               <p className="mb-4">Depending on your location, you may have the following rights:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li><strong>Access:</strong> Request a copy of your personal information</li>
@@ -173,7 +173,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Cookies */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">8. Cookies and Tracking Technologies</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Cookies and Tracking Technologies</h2>
               <p className="mb-4">
                 We use cookies, web beacons, and similar technologies to enhance your experience. You can control cookies through 
                 your browser settings, but disabling cookies may limit your ability to use certain features of our platform.
@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Third-Party Links */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">9. Third-Party Links</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Third-Party Links</h2>
               <p>
                 Our platform may contain links to third-party websites or services. We are not responsible for the privacy 
                 practices of these external sites. We encourage you to review their privacy policies before providing any personal information.
@@ -199,7 +199,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Children's Privacy */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">10. Children's Privacy</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Children's Privacy</h2>
               <p>
                 NeighborEats is not intended for children under 18 years of age. We do not knowingly collect personal information 
                 from children. If you are a parent or guardian and believe your child has provided us with personal information, 
@@ -209,7 +209,7 @@ export default function PrivacyPolicyPage() {
 
             {/* California Privacy Rights */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">11. California Privacy Rights (CCPA)</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. California Privacy Rights (CCPA)</h2>
               <p className="mb-4">
                 If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA):
               </p>
@@ -223,7 +223,7 @@ export default function PrivacyPolicyPage() {
 
             {/* Changes to Privacy Policy */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">12. Changes to This Privacy Policy</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Changes to This Privacy Policy</h2>
               <p>
                 We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the 
                 new Privacy Policy on this page and updating the "Last Updated" date. Your continued use of NeighborEats after 
@@ -233,20 +233,20 @@ export default function PrivacyPolicyPage() {
 
             {/* Contact Us */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">13. Contact Us</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Contact Us</h2>
               <p className="mb-4">
                 If you have questions or concerns about this Privacy Policy or our data practices, please contact us:
               </p>
-              <div className="bg-gray-50 dark:bg-dark-bg p-4 rounded-lg">
-                <p className="font-semibold text-gray-900 dark:text-dark-text">NeighborEats</p>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="font-semibold text-gray-900">NeighborEats</p>
                 <p>Email: <a href="mailto:privacy@neighboreats.com" className="text-brand-teal hover:underline">privacy@neighboreats.com</a></p>
                 <p>Support: <a href="mailto:support@neighboreats.com" className="text-brand-teal hover:underline">support@neighboreats.com</a></p>
               </div>
             </section>
 
             {/* Acknowledgment */}
-            <section className="border-t border-gray-200 dark:border-dark-border pt-6">
-              <p className="text-sm text-gray-600 dark:text-dark-text-muted italic">
+            <section className="border-t border-gray-200 pt-6">
+              <p className="text-sm text-gray-600 italic">
                 By using NeighborEats, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.
               </p>
             </section>

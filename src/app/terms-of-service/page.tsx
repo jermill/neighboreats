@@ -5,9 +5,9 @@ import Image from 'next/image'
 
 export default function TermsOfServicePage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <nav className="bg-white dark:bg-dark-bg-elevated shadow-md sticky top-0 z-40 border-b border-gray-200 dark:border-dark-border">
+      <nav className="bg-white shadow-md sticky top-0 z-40 border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
@@ -21,7 +21,7 @@ export default function TermsOfServicePage() {
             </Link>
             <Link 
               href="/" 
-              className="px-5 py-2.5 bg-brand-teal dark:bg-primary-dark text-white rounded-xl hover:bg-brand-teal/90 dark:hover:bg-primary-dark/90 transition font-semibold shadow-md"
+              className="px-5 py-2.5 bg-brand-teal text-white rounded-xl hover:bg-brand-teal/90 transition font-semibold shadow-md"
             >
               Back to Home
             </Link>
@@ -31,17 +31,17 @@ export default function TermsOfServicePage() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-lg p-8 md:p-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-dark-text mb-4">Terms of Service</h1>
-          <p className="text-gray-600 dark:text-dark-text-secondary mb-8">
+        <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Terms of Service</h1>
+          <p className="text-gray-600 mb-8">
             <strong>Effective Date:</strong> December 14, 2025<br />
             <strong>Last Updated:</strong> December 14, 2025
           </p>
 
-          <div className="space-y-8 text-gray-700 dark:text-dark-text-secondary">
+          <div className="space-y-8 text-gray-700">
             {/* Introduction */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">1. Agreement to Terms</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Agreement to Terms</h2>
               <p className="mb-4">
                 Welcome to NeighborEats ("Platform," "we," "us," or "our"). These Terms of Service ("Terms") govern your 
                 access to and use of our platform, including our website, mobile applications, and related services.
@@ -58,7 +58,7 @@ export default function TermsOfServicePage() {
 
             {/* Platform Description */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">2. Platform Description</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Platform Description</h2>
               <p className="mb-4">
                 NeighborEats is a marketplace platform that connects:
               </p>
@@ -67,20 +67,20 @@ export default function TermsOfServicePage() {
                 <li><strong>Chefs</strong> who prepare and sell food through our platform (independent contractors)</li>
                 <li><strong>Drivers</strong> who provide delivery services (independent contractors)</li>
               </ul>
-              <p className="mt-4 font-semibold text-gray-900 dark:text-dark-text">
+              <p className="mt-4 font-semibold text-gray-900">
                 ⚠️ IMPORTANT: NeighborEats is a technology platform only. We facilitate connections between users but are 
                 NOT a food service provider, restaurant, catering company, or delivery service.
               </p>
             </section>
 
             {/* Independent Contractor Relationship */}
-            <section className="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-400 dark:border-yellow-600 rounded-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">
+            <section className="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 ⚠️ 3. Independent Contractor Relationship - LIMITED LIABILITY
               </h2>
               
               <div className="space-y-4">
-                <p className="font-bold text-lg text-gray-900 dark:text-dark-text">
+                <p className="font-bold text-lg text-gray-900">
                   3.1 Chefs and Drivers Are Independent Contractors
                 </p>
                 <p>
@@ -89,11 +89,11 @@ export default function TermsOfServicePage() {
                   responsible for their own actions, products, and services.
                 </p>
 
-                <p className="font-bold text-lg text-gray-900 dark:text-dark-text">
+                <p className="font-bold text-lg text-gray-900">
                   3.2 NeighborEats Is NOT Responsible for Transactions
                 </p>
                 <p>
-                  <strong className="text-red-600 dark:text-red-400">NeighborEats is NOT responsible for any business dealings, 
+                  <strong className="text-red-600">NeighborEats is NOT responsible for any business dealings, 
                   disputes, or issues between customers and chefs/drivers.</strong> This includes but is not limited to:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
@@ -107,7 +107,7 @@ export default function TermsOfServicePage() {
                   <li>Personal injury or property damage</li>
                 </ul>
 
-                <p className="font-bold text-lg text-gray-900 dark:text-dark-text mt-4">
+                <p className="font-bold text-lg text-gray-900 mt-4">
                   3.3 Contractors Are Responsible for All Issues
                 </p>
                 <p>
@@ -123,11 +123,11 @@ export default function TermsOfServicePage() {
                   <li>Their own conduct and actions</li>
                 </ul>
 
-                <p className="font-bold text-lg text-gray-900 dark:text-dark-text mt-4">
+                <p className="font-bold text-lg text-gray-900 mt-4">
                   3.4 Refund Policy
                 </p>
                 <p>
-                  <strong className="text-red-600 dark:text-red-400">Customers must seek refunds directly from the chef or driver 
+                  <strong className="text-red-600">Customers must seek refunds directly from the chef or driver 
                   who provided the service.</strong> NeighborEats does not process refunds on behalf of contractors. We may 
                   facilitate communication between parties but are not obligated to resolve disputes or provide compensation.
                 </p>
@@ -136,9 +136,9 @@ export default function TermsOfServicePage() {
 
             {/* User Accounts */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">4. User Accounts</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. User Accounts</h2>
               
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">4.1 Account Registration</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">4.1 Account Registration</h3>
               <p className="mb-4">To use certain features, you must create an account. You agree to:</p>
               <ul className="list-disc pl-6 mb-4 space-y-2">
                 <li>Provide accurate, current, and complete information</li>
@@ -148,13 +148,13 @@ export default function TermsOfServicePage() {
                 <li>Be responsible for all activity under your account</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">4.2 Eligibility</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">4.2 Eligibility</h3>
               <p>You must be at least 18 years old to use NeighborEats. By using our platform, you represent that you meet this requirement.</p>
             </section>
 
             {/* Chef Requirements */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">5. Requirements for Chefs</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Requirements for Chefs</h2>
               <p className="mb-4">If you register as a chef, you must:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Comply with all federal, state, and local food safety laws and regulations</li>
@@ -174,7 +174,7 @@ export default function TermsOfServicePage() {
 
             {/* Driver Requirements */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">6. Requirements for Drivers</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Requirements for Drivers</h2>
               <p className="mb-4">If you register as a driver, you must:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Possess a valid driver's license and vehicle registration</li>
@@ -190,7 +190,7 @@ export default function TermsOfServicePage() {
 
             {/* Customer Responsibilities */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">7. Customer Responsibilities</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Customer Responsibilities</h2>
               <p className="mb-4">As a customer, you agree to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Provide accurate delivery information</li>
@@ -204,15 +204,15 @@ export default function TermsOfServicePage() {
 
             {/* Payments and Fees */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">8. Payments and Fees</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Payments and Fees</h2>
               
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">8.1 Payment Processing</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">8.1 Payment Processing</h3>
               <p className="mb-4">
                 All payments are processed securely through our third-party payment processor (Stripe). By providing payment 
                 information, you authorize us to charge your payment method for all fees incurred.
               </p>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">8.2 Platform Fees</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">8.2 Platform Fees</h3>
               <p className="mb-4">NeighborEats charges a service fee on transactions:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Chefs: 15-20% platform fee on each order</li>
@@ -220,8 +220,8 @@ export default function TermsOfServicePage() {
                 <li>Customers: May be charged service fees and delivery fees</li>
               </ul>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">8.3 Refunds</h3>
-              <p className="font-semibold text-red-600 dark:text-red-400">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">8.3 Refunds</h3>
+              <p className="font-semibold text-red-600">
                 ⚠️ REFUNDS MUST BE REQUESTED FROM AND PROCESSED BY THE CHEF OR DRIVER, NOT NEIGHBOREATS.
               </p>
               <p className="mt-2">
@@ -232,7 +232,7 @@ export default function TermsOfServicePage() {
 
             {/* Prohibited Conduct */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">9. Prohibited Conduct</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Prohibited Conduct</h2>
               <p className="mb-4">You may not:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Violate any laws or regulations</li>
@@ -248,13 +248,13 @@ export default function TermsOfServicePage() {
             </section>
 
             {/* Limitation of Liability */}
-            <section className="bg-red-50 dark:bg-red-900/20 border-2 border-red-400 dark:border-red-600 rounded-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">
+            <section className="bg-red-50 border-2 border-red-400 rounded-lg p-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 ⚠️ 10. Limitation of Liability and Disclaimers
               </h2>
               
               <div className="space-y-4">
-                <p className="font-bold text-lg uppercase text-gray-900 dark:text-dark-text">
+                <p className="font-bold text-lg uppercase text-gray-900">
                   10.1 Platform Provided "AS IS"
                 </p>
                 <p>
@@ -262,10 +262,10 @@ export default function TermsOfServicePage() {
                   WE DO NOT WARRANT THAT THE PLATFORM WILL BE UNINTERRUPTED, SECURE, OR ERROR-FREE.
                 </p>
 
-                <p className="font-bold text-lg uppercase text-gray-900 dark:text-dark-text">
+                <p className="font-bold text-lg uppercase text-gray-900">
                   10.2 No Liability for User Transactions
                 </p>
-                <p className="font-semibold text-red-600 dark:text-red-400">
+                <p className="font-semibold text-red-600">
                   NEIGHBOREATS IS NOT LIABLE FOR ANY DAMAGES, LOSSES, OR INJURIES ARISING FROM TRANSACTIONS BETWEEN USERS, 
                   INCLUDING BUT NOT LIMITED TO:
                 </p>
@@ -278,7 +278,7 @@ export default function TermsOfServicePage() {
                   <li>Any conduct or actions of chefs or drivers</li>
                 </ul>
 
-                <p className="font-bold text-lg uppercase text-gray-900 dark:text-dark-text mt-4">
+                <p className="font-bold text-lg uppercase text-gray-900 mt-4">
                   10.3 Maximum Liability
                 </p>
                 <p>
@@ -291,7 +291,7 @@ export default function TermsOfServicePage() {
 
             {/* Indemnification */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">11. Indemnification</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Indemnification</h2>
               <p>
                 You agree to indemnify, defend, and hold harmless NeighborEats and its officers, directors, employees, and 
                 agents from any claims, damages, losses, liabilities, and expenses (including attorney fees) arising from:
@@ -308,16 +308,16 @@ export default function TermsOfServicePage() {
 
             {/* Dispute Resolution */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">12. Dispute Resolution</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Dispute Resolution</h2>
               
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">12.1 User-to-User Disputes</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">12.1 User-to-User Disputes</h3>
               <p className="mb-4">
                 <strong>Disputes between customers and chefs/drivers must be resolved directly between the parties.</strong> 
                 NeighborEats is not responsible for mediating or resolving these disputes but may provide contact information 
                 to facilitate communication.
               </p>
 
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-3">12.2 Disputes with NeighborEats</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">12.2 Disputes with NeighborEats</h3>
               <p>
                 Any disputes with NeighborEats shall be resolved through binding arbitration in accordance with the rules of 
                 the American Arbitration Association. You waive your right to participate in class action lawsuits against NeighborEats.
@@ -326,7 +326,7 @@ export default function TermsOfServicePage() {
 
             {/* Termination */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">13. Termination</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Termination</h2>
               <p className="mb-4">
                 We may suspend or terminate your account at any time, with or without notice, for any reason, including:
               </p>
@@ -345,7 +345,7 @@ export default function TermsOfServicePage() {
 
             {/* Intellectual Property */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">14. Intellectual Property</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">14. Intellectual Property</h2>
               <p className="mb-4">
                 All content on NeighborEats, including logos, designs, text, graphics, and software, is owned by or licensed 
                 to NeighborEats and is protected by copyright and trademark laws. You may not use our intellectual property 
@@ -359,7 +359,7 @@ export default function TermsOfServicePage() {
 
             {/* Changes to Terms */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">15. Changes to These Terms</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">15. Changes to These Terms</h2>
               <p>
                 We reserve the right to modify these Terms at any time. We will notify you of material changes by posting 
                 the updated Terms on our platform and updating the "Last Updated" date. Your continued use of NeighborEats 
@@ -369,7 +369,7 @@ export default function TermsOfServicePage() {
 
             {/* Governing Law */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">16. Governing Law</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">16. Governing Law</h2>
               <p>
                 These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, 
                 without regard to its conflict of law principles.
@@ -378,23 +378,23 @@ export default function TermsOfServicePage() {
 
             {/* Contact Information */}
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-4">17. Contact Us</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">17. Contact Us</h2>
               <p className="mb-4">
                 If you have questions about these Terms of Service, please contact us:
               </p>
-              <div className="bg-gray-50 dark:bg-dark-bg p-4 rounded-lg">
-                <p className="font-semibold text-gray-900 dark:text-dark-text">NeighborEats</p>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <p className="font-semibold text-gray-900">NeighborEats</p>
                 <p>Email: <a href="mailto:legal@neighboreats.com" className="text-brand-teal hover:underline">legal@neighboreats.com</a></p>
                 <p>Support: <a href="mailto:support@neighboreats.com" className="text-brand-teal hover:underline">support@neighboreats.com</a></p>
               </div>
             </section>
 
             {/* Final Agreement */}
-            <section className="border-t border-gray-200 dark:border-dark-border pt-6">
-              <p className="font-semibold text-gray-900 dark:text-dark-text mb-2">
+            <section className="border-t border-gray-200 pt-6">
+              <p className="font-semibold text-gray-900 mb-2">
                 By using NeighborEats, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.
               </p>
-              <p className="text-sm text-gray-600 dark:text-dark-text-muted italic">
+              <p className="text-sm text-gray-600 italic">
                 Last Updated: December 14, 2025
               </p>
             </section>

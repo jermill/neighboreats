@@ -13,12 +13,12 @@ export default function ChefCard({ chef, distance, onClick }: ChefCardProps) {
   return (
     <div 
       onClick={onClick}
-      className="bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-lg dark:shadow-xl dark:shadow-black/20 overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer border border-gray-100 dark:border-dark-border"
+      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer border border-gray-100"
     >
       {/* Horizontal Layout */}
       <div className="flex flex-col sm:flex-row">
         {/* Chef Photo - Compact */}
-        <div className="relative w-full sm:w-40 h-40 sm:h-auto flex-shrink-0 bg-gray-200 dark:bg-dark-bg-secondary">
+        <div className="relative w-full sm:w-40 h-40 sm:h-auto flex-shrink-0 bg-gray-200">
           <img
             src={chef.photoUrl || 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=400&fit=crop'}
             alt={chef.name}
@@ -41,10 +41,10 @@ export default function ChefCard({ chef, distance, onClick }: ChefCardProps) {
           <div>
             {/* Name & Rating Row */}
             <div className="flex items-start justify-between gap-3 mb-2">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-dark-text">{chef.name}</h3>
+              <h3 className="text-xl font-bold text-gray-900">{chef.name}</h3>
               <div className="flex items-center gap-1.5 flex-shrink-0">
                 <Rating value={chef.rating} readonly size="sm" />
-                <span className="text-sm text-gray-600 dark:text-dark-text-secondary">({chef.totalReviews})</span>
+                <span className="text-sm text-gray-600">({chef.totalReviews})</span>
               </div>
             </div>
 
@@ -53,13 +53,13 @@ export default function ChefCard({ chef, distance, onClick }: ChefCardProps) {
               {chef.categories.slice(0, 3).map((category) => (
                 <span 
                   key={category}
-                  className="bg-slate-700 dark:bg-slate-600 text-white px-3 py-1 rounded-full text-xs font-medium"
+                  className="bg-slate-700 text-white px-3 py-1 rounded-full text-xs font-medium"
                 >
                   {category}
                 </span>
               ))}
               {chef.categories.length > 3 && (
-                <span className="text-xs text-gray-500 dark:text-dark-text-muted px-2 py-1">
+                <span className="text-xs text-gray-500 px-2 py-1">
                   +{chef.categories.length - 3} more
                 </span>
               )}
@@ -67,9 +67,9 @@ export default function ChefCard({ chef, distance, onClick }: ChefCardProps) {
           </div>
 
           {/* Bottom Row - Distance & Subscribers */}
-          <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-dark-border">
+          <div className="flex items-center justify-between pt-2 border-t border-gray-100">
             {distance !== undefined && (
-              <div className="flex items-center gap-1.5 text-gray-600 dark:text-dark-text-secondary">
+              <div className="flex items-center gap-1.5 text-gray-600">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                 </svg>
@@ -77,7 +77,7 @@ export default function ChefCard({ chef, distance, onClick }: ChefCardProps) {
               </div>
             )}
             
-            <div className="flex items-center gap-1.5 text-gray-600 dark:text-dark-text-secondary">
+            <div className="flex items-center gap-1.5 text-gray-600">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
               </svg>

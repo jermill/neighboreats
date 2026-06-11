@@ -48,7 +48,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
       </head>
-      <body className={`${inter.className} bg-white dark:bg-dark-bg text-foreground dark:text-dark-text transition-colors`}>
+      <body className={`${inter.className} bg-brand-cream text-gray-900`}>
         <ThemeProvider>
           <AuthProvider>
           <div className="flex flex-col min-h-screen">

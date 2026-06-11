@@ -11,7 +11,6 @@ import Select from '@/components/shared/Select'
 import Modal from '@/components/shared/Modal'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
-import DarkModeToggle from '@/components/shared/DarkModeToggle'
 
 export default function BecomeADriverPage() {
   const router = useRouter()
@@ -93,9 +92,9 @@ export default function BecomeADriverPage() {
     steps.length > 1 ? (currentStep / (steps.length - 1)) * 100 : 100
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-light via-white via-40% to-gray-50 dark:from-dark-bg dark:via-dark-bg-secondary dark:via-40% dark:to-dark-bg-elevated">
+    <div className="min-h-screen bg-gradient-to-b from-brand-light via-white via-40% to-gray-50">
       {/* Header */}
-      <nav className="bg-white dark:bg-dark-bg-elevated shadow-md sticky top-0 z-40 border-b border-gray-200 dark:border-dark-border">
+      <nav className="bg-white shadow-md sticky top-0 z-40 border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
@@ -109,7 +108,7 @@ export default function BecomeADriverPage() {
             </Link>
             <Link 
               href="/" 
-              className="px-5 py-2.5 bg-brand-teal dark:bg-primary-dark text-white rounded-xl hover:bg-brand-teal/90 dark:hover:bg-primary-dark/90 transition font-semibold shadow-md"
+              className="px-5 py-2.5 bg-brand-teal text-white rounded-xl hover:bg-brand-teal/90 transition font-semibold shadow-md"
             >
               Back to Home
             </Link>
@@ -124,10 +123,10 @@ export default function BecomeADriverPage() {
             <Car className="w-12 h-12 text-white" />
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-dark-text mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Drive & Deliver
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto mb-8">
+          <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-8">
             Earn money on your schedule. Deliver fresh, local food and meet amazing people in your community.
           </p>
 
@@ -142,59 +141,59 @@ export default function BecomeADriverPage() {
 
       {/* Benefits Section */}
       <div className="max-w-4xl mx-auto px-4 py-16">
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-dark-text mb-12 text-center">Why Drive with NeighborEats?</h2>
+        <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Why Drive with NeighborEats?</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
                 <DollarSign className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Earn $4-5 Per Delivery</h3>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Earn $4-5 Per Delivery</h3>
+                <p className="text-gray-600 text-lg">
                   Fair pay for every delivery. Plus tips! Average $15-25 per hour.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
                 <Clock className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Flexible Hours</h3>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Flexible Hours</h3>
+                <p className="text-gray-600 text-lg">
                   Drive when you want. Work full-time, part-time, or just weekends.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
                 <MapPin className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Short Distances</h3>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Short Distances</h3>
+                <p className="text-gray-600 text-lg">
                   Hyper-local deliveries. Most routes are under 5 miles.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl p-8 shadow-lg dark:shadow-xl dark:shadow-black/20 border border-gray-100 dark:border-dark-border hover:scale-105 transition-all">
+          <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:scale-105 transition-all">
             <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 bg-brand-teal/10 rounded-xl flex items-center justify-center flex-shrink-0">
                 <TrendingUp className="w-7 h-7 text-brand-teal" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-dark-text mb-2">Weekly Payouts</h3>
-                <p className="text-gray-600 dark:text-dark-text-secondary text-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Weekly Payouts</h3>
+                <p className="text-gray-600 text-lg">
                   Get paid every week. Fast, reliable deposits directly to your account.
                 </p>
               </div>
@@ -203,32 +202,32 @@ export default function BecomeADriverPage() {
         </div>
 
         {/* Requirements */}
-        <div className="bg-brand-teal/5 dark:bg-brand-teal/10 rounded-2xl p-8 mb-12 border border-brand-teal/20 dark:border-brand-teal/30">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-dark-text mb-6">Requirements</h3>
+        <div className="bg-brand-teal/5 rounded-2xl p-8 mb-12 border border-brand-teal/20">
+          <h3 className="text-3xl font-bold text-gray-900 mb-6">Requirements</h3>
           <ul className="space-y-4">
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Valid driver's license and clean driving record</span>
+              <span className="text-gray-700 text-lg">Valid driver's license and clean driving record</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Reliable vehicle (car, truck, or SUV) in good condition</span>
+              <span className="text-gray-700 text-lg">Reliable vehicle (car, truck, or SUV) in good condition</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Valid auto insurance with proof of coverage</span>
+              <span className="text-gray-700 text-lg">Valid auto insurance with proof of coverage</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Smartphone with data plan (iOS or Android)</span>
+              <span className="text-gray-700 text-lg">Smartphone with data plan (iOS or Android)</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Must be 21+ years old</span>
+              <span className="text-gray-700 text-lg">Must be 21+ years old</span>
             </li>
             <li className="flex items-start gap-3">
               <CheckCircle className="w-6 h-6 text-brand-teal flex-shrink-0 mt-0.5" />
-              <span className="text-gray-700 dark:text-dark-text-secondary text-lg">Pass a background check</span>
+              <span className="text-gray-700 text-lg">Pass a background check</span>
             </li>
           </ul>
         </div>
@@ -248,11 +247,11 @@ export default function BecomeADriverPage() {
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} title="Driver Application">
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
-            <div className="flex items-center justify-between text-sm font-medium text-gray-600 dark:text-dark-text-secondary">
+            <div className="flex items-center justify-between text-sm font-medium text-gray-600">
               <span>Step {currentStep + 1} of {steps.length}</span>
               <span>{steps[currentStep]}</span>
             </div>
-            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden dark:bg-dark-border">
+            <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
               <div
                 className="h-full bg-brand-teal transition-all"
                 style={{ width: `${progressPercent}%` }}
@@ -262,7 +261,7 @@ export default function BecomeADriverPage() {
 
           {currentStep === 0 && (
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Personal Information</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Personal Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                   label="Full Name"
@@ -328,7 +327,7 @@ export default function BecomeADriverPage() {
 
           {currentStep === 1 && (
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Vehicle Information</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Vehicle Information</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Select
                   label="Vehicle Type"
@@ -390,7 +389,7 @@ export default function BecomeADriverPage() {
 
           {currentStep === 2 && (
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-dark-text mb-4">Experience & Availability</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Experience & Availability</h3>
               <div className="space-y-4">
                 <Select
                   label="Driving Experience"
@@ -428,7 +427,7 @@ export default function BecomeADriverPage() {
             </div>
           )}
 
-          <div className="pt-6 border-t border-gray-200 dark:border-dark-border flex gap-3">
+          <div className="pt-6 border-t border-gray-200 flex gap-3">
             <Button
               type="button"
               variant="secondary"
@@ -460,14 +459,13 @@ export default function BecomeADriverPage() {
               </Button>
             )}
           </div>
-          <p className="text-sm text-gray-500 dark:text-dark-text-muted text-center mt-4">
+          <p className="text-sm text-gray-500 text-center mt-4">
             We'll review your application and get back to you within 2-3 business days.
           </p>
         </form>
       </Modal>
 
       {/* Dark Mode Toggle */}
-      <DarkModeToggle />
     </div>
   )
 }

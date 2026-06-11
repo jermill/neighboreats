@@ -138,7 +138,7 @@ export default function CheckoutPage() {
 
         {/* Progress Indicator */}
         <div className="flex items-center justify-center space-x-4">
-          <div className={`flex items-center ${step === 'delivery' ? 'text-teal-600' : 'text-gray-400'}`}>
+          <div className={`flex items-center ${step === 'delivery' ? 'text-teal-600' : 'text-gray-500'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'delivery' ? 'bg-teal-600 text-white' : 'bg-gray-200'}`}>
               1
             </div>
@@ -147,7 +147,7 @@ export default function CheckoutPage() {
           <div className="w-16 h-1 bg-gray-200">
             <div className={`h-full ${step === 'payment' ? 'bg-teal-600' : 'bg-gray-200'}`} />
           </div>
-          <div className={`flex items-center ${step === 'payment' ? 'text-teal-600' : 'text-gray-400'}`}>
+          <div className={`flex items-center ${step === 'payment' ? 'text-teal-600' : 'text-gray-500'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'payment' ? 'bg-teal-600 text-white' : 'bg-gray-200'}`}>
               2
             </div>

@@ -81,7 +81,7 @@ export default function ChefProfilePage() {
   return (
     <DashboardLayout userRole="chef" userName={currentUser?.name}>
       <div className="max-w-4xl mx-auto space-y-6">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-dark-text">My Profile</h1>
+        <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
 
         {/* Profile Picture */}
         <Card>
@@ -111,22 +111,22 @@ export default function ChefProfilePage() {
         <ConnectOnboarding userRole="chef" />
 
         {/* Public Profile Preview */}
-        <Card className="bg-gradient-to-br from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20">
-          <h3 className="text-lg font-bold mb-2 text-gray-900 dark:text-dark-text">Public Profile</h3>
-          <p className="text-gray-600 dark:text-dark-text-muted mb-3">This is how customers see your profile</p>
-          <div className="bg-white dark:bg-dark-card rounded-lg p-4 shadow-sm">
+        <Card className="bg-gradient-to-br from-teal-50 to-blue-50">
+          <h3 className="text-lg font-bold mb-2 text-gray-900">Public Profile</h3>
+          <p className="text-gray-600 mb-3">This is how customers see your profile</p>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
             <div className="flex items-center gap-3 mb-2">
-              <h4 className="text-xl font-bold text-gray-900 dark:text-dark-text">{form.name || 'Your Name'}</h4>
+              <h4 className="text-xl font-bold text-gray-900">{form.name || 'Your Name'}</h4>
               <Badge variant="success">⭐ 4.9</Badge>
             </div>
-            <p className="text-gray-700 dark:text-dark-text-muted mb-3">{form.bio || 'Add your bio to let customers know about your cooking style...'}</p>
+            <p className="text-gray-700 mb-3">{form.bio || 'Add your bio to let customers know about your cooking style...'}</p>
             <div className="flex flex-wrap gap-2">
               {selectedCategories.length > 0 ? (
                 selectedCategories.map(cat => (
                   <Badge key={cat} variant="info">{cat}</Badge>
                 ))
               ) : (
-                <p className="text-sm text-gray-500 dark:text-dark-text-muted">Select categories below</p>
+                <p className="text-sm text-gray-500">Select categories below</p>
               )}
             </div>
           </div>
@@ -136,7 +136,7 @@ export default function ChefProfilePage() {
         <form onSubmit={handleSubmit}>
           {/* Personal Information */}
           <Card>
-            <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-dark-text">Personal Information</h2>
+            <h2 className="text-xl font-bold mb-4 text-gray-900">Personal Information</h2>
             <div className="space-y-4">
               <Input
                 label="Full Name"
@@ -170,7 +170,7 @@ export default function ChefProfilePage() {
 
           {/* Kitchen Information */}
           <Card>
-            <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-dark-text">Kitchen Information</h2>
+            <h2 className="text-xl font-bold mb-4 text-gray-900">Kitchen Information</h2>
             <div className="space-y-4">
               <Input
                 label="Kitchen Address"
@@ -192,8 +192,8 @@ export default function ChefProfilePage() {
 
           {/* Categories */}
           <Card>
-            <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-dark-text">Your Categories</h2>
-            <p className="text-gray-600 dark:text-dark-text-muted mb-4">Select all that apply to your cooking style</p>
+            <h2 className="text-xl font-bold mb-4 text-gray-900">Your Categories</h2>
+            <p className="text-gray-600 mb-4">Select all that apply to your cooking style</p>
             <div className="flex flex-wrap gap-2">
               {categories.map(cat => (
                 <button
@@ -203,7 +203,7 @@ export default function ChefProfilePage() {
                   className={`px-4 py-2 rounded-full font-medium transition-all ${
                     selectedCategories.includes(cat)
                       ? 'bg-gradient-to-r from-teal-600 to-teal-500 text-white shadow-md hover:shadow-lg'
-                      : 'bg-gray-100 dark:bg-dark-card text-gray-700 dark:text-dark-text hover:bg-gray-200 dark:hover:bg-dark-border'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
                   {cat}
@@ -227,25 +227,25 @@ export default function ChefProfilePage() {
 
         {/* Verification Status */}
         <Card>
-          <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-dark-text">Verification Status</h2>
+          <h2 className="text-xl font-bold mb-4 text-gray-900">Verification Status</h2>
           <div className="space-y-3">
-            <div className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">✅</span>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-dark-text">Background Check</p>
-                  <p className="text-sm text-gray-600 dark:text-dark-text-muted">Completed on Dec 1, 2025</p>
+                  <p className="font-semibold text-gray-900">Background Check</p>
+                  <p className="text-sm text-gray-600">Completed on Dec 1, 2025</p>
                 </div>
               </div>
               <Badge variant="success">Verified</Badge>
             </div>
 
-            <div className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
               <div className="flex items-center gap-3">
                 <span className="text-2xl">✅</span>
                 <div>
-                  <p className="font-semibold text-gray-900 dark:text-dark-text">Stripe Account</p>
-                  <p className="text-sm text-gray-600 dark:text-dark-text-muted">Connected and active</p>
+                  <p className="font-semibold text-gray-900">Stripe Account</p>
+                  <p className="text-sm text-gray-600">Connected and active</p>
                 </div>
               </div>
               <Badge variant="success">Connected</Badge>
@@ -255,23 +255,23 @@ export default function ChefProfilePage() {
 
         {/* Account Stats */}
         <Card>
-          <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-dark-text">Account Statistics</h2>
+          <h2 className="text-xl font-bold mb-4 text-gray-900">Account Statistics</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <p className="text-sm text-gray-600 dark:text-dark-text-muted">Total Orders</p>
-              <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">487</p>
+              <p className="text-sm text-gray-600">Total Orders</p>
+              <p className="text-2xl font-bold text-teal-600">487</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-dark-text-muted">Rating</p>
+              <p className="text-sm text-gray-600">Rating</p>
               <p className="text-2xl font-bold text-yellow-500">4.9 ⭐</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-dark-text-muted">Subscribers</p>
-              <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">24</p>
+              <p className="text-sm text-gray-600">Subscribers</p>
+              <p className="text-2xl font-bold text-teal-600">24</p>
             </div>
             <div>
-              <p className="text-sm text-gray-600 dark:text-dark-text-muted">Member Since</p>
-              <p className="text-lg font-bold text-gray-900 dark:text-dark-text">Jan 2025</p>
+              <p className="text-sm text-gray-600">Member Since</p>
+              <p className="text-lg font-bold text-gray-900">Jan 2025</p>
             </div>
           </div>
         </Card>

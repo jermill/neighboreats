@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: 'class',
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,22 +12,14 @@ const config: Config = {
         // Brand Colors - https://coolors.co/282119-8c3030-f8f9fa-026181-ff8c42
         'brand-dark': '#282119',      // Deep charcoal brown
         'brand-burgundy': '#8C3030',  // Rich burgundy
-        'brand-light': '#F8F9FA',     // Soft white
+        'brand-light': '#F8F9FA',
+        'brand-cream': '#FAF7F2',  // Warm page background (Daylight theme)     // Soft white
         'brand-teal': '#026181',      // Deep teal
         'brand-coral': '#FF8C42',     // Vibrant coral
         
         // Light mode colors
         background: '#ffffff',
         foreground: '#0f1419',
-        
-        // Dark mode colors - Improved contrast
-        'dark-bg': '#0f0e0c',         // Darker background for better contrast
-        'dark-bg-secondary': '#1a1814', // Secondary background
-        'dark-bg-elevated': '#252219', // Elevated cards
-        'dark-text': '#f8f9fa',       // Primary text
-        'dark-text-secondary': '#c7c9cc', // Secondary text
-        'dark-text-muted': '#9ca3af',  // Muted text
-        'dark-border': '#2d2a24',      // Border color
         
         primary: {
           50: '#e6f3f7',

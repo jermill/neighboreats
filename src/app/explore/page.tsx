@@ -10,7 +10,6 @@ import EmptyState from '@/components/shared/EmptyState'
 import { useGeolocation, calculateDistance } from '@/lib/useGeolocation'
 import { Chef } from '@/types'
 import { Search, ShoppingCart, ChefHat, Car, MapPin, Star, TrendingUp, Filter, X } from 'lucide-react'
-import DarkModeToggle from '@/components/shared/DarkModeToggle'
 
 const categories = ['All', 'Mexican', 'Asian', 'American', 'Indian', 'Healthy', 'Baked Goods']
 const dietaryTags = ['Vegan', 'Vegetarian', 'Gluten-Free', 'Keto', 'Healthy']
@@ -97,9 +96,9 @@ export default function ExplorePage() {
   const hasActiveFilters = selectedCategory !== 'All' || selectedDietary.length > 0 || searchRadius !== 5
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-bg">
+    <div className="min-h-screen bg-gray-50">
       {/* Sticky Header */}
-      <nav className="bg-white dark:bg-dark-bg-elevated shadow-md sticky top-0 z-50 border-b border-gray-200 dark:border-dark-border">
+      <nav className="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center">
@@ -115,7 +114,7 @@ export default function ExplorePage() {
             <div className="flex items-center gap-3">
               <Link
                 href="/auth/login"
-                className="px-4 py-2 text-gray-700 dark:text-dark-text-secondary hover:text-brand-teal dark:hover:text-primary-dark transition font-medium"
+                className="px-4 py-2 text-gray-700 hover:text-brand-teal transition font-medium"
               >
                 Log In
               </Link>
@@ -133,44 +132,44 @@ export default function ExplorePage() {
       {/* Hero Section - Vertical Centered */}
       <div className="relative overflow-hidden py-16 md:py-20">
         {/* Decorative blobs */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-burgundy/10 dark:bg-brand-burgundy/5 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-coral/10 dark:bg-brand-coral/5 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-burgundy/10 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-coral/10 rounded-full mix-blend-multiply filter blur-3xl opacity-40"></div>
 
         <div className="max-w-3xl mx-auto px-4 relative z-10">
           <div className="text-center space-y-6">
-            <div className="inline-flex items-center gap-2 bg-white dark:bg-dark-bg-elevated px-4 py-2 rounded-full shadow-lg border border-gray-200 dark:border-dark-border">
-              <MapPin className="w-4 h-4 text-brand-teal dark:text-primary-dark" />
-              <span className="text-sm font-medium text-gray-700 dark:text-dark-text-secondary">
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-lg border border-gray-200">
+              <MapPin className="w-4 h-4 text-brand-teal" />
+              <span className="text-sm font-medium text-gray-700">
                 Wilmington, DE
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-dark-text">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
               Discover Local Chefs
             </h1>
             
-            <p className="text-xl text-gray-600 dark:text-dark-text-secondary max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Browse neighborhood chefs, explore their menus, and order fresh homemade meals
             </p>
 
             {/* Quick Stats */}
             <div className="flex flex-wrap justify-center gap-6 pt-4">
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/30 dark:to-red-800/30 rounded-full flex items-center justify-center">
-                  <ChefHat className="w-5 h-5 text-customer-500 dark:text-red-400" />
+                <div className="w-10 h-10 bg-gradient-to-br from-red-100 to-red-200 rounded-full flex items-center justify-center">
+                  <ChefHat className="w-5 h-5 text-customer-500" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-gray-900 dark:text-dark-text">{filteredChefs.length}</div>
-                  <div className="text-sm text-gray-600 dark:text-dark-text-muted">Local Chefs</div>
+                  <div className="text-2xl font-bold text-gray-900">{filteredChefs.length}</div>
+                  <div className="text-sm text-gray-600">Local Chefs</div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/30 dark:to-amber-800/30 rounded-full flex items-center justify-center">
-                  <Star className="w-5 h-5 text-amber-500 dark:text-amber-400 fill-amber-500 dark:fill-amber-400" />
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-100 to-amber-200 rounded-full flex items-center justify-center">
+                  <Star className="w-5 h-5 text-amber-500 fill-amber-500" />
                 </div>
                 <div className="text-left">
-                  <div className="text-2xl font-bold text-gray-900 dark:text-dark-text">4.8</div>
-                  <div className="text-sm text-gray-600 dark:text-dark-text-muted">Avg Rating</div>
+                  <div className="text-2xl font-bold text-gray-900">4.8</div>
+                  <div className="text-sm text-gray-600">Avg Rating</div>
                 </div>
               </div>
             </div>
@@ -180,10 +179,10 @@ export default function ExplorePage() {
 
       {/* Guest Mode Banner */}
       <div className="max-w-3xl mx-auto px-4 -mt-6 relative z-20">
-        <div className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800 rounded-2xl p-4 shadow-lg">
-          <p className="text-amber-900 dark:text-amber-200 text-center">
+        <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 shadow-lg">
+          <p className="text-amber-900 text-center">
             👋 <strong>Guest Mode:</strong> Browsing as a guest. 
-            <Link href="/auth/signup/customer" className="text-amber-700 dark:text-amber-400 font-bold hover:underline ml-1">
+            <Link href="/auth/signup/customer" className="text-amber-700 font-bold hover:underline ml-1">
               Sign up free
             </Link> to order!
           </p>
@@ -194,16 +193,16 @@ export default function ExplorePage() {
       <div className="max-w-3xl mx-auto px-4 py-12">
         {/* Filter Toggle Button (Mobile) */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-dark-text">
+          <h2 className="text-2xl font-bold text-gray-900">
             Browse Chefs
-            <span className="text-base font-normal text-gray-500 dark:text-dark-text-muted ml-2">
+            <span className="text-base font-normal text-gray-500 ml-2">
               ({filteredChefs.length} nearby)
             </span>
           </h2>
           
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-dark-bg-elevated border-2 border-gray-200 dark:border-dark-border rounded-xl hover:border-brand-teal dark:hover:border-primary-dark transition font-semibold text-gray-700 dark:text-dark-text"
+            className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 rounded-xl hover:border-brand-teal transition font-semibold text-gray-700"
           >
             {showFilters ? <X className="w-5 h-5" /> : <Filter className="w-5 h-5" />}
             Filters
@@ -217,7 +216,7 @@ export default function ExplorePage() {
 
         {/* Filters Section - Collapsible */}
         {showFilters && (
-          <div className="bg-white dark:bg-dark-bg-elevated rounded-2xl shadow-xl dark:shadow-2xl dark:shadow-black/30 p-6 mb-8 border border-gray-100 dark:border-dark-border space-y-6 animate-fadeIn">
+          <div className="bg-white rounded-2xl shadow-xl p-6 mb-8 border border-gray-100 space-y-6 animate-fadeIn">
             {/* Search Radius */}
             <div>
               <Slider
@@ -233,14 +232,14 @@ export default function ExplorePage() {
 
             {/* Sort Options */}
             <div>
-              <label className="text-sm font-bold text-gray-900 dark:text-dark-text mb-3 block">Sort By</label>
+              <label className="text-sm font-bold text-gray-900 mb-3 block">Sort By</label>
               <div className="flex gap-3">
                 <button
                   onClick={() => setSortBy('distance')}
                   className={`flex-1 px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                     sortBy === 'distance'
-                      ? 'bg-brand-teal dark:bg-primary-dark text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-dark-bg-secondary text-gray-700 dark:text-dark-text-secondary hover:bg-gray-200 dark:hover:bg-dark-bg'
+                      ? 'bg-brand-teal text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
                   <MapPin className="w-4 h-4" />
@@ -250,8 +249,8 @@ export default function ExplorePage() {
                   onClick={() => setSortBy('rating')}
                   className={`flex-1 px-4 py-3 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
                     sortBy === 'rating'
-                      ? 'bg-amber-500 dark:bg-amber-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-dark-bg-secondary text-gray-700 dark:text-dark-text-secondary hover:bg-gray-200 dark:hover:bg-dark-bg'
+                      ? 'bg-amber-500 text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
                   <Star className="w-4 h-4" />
@@ -262,7 +261,7 @@ export default function ExplorePage() {
 
             {/* Categories */}
             <div>
-              <label className="text-sm font-bold text-gray-900 dark:text-dark-text mb-3 block">Cuisine</label>
+              <label className="text-sm font-bold text-gray-900 mb-3 block">Cuisine</label>
               <div className="flex flex-wrap gap-2">
                 {categories.map(category => (
                   <button
@@ -271,7 +270,7 @@ export default function ExplorePage() {
                     className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
                       selectedCategory === category
                         ? 'bg-brand-burgundy text-white shadow-lg'
-                        : 'bg-gray-100 dark:bg-dark-bg-secondary text-gray-700 dark:text-dark-text-secondary hover:bg-gray-200 dark:hover:bg-dark-bg border border-gray-200 dark:border-dark-border'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
                     }`}
                   >
                     {category}
@@ -282,7 +281,7 @@ export default function ExplorePage() {
 
             {/* Dietary Filters */}
             <div>
-              <label className="text-sm font-bold text-gray-900 dark:text-dark-text mb-3 block">Dietary Preferences</label>
+              <label className="text-sm font-bold text-gray-900 mb-3 block">Dietary Preferences</label>
               <div className="flex flex-wrap gap-2">
                 {dietaryTags.map(tag => (
                   <button
@@ -290,8 +289,8 @@ export default function ExplorePage() {
                     onClick={() => toggleDietaryTag(tag)}
                     className={`px-4 py-2 rounded-full text-sm font-semibold transition-all border-2 ${
                       selectedDietary.includes(tag)
-                        ? 'bg-emerald-600 dark:bg-emerald-700 text-white border-emerald-600 dark:border-emerald-700 shadow-lg'
-                        : 'bg-white dark:bg-dark-bg text-gray-700 dark:text-dark-text-secondary border-gray-200 dark:border-dark-border hover:border-emerald-400 dark:hover:border-emerald-600'
+                        ? 'bg-emerald-600 text-white border-emerald-600 shadow-lg'
+                        : 'bg-white text-gray-700 border-gray-200 hover:border-emerald-400'
                     }`}
                   >
                     {selectedDietary.includes(tag) && '✓ '}
@@ -305,7 +304,7 @@ export default function ExplorePage() {
             {hasActiveFilters && (
               <button
                 onClick={resetFilters}
-                className="w-full px-4 py-2 text-sm font-semibold text-gray-600 dark:text-dark-text-muted hover:text-brand-burgundy dark:hover:text-red-400 transition"
+                className="w-full px-4 py-2 text-sm font-semibold text-gray-600 hover:text-brand-burgundy transition"
               >
                 Reset All Filters
               </button>
@@ -348,7 +347,7 @@ export default function ExplorePage() {
 
         {/* Bottom CTA */}
         {filteredChefs.length > 0 && (
-          <div className="mt-12 bg-gradient-to-br from-brand-burgundy to-customer-600 dark:from-brand-burgundy/90 dark:to-customer-700 rounded-3xl p-8 text-center shadow-2xl">
+          <div className="mt-12 bg-gradient-to-br from-brand-burgundy to-customer-600 rounded-3xl p-8 text-center shadow-2xl">
             <h3 className="text-2xl font-bold text-white mb-3">
               Ready to Order?
             </h3>
@@ -357,7 +356,7 @@ export default function ExplorePage() {
             </p>
             <Link
               href="/auth/signup/customer"
-              className="inline-block px-8 py-4 bg-white dark:bg-dark-bg-elevated text-brand-burgundy dark:text-dark-text font-bold rounded-2xl hover:bg-gray-100 dark:hover:bg-dark-bg-secondary transition shadow-xl"
+              className="inline-block px-8 py-4 bg-white text-brand-burgundy font-bold rounded-2xl hover:bg-gray-100 transition shadow-xl"
             >
               Sign Up Free
             </Link>
@@ -366,7 +365,6 @@ export default function ExplorePage() {
       </div>
 
       {/* Dark Mode Toggle */}
-      <DarkModeToggle />
     </div>
   )
 }
